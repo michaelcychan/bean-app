@@ -1,9 +1,9 @@
 # Bean App
 
 ## Created by
-Abhiram Nandakumar
-Dave Kempsell
-Ibrahim Pala
+Abhiram Nandakumar ||
+Dave Kempsell ||
+Ibrahim Pala ||
 Michael Chan
 
 ## Installation
@@ -29,3 +29,9 @@ At the root, run:
 ```
 npm install
 ```
+
+## To run the webpage
+```
+npx react-native run-ios
+```
+Wait for the xcode simulator to come up.
