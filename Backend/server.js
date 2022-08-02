@@ -33,6 +33,9 @@ const drinkerRouter = require('./routes/drinker.route');
 app.use('/', homeRouter);
 app.use('/drinker', drinkerRouter);
 
+// a non-existing path
+app.use('*', (req, res) => res.status(404).json({error: "There is no such page. Have a coffee ☕ and try again."}))
+
 app.listen(port, () => {
   console.log(`Server started, listening to port: ${port}`)
 })

@@ -3,10 +3,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const drinkerSchema = new Schema({
-  drinker_id: {
-    type: Number,
-
-  },
   firstname: {
     type: String,
     trim: true
