@@ -121,5 +121,47 @@ describe('Drinker', () => {
         }
       )
     })
+  }),
+  it('uses beans to redeem a drink', (done) => {
+    
+    // creating a new drinker with 10 beans for testing
+    const req = {
+      body: {
+        firstname: 'Ten',
+        lastname: 'Beans',
+        email: 'ten@beans.net',
+        password: 'inputPassword',
+      }
+    }
+    hashedPassword = 'SupposedlyHashed'
+    const newDrinker = new Drinker({
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: hashedPassword,
+      bean_count: 10
+    });
+    newDrinker.save((err) => {
+      expect(err).toBeNull();
+
+
+      // Barista Controller path - deducting 10 beans for a free drink
+      Drinker.findOneAndUpdate(
+        {email: 'ten@beans.net'},
+        {$inc: {bean_count: -10}},
+        (error) => {
+          expect(error).toBeNull();
+
+          // confirm the bean_count has decreased from 10 to 0
+          Drinker.find({email: 'ten@beans.net'}, (error, drinkers) => {
+            expect(error).toBeNull();
+            expect(drinkers[0].email).toEqual('ten@beans.net');
+            expect(drinkers[0].bean_count).toEqual(0);
+            
+          });
+          done();
+        }
+      )
+    })
   })
 })
