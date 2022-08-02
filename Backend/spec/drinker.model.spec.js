@@ -80,4 +80,46 @@ describe('Drinker', () => {
       });
     });
   });
+  it('adds a loyalty bean to a drinker', (done) => {
+    
+    // creating a new drinker for testing
+    const req = {
+      body: {
+        firstname: 'First',
+        lastname: 'Last',
+        email: 'drinker@coffee.net',
+        password: 'inputPassword',
+      }
+    }
+    hashedPassword = 'SupposedlyHashed'
+    const newDrinker = new Drinker({
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: hashedPassword,
+      bean_count: 0
+    });
+    newDrinker.save((err) => {
+      expect(err).toBeNull();
+
+
+      // Barista Controller path - adding 1 to bean_count using email
+      Drinker.findOneAndUpdate(
+        {email: 'drinker@coffee.net'},
+        {$inc: {bean_count: 1}},
+        (error) => {
+          expect(error).toBeNull();
+
+          // confirm the bean_count has increased by 1
+          Drinker.find({email: 'drinker@coffee.net'}, (error, drinkers) => {
+            expect(error).toBeNull();
+            expect(drinkers[0].email).toEqual('drinker@coffee.net');
+            expect(drinkers[0].bean_count).toEqual(1);
+            
+          });
+          done();
+        }
+      )
+    })
+  })
 })
