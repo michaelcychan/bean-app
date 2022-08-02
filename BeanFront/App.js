@@ -14,7 +14,11 @@ const BeanApp = (props) => {
         <Text>
           Number of beans: {beanCount}
         </Text>
-        <RedeemDrinkButton style={styles.button} beanCount={beanCount} setBeanCount={setBeanCount} />
+        {(beanCount >= 10)
+          ? <RedeemDrinkButton style={styles.button} beanCount={beanCount} setBeanCount={setBeanCount} />
+          : <Text> Earn 10 beans for a free drink</Text>
+        }
+        
       
       </View>
     </View>
