@@ -27,11 +27,12 @@ mongoose.connect(uri, { useNewUrlParser: true })
 // declaring routes
 const homeRouter = require('./routes/home.route');
 const drinkerRouter = require('./routes/drinker.route');
-
+const baristaRouter = require('./routes/barista.route');
 
 // Calling different routers for different routes
 app.use('/', homeRouter);
 app.use('/drinker', drinkerRouter);
+app.use('/barista', baristaRouter);
 
 // a non-existing path
 app.use('*', (req, res) => res.status(404).json({error: "There is no such page. Have a coffee ☕ and try again."}))
