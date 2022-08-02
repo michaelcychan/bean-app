@@ -1,30 +1,26 @@
 import React, {Component, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-// We are using the "Class", not the function (Hook) 
-class BeanApp extends Component {
-  state = {
-    bean: 0
-  }
+// Using Hook / function instead of class
+const BeanApp = (props) => {
+  const [beanCount, setBeanCount] = useState(0);
 
-  onPress = () => {
-    this.setState({
-      bean: this.state.bean + 1
-    })
-  }
+
+  const handleClick = () => {
+    setBeanCount(beanCount + 1);
+  };
+
+  return (
+    <View style={styles.container}>
+        <TouchableOpacity style={styles.button} onPress={handleClick}><Text>Add 🫘 Beans</Text></TouchableOpacity>
+        <View>
+        <Text>
+          Number of beans: {beanCount}
+        </Text>
+        </View>
+    </View>
+  );
   
-  render() {
-    return (
-      <View style={styles.container}>
-         <TouchableOpacity style={styles.button} onPress={this.onPress}><Text>Add 🫘 Beans</Text></TouchableOpacity>
-         <View>
-          <Text>
-            Number of beans: {this.state.bean}
-          </Text>
-         </View>
-      </View>
-    );
-  }
 }
 
 const styles = StyleSheet.create({
