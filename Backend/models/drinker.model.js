@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const drinkerSchema = new Schema({
+  drinker_id: {
+    type: Number,
+    // required: true,
+    unique: true
+  },
   firstname: {
     type: String,
     trim: true
@@ -15,7 +20,8 @@ const drinkerSchema = new Schema({
     type: String,
     required: true,
     trim: true,
-    minlength: 5
+    minlength: 5,
+    unique: true
   },
   password: {
     type: String,
