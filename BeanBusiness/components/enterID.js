@@ -13,17 +13,16 @@ import {
 } from 'react-native';
 
 export const EnterID = ({navigation}) => {
-  const [number, onChangeNumber] = React.useState(null);
+  const [drinkerID, onChangeDrinkerID] = React.useState(null);
 
   return (
     <>
-      <Text>Enter membership ID:</Text>
       <SafeAreaView>
         <TextInput
           style={styles.input}
-          onChangeText={onChangeNumber}
-          value={number}
-          placeholder="useless beans"
+          onChangeText={onChangeDrinkerID}
+          value={drinkerID}
+          placeholder="Enter customer's membership ID"
           keyboardType="numeric"
           maxLength={6}
         />
