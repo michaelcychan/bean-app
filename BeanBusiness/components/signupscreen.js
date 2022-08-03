@@ -13,12 +13,22 @@ import {
 } from 'react-native';
 
 export const SignupScreen = ({navigation}) => {
+  const [shopName, onChangeShopName] = React.useState(null);
   const [shopEmail, onChangeShopEmail] = React.useState(null);
   const [shopPassword, onChangeShopPassword] = React.useState(null);
+  const [shopAddress, onChangeShopAddress] = React.useState(null);
+
   return (
     <>
       <Text>Coffee Bean's Signup Page</Text>
       <SafeAreaView>
+      <TextInput
+          style={styles.input}
+          onChangeText={onChangeShopName}
+          value={shopName}
+          placeholder="Enter your shop's name"
+          keyboardType="default"
+        />
         <TextInput
           style={styles.input}
           onChangeText={onChangeShopEmail}
@@ -33,6 +43,13 @@ export const SignupScreen = ({navigation}) => {
           placeholder="Enter your password"
           keyboardType="default"
           secureTextEntry={true}
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeShopAddress}
+          value={shopAddress}
+          placeholder="Enter your shop address"
+          keyboardType="default"
         />
       </SafeAreaView>
       <Button
