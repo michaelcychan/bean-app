@@ -13,6 +13,13 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+import {HomeScreen} from './components/homescreen';
+import {SignupScreen} from './components/signupscreen';
+import {LoginScreen} from './components/loginscreen';
+import {EnterID} from './components/enterID';
+import {CustomerProfileScreen} from './components/customerprofile';
+
+
 const Stack = createNativeStackNavigator();
 
 const MyStack = () => {
@@ -34,38 +41,18 @@ const MyStack = () => {
           component={LoginScreen}
           options={{title: 'Login'}}
         />
+        <Stack.Screen
+          name="Coffee Shop Name"
+          component={EnterID}
+          options={{title: 'Shop - Enter membership id'}}
+        />
+        <Stack.Screen
+          name="Customer Profile Screen"
+          component={CustomerProfileScreen}
+          options={{title: 'Customer Name Profile Page'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
-  );
-};
-
-const HomeScreen = ({navigation}) => {
-  return (
-    <>
-      <Text>Coffee Bean's Homepage</Text>
-      <Button
-        title="Go to the signup page"
-        onPress={() => navigation.navigate('Signup', {name: 'SignupNow'})}
-      />
-    </>
-  );
-};
-const SignupScreen = ({navigation}) => {
-  return (
-    <>
-      <Text>Coffee Bean's Signup Page</Text>
-      <Button
-        title="Go to the login page"
-        onPress={() => navigation.navigate('Login', {name: 'LoginNow'})}
-      />
-    </>
-  );
-};
-const LoginScreen = ({navigation}) => {
-  return (
-    <>
-      <Text>Coffee Bean's Login Page</Text>
-    </>
   );
 };
 
