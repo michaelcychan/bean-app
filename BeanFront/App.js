@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {AddBeanButton, RedeemDrinkButton} from './components/BeanButtons';
+import {MainPage} from './components/mainPage';
 
 // Using Hook / function instead of class
 const BeanApp = (props) => {
@@ -8,18 +9,7 @@ const BeanApp = (props) => {
 
   return (
     <View style={styles.container}>
-      <AddBeanButton style={styles.button} beanCount={beanCount} setBeanCount={setBeanCount} />
-       
-      <View>
-        <Text>
-          Number of beans: {beanCount}
-        </Text>
-        {(beanCount >= 10) // condition ? true to show button : false to show Text
-          ? <RedeemDrinkButton style={styles.button} beanCount={beanCount} setBeanCount={setBeanCount} />
-          : <Text> Earn 10 beans for a free drink</Text>
-        }
-
-      </View>
+      <MainPage styles={styles} beanCount={beanCount} setBeanCount={setBeanCount}/>
     </View>
   );
   
