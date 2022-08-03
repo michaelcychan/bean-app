@@ -37,6 +37,7 @@ const DrinkerController = {
     console.log(req);
     console.log('end of req')
     const drinker = new Drinker({
+      drinker_id: req.body.drinker_id,
       email: req.body.email,
       bean_count: 0
     });
