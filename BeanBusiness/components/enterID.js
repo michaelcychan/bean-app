@@ -9,12 +9,16 @@ import {
   Text,
   useColorScheme,
   View,
+  TextInput
 } from 'react-native';
 
 export const EnterID = ({navigation}) => {
+  const [drinkerID, onChangeDrinkerID] = React.useState();
+
   return (
     <>
       <Text>Enter membership ID:</Text>
+      <TextInput onChangeText={onChangeDrinkerID} value={drinkerID} />
       <Button
         title="Search User"
         onPress={() =>
