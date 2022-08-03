@@ -9,16 +9,25 @@ import {
   Text,
   useColorScheme,
   View,
-  TextInput
+  TextInput,
 } from 'react-native';
 
 export const EnterID = ({navigation}) => {
-  const [drinkerID, onChangeDrinkerID] = React.useState();
+  const [number, onChangeNumber] = React.useState(null);
 
   return (
     <>
       <Text>Enter membership ID:</Text>
-      <TextInput onChangeText={onChangeDrinkerID} value={drinkerID} />
+      <SafeAreaView>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeNumber}
+          value={number}
+          placeholder="useless beans"
+          keyboardType="numeric"
+          maxLength={6}
+        />
+      </SafeAreaView>
       <Button
         title="Search User"
         onPress={() =>
@@ -30,3 +39,12 @@ export const EnterID = ({navigation}) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
+});
