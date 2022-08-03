@@ -139,7 +139,7 @@ describe('Drinker', () => {
       lastname: req.body.lastname,
       email: req.body.email,
       password: hashedPassword,
-      bean_count: 10
+      bean_count: 11
     });
     newDrinker.save((err) => {
       expect(err).toBeNull();
@@ -156,7 +156,7 @@ describe('Drinker', () => {
           Drinker.find({email: 'ten@beans.net'}, (error, drinkers) => {
             expect(error).toBeNull();
             expect(drinkers[0].email).toEqual('ten@beans.net');
-            expect(drinkers[0].bean_count).toEqual(0);
+            expect(drinkers[0].bean_count).toEqual(1);
             
           });
           done();

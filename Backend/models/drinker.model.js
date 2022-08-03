@@ -19,7 +19,7 @@ const drinkerSchema = new Schema({
   },
   password: {
     type: String,
-    required: true
+    // required: true
   },
   bean_count: {
     type: Number,

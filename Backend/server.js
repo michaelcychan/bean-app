@@ -1,6 +1,7 @@
 // Import libraries
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
 const mongoose = require('mongoose');
 
 // reading flag from input
@@ -17,6 +18,7 @@ const port = process.env.PORT || 5000;
 // middleware
 app.use(cors());
 app.use(express.json());
+app.use(morgan('tiny'));
 
 // setting up mongoose
 const uri = process.env.DB_URI;
