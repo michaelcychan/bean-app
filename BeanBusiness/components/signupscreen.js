@@ -11,6 +11,7 @@ import {
   View,
   TextInput,
 } from 'react-native';
+import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 
 export const SignupScreen = ({navigation}) => {
   const [shopName, onChangeShopName] = React.useState(null);
@@ -44,12 +45,30 @@ export const SignupScreen = ({navigation}) => {
           keyboardType="default"
           secureTextEntry={true}
         />
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeShopAddress}
-          value={shopAddress}
-          placeholder="Enter your shop address"
-          keyboardType="default"
+        <GooglePlacesAutocomplete
+          // eslint-disable-next-line react-native/no-inline-styles
+          styles={{
+            container: {
+              flex: 1,
+            },
+            textInputContainer: {
+              backgroundColor: 'grey',
+            },
+            textInput: {
+              height: 38,
+              fonSize: 16,
+            },
+            padding: 10,
+          }}
+          placeholder="Search"
+          onPress={(data, details = null) => {
+            console.log(data, details);
+            onChangeShopAddress(data) // is it the correct syntax??
+          }}
+          query={{
+            key: 'AIzaSyAAKl1eg50hAFGZrU2wIGwXeqRo-YlJJEY',
+            language: 'en',
+          }}
         />
       </SafeAreaView>
       <Button
