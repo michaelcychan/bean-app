@@ -3,9 +3,15 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import {AddBeanButton, RedeemDrinkButton} from './BeanButtons';
 
 export const MainPage = (props) => {
-  
+  const secondPage = () => {
+    
+  }
+
   return (
     <View style={props.styles.container}>
+      <View>
+        <TouchableOpacity style={props.styles.button} onPress={secondPage}><Text> Second Page </Text></TouchableOpacity>
+      </View>
       <AddBeanButton style={props.styles.button} beanCount={props.beanCount} setBeanCount={props.setBeanCount} />
        
       <View>
