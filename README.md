@@ -6,6 +6,12 @@ Dave Kempsell
 Ibrahim Pala
 Michael Chan
 
+
+## Database design
+
+<img src="./images/bean-database-mvp.jpg" height=350px />
+<img src="./images/bean-database.jpg" height=350px s/>
+
 Wireframing
 
 Our project contains two main user journies. 
@@ -18,3 +24,4 @@ The Coffee Lover Flow
 
 The Coffee Shop Owner Flow
 ![Coffee-Shop-Wireframe](https://user-images.githubusercontent.com/46889947/182211023-46df8741-8b23-4f7d-96f5-3bb24bc20277.png)
+
