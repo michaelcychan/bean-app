@@ -2,6 +2,7 @@ import React from 'react';
 import type {Node} from 'react';
 import {
   Button,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -18,15 +19,17 @@ export const HomeScreen = ({navigation}) => {
       <Text style={styles.title}>Loyal Bean</Text>
       <Text style={styles.subtitle}>Form relationships</Text>
       <Text>with loyal coffee drinkers</Text>
-      <Button
-        title="Start building your customer base"
+      <Pressable
+        style={styles.button}
         onPress={() => navigation.navigate('Signup', {name: 'SignupNow'})}
-      />
+      ><Text style={styles.buttontext}>Start building your customer base</Text>
+      </Pressable>
       <Text>Already have an account?</Text>
-      <Button
-        title="Go to the login page"
+      <Pressable
+        style={styles.button}
         onPress={() => navigation.navigate('Login', {name: 'LoginNow'})}
-      />
+      ><Text style={styles.buttontext}>Go to the login page</Text>
+      </Pressable>
     </View>
   );
 };
