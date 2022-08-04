@@ -12,6 +12,7 @@ import {
   TextInput,
 } from 'react-native';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import Config from 'react-native-config';
 
 export const SignupScreen = ({navigation}) => {
   const [shopName, onChangeShopName] = React.useState(null);
@@ -72,7 +73,7 @@ export const SignupScreen = ({navigation}) => {
               this.props.notifyChange(details.geometry.location);
             }}
             query={{
-              key: 'AIzaSyCC1_Bldu4Lmewp6bcUwhuOqWz8bwgEF1c',
+              key: Config.GOOGLE_MAPS_API_KEY,
               language: 'en',
             }}
             nearbyPlacesAPI="GooglePlacesSearch"
