@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const drinkerSchema = new Schema({
   drinker_id: {
     type: Number,
-    // required: true,
+    required: true,
     unique: true
   },
   firstname: {
@@ -26,7 +26,7 @@ const drinkerSchema = new Schema({
   },
   password: {
     type: String,
-    // required: true
+    required: true
   },
   bean_count: {
     type: Number,
@@ -37,13 +37,13 @@ drinkerSchema.pre('save', function (done){
   let doc = this;
   drinkercounter.getSequenceNextValue("drinker_id")
     .then(counter => {
-      console.log("found counter:", counter);
+      console.log("counter number:", counter);
       if(!counter) {
         drinkercounter.insertCounter("drinker_id")
           .then(counter => {
             doc.drinker_id = counter;
             console.log(doc);
-            done();
+            done(); 
           })
           .catch(error => done(error))
       } else {
