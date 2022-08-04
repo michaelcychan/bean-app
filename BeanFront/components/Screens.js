@@ -1,26 +1,29 @@
 import * as React from 'react';
-import { View, Button, Text, StyleSheet } from 'react-native';
+import { View, Button, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { FirstName, LastName, Email, Password } from './TextInputs'
 
 export const Home = ({ navigation }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Receive free coffee</Text>
       <Text>From your favourite independant coffee shop</Text>
-    <Button
+    <TouchableOpacity
       style={styles.button}
-      title="Sign up for rewards"
       onPress={() =>
         navigation.navigate('Sign Up')
       }
-    />
+      >
+      <Text>Sign up for rewards</Text>
+    </TouchableOpacity>
     <Text>Already have an account?</Text>
-    <Button
-      title="Login"
+    <TouchableOpacity
+      style={styles.button}
       onPress={() =>
         navigation.navigate('Sign In')
       }
-    />
+    >
+      <Text>Login</Text>
+    </TouchableOpacity>
     </View>
   );
 };
@@ -28,22 +31,31 @@ export const Home = ({ navigation }) => {
 export const SignUp = ({ navigation, route }) => {
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Signup</Text>
       {/* using components from TextInputs */}
       <FirstName/>
       <LastName/>
       <Email/>
       <Password/>
-      <Button title="Signup" />
+        <TouchableOpacity
+          style={styles.button} 
+          onPress={() => 
+            navigation.navigate('Id')
+          }
+        >
+          <Text>Sign up</Text>
+        </TouchableOpacity>
       <View>
         <Text>Already have an account?</Text>
-        <Button 
-          title="Login" 
+        <TouchableOpacity
+          style={styles.button} 
           onPress={() => 
             navigation.navigate('Sign In')
           }
-        />
+        >
+          <Text>Login</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -51,7 +63,7 @@ export const SignUp = ({ navigation, route }) => {
 
 export const SignIn = ({ navigation, route }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Login</Text>
       {/* using components from TextInputs */}
       <Email/>
@@ -77,7 +89,7 @@ export const SignIn = ({ navigation, route }) => {
 
 export const Id = ({ navigation, route}) => {
   return (
-    <View>
+    <View style={styles.container}>
     <Text>Member Number</Text>
       <View>
       <Text>0000-0001</Text>
@@ -113,12 +125,15 @@ export const Beans = ({ navigation, route}) => {
 
 export const Settings = ({ navigation, route}) => {
   return (
-    <Button 
-      title="Logout"
-      onPress={() =>
-        navigation.navigate('Home')
-      }
-    />
+    <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('Home')
+        }
+      >
+        <Text>Logout</Text>
+      </TouchableOpacity>
+    </View>
   )
 }
 
@@ -137,6 +152,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
+    width: 240,
     margin: 12,
     borderWidth: 1,
     padding: 10,
