@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
+    "ios": "react-native run-ios --port 8088 --simulator=iPhone 13 Pro",
+    "start": "react-native start --port=8088 --reset-cache",
     "test": "jest",
     "lint": "eslint ."
   },
