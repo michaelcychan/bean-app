@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import type {Node} from 'react';
 import {
   Button,
@@ -10,15 +10,47 @@ import {
   useColorScheme,
   View,
   TextInput,
+  Alert,
 } from 'react-native';
 import {styles} from './stylesheets';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import Config from 'react-native-config';
+import {useAuth} from '../providers/AuthProvider';
 
-export const SignupScreen = ({navigation}) => {
+export function SignupScreen({navigation}) {
   const [shopName, onChangeShopName] = React.useState(null);
-  const [shopEmail, onChangeShopEmail] = React.useState(null);
-  const [shopPassword, onChangeShopPassword] = React.useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const {user, signUp, signIn} = useAuth();
+
+  useEffect(() => {
+    // If there is a user logged in, go to the Projects page.
+    if (user != null) {
+      navigation.navigate('Projects');
+    }
+  }, [user]);
+
+  // The onPressSignIn method calls AuthProvider.signIn with the
+  // email/password in state.
+  const onPressSignIn = async () => {
+    console.log('Press sign in');
+    try {
+      await signIn(email, password);
+    } catch (error) {
+      Alert.alert(`Failed to sign in: ${error.message}`);
+    }
+  };
+
+  // The onPressSignUp method calls AuthProvider.signUp with the
+  // email/password in state and then signs in.
+  const onPressSignUp = async () => {
+    try {
+      await signUp(email, password);
+      signIn(email, password);
+    } catch (error) {
+      Alert.alert(`Failed to sign up: ${error.message}`);
+    }
+  };
 
   return (
     <>
@@ -33,18 +65,18 @@ export const SignupScreen = ({navigation}) => {
             keyboardType="default"
           />
           <TextInput
+            onChangeText={setEmail}
+            value={email}
+            placeholder="Enter your email"
             style={styles.input}
-            onChangeText={onChangeShopEmail}
-            value={shopEmail}
-            placeholder="Enter your email address"
+            autoCapitalize="none"
             keyboardType="email-address"
           />
           <TextInput
-            style={styles.input}
-            onChangeText={onChangeShopPassword}
-            value={shopPassword}
+            onChangeText={text => setPassword(text)}
+            value={password}
             placeholder="Enter your password"
-            keyboardType="default"
+            style={styles.input}
             secureTextEntry={true}
           />
 
@@ -86,10 +118,12 @@ export const SignupScreen = ({navigation}) => {
           title="Go to the login page"
           onPress={() => navigation.navigate('Login', {name: 'LoginNow'})}
         />
+        <Button onPress={onPressSignIn} title="Sign In" />
+        <Button onPress={onPressSignUp} title="Sign Up" />
       </ScrollView>
     </>
   );
-};
+}
 
 // const styles = StyleSheet.create({
 //   input: {
