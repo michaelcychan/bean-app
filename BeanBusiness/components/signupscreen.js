@@ -62,7 +62,7 @@ export const SignupScreen = ({navigation}) => {
               },
               padding: 10,
             }}
-            placeholder="Search"
+            placeholder="Enter Shop Address"
             minLength={2} // minimum length of text to search
             autoFocus={true}
             returnKeyType={'search'} // Can be left out for default return key
