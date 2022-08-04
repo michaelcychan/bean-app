@@ -11,6 +11,7 @@ import {
   View,
   TextInput,
 } from 'react-native';
+import {styles} from './stylesheets';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import Config from 'react-native-config';
 
@@ -18,7 +19,6 @@ export const SignupScreen = ({navigation}) => {
   const [shopName, onChangeShopName] = React.useState(null);
   const [shopEmail, onChangeShopEmail] = React.useState(null);
   const [shopPassword, onChangeShopPassword] = React.useState(null);
-  const [shopAddress, onChangeShopAddress] = React.useState(null);
 
   return (
     <>
@@ -48,7 +48,8 @@ export const SignupScreen = ({navigation}) => {
             secureTextEntry={true}
           />
 
-          <GooglePlacesAutocomplete
+          {/* GooglePlacesAutocomplete can show a field, but we should think of a way to save the address text */}
+          {/* <GooglePlacesAutocomplete
             styles={{
               container: {
                 flex: 1,
@@ -78,7 +79,7 @@ export const SignupScreen = ({navigation}) => {
             }}
             nearbyPlacesAPI="GooglePlacesSearch"
             debounce={300}
-          />
+          /> */}
         </SafeAreaView>
 
         <Button
@@ -90,11 +91,11 @@ export const SignupScreen = ({navigation}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});
+// const styles = StyleSheet.create({
+//   input: {
+//     height: 40,
+//     margin: 12,
+//     borderWidth: 1,
+//     padding: 10,
+//   },
+// });

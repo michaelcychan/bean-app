@@ -10,6 +10,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import {styles} from './stylesheets';
 
 export const CustomerProfileScreen = ({navigation}) => {
   return (

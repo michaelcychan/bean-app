@@ -11,6 +11,7 @@ import {
   View,
   TextInput,
 } from 'react-native';
+import {styles} from './stylesheets';
 
 export const EnterID = ({navigation}) => {
   const [drinkerID, onChangeDrinkerID] = React.useState(null);
@@ -39,11 +40,3 @@ export const EnterID = ({navigation}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});

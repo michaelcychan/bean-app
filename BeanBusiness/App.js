@@ -1,15 +1,5 @@
 import React from 'react';
 import type {Node} from 'react';
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -18,7 +8,7 @@ import {SignupScreen} from './components/signupscreen';
 import {LoginScreen} from './components/loginscreen';
 import {EnterID} from './components/enterID';
 import {CustomerProfileScreen} from './components/customerprofile';
-
+import {styles} from './components/stylesheets';
 
 const Stack = createNativeStackNavigator();
 
