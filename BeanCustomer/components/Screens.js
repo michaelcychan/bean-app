@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { View, Button, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { FirstName, LastName, Email, Password } from './TextInputs'
 
 export const Home = ({ navigation }) => {
@@ -41,7 +42,7 @@ export const SignUp = ({ navigation, route }) => {
         <TouchableOpacity
           style={styles.button} 
           onPress={() => 
-            navigation.navigate('Id')
+            navigation.navigate('BeanApp')
           }
         >
           <Text>Sign up</Text>
@@ -68,21 +69,23 @@ export const SignIn = ({ navigation, route }) => {
       {/* using components from TextInputs */}
       <Email/>
       <Password/>
-      <Button 
-            title="Login" 
-            onPress={() => 
-              navigation.navigate('Id')
-            }
-          />
-      <View>
+      <TouchableOpacity
+          style={styles.button} 
+          onPress={() => 
+            navigation.navigate('BeanApp')
+          }
+        >
+      <Text>Login</Text>
+      </TouchableOpacity>
         <Text>Haven't signed up yet?</Text>
-        <Button
-          title="Sign up"
+        <TouchableOpacity
+          style={styles.button} 
           onPress={() =>
             navigation.navigate('Sign Up')
           }
-        />
-      </View>
+        >
+          <Text>Sign up</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -91,35 +94,19 @@ export const Id = ({ navigation, route}) => {
   return (
     <View style={styles.container}>
     <Text>Member Number</Text>
-      <View>
       <Text>0000-0001</Text>
-      </View>
-      <View>
-      <Button
-        title="Beans"
-        onPress={() =>
-          navigation.navigate('Beans')
-        }
-      />
-      </View>
-    <Button
-        title="Settings"
-        onPress={() =>
-          navigation.navigate('Settings')
-        }
-    />
     </View>
   )
 }
 
 export const Beans = ({ navigation, route}) => {
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
     <Text>Beans Collected</Text>
       <View>
         <Text>0</Text>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
