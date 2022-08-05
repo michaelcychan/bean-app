@@ -120,11 +120,30 @@ export const Id = ({ navigation, route}) => {
 }
 
 export const Beans = ({ navigation, route}) => {
+  const [beans, setState] =
+  React.useState(0);
+
+  const email = 'michael_coffee@brewer.net'
+
+  const getBeanCount = () => {
+    return fetch(`http://localhost:5050/drinker/${email}`)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json)
+        setState(json.bean_count)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  getBeanCount()
+
   return (
     <SafeAreaView style={styles.container}>
     <Text>Beans Collected</Text>
       <View>
-        <Text>0</Text>
+        <Text>{beans}</Text>
       </View>
     </SafeAreaView>
   )
