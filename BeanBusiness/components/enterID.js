@@ -12,6 +12,7 @@ import {styles} from './stylesheets';
 export const EnterID = ({navigation}) => {
   const [drinkerIDInput, onChangeDrinkerIDInput] = React.useState(null);
   const [drinkerObject, setDrinkerObject] = React.useState(null);
+  const [drinkerID, setDrinkerID] = React.useState();
 
   const findDrinkerID = () => {
     return fetch(`http://localhost:5050/barista/finddrinker/${drinkerIDInput}`)
@@ -19,7 +20,8 @@ export const EnterID = ({navigation}) => {
       .then(json => {
         setDrinkerObject(json);
         console.log(drinkerObject);
-        return json;
+        setDrinkerID(json.drinker_id);
+        console.log(drinkerID);
       })
       .catch(error => {
         console.error(error);
@@ -27,12 +29,31 @@ export const EnterID = ({navigation}) => {
   };
 
   const addBean = () => {
-    const bodyJSON = JSON.stringify(`drinker_id: ${drinkerID}`);
-    return fetch(`http://localhost:5050/barista/addBeans/${drinkerID}`)
+    return fetch(
+      `http://localhost:5050/barista/addbeans/${drinkerObject.drinker_id}`,
+      {
+        method: 'POST',
+      },
+    )
       .then(response => response.json())
       .then(json => {
         console.log(json);
-        return json;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  const redeemDrink = () => {
+    return fetch(
+      `http://localhost:5050/barista/redeemdrink/${drinkerObject.drinker_id}`,
+      {
+        method: 'POST',
+      },
+    )
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
       })
       .catch(error => {
         console.error(error);
@@ -50,22 +71,22 @@ export const EnterID = ({navigation}) => {
           keyboardType="numeric"
           maxLength={6}
         />
-      </SafeAreaView>
-      <Button title="Search User" onPress={() => findDrinkerID()} />
-      <View>
-        {(() => {
-          if (drinkerObject != null) {
-            return (
-              <View>
-                <Text>Drinker Details: {drinkerObject.bean_count}</Text>
-                <Button title="Add a bean" onPress={() => addBean()} />
-                <Button title="Redeem a drink" />
+        <View>
+          <Text style={styles.subtitle}>{drinkerID}</Text>
+          {(drinkerObject == null)
+            ? <Text style={styles.subtitle}>Input one drinker id</Text>
+            : <View>
+              <Text>Drinker Details: {drinkerObject.bean_count}</Text>
+              <Button title="Add a bean" onPress={() => addBean()} />
+              {(drinkerObject.bean_count >= 10)
+                ? <Button title="Redeem a drink" onPress={() => redeemDrink()} />
+                : <Text>Drinker has less than 10 beans. Drink more to earn!</Text>
+              }
               </View>
-            )
           }
-        })}
-      </View>
+        </View>
+        <Button title="Search User" onPress={() => findDrinkerID()} />
+      </SafeAreaView>
     </>
   );
 };
-

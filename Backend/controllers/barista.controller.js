@@ -26,6 +26,7 @@ const BaristaController ={
   },
 
   AddLoyaltyBean: (req, res) => {
+    console.log(req.params);
     Drinker.findOneAndUpdate({drinker_id: req.params.drinker_id},
       {$inc: {bean_count: 1}}, // in long run, the addition can be user input rather than a hard-coded 1
       (error, drinkers) => {
@@ -39,7 +40,8 @@ const BaristaController ={
   },
 
   RedeemDrink: (req, res) => {
-    Drinker.findOneAndUpdate({email: req.body.drinker_email},
+    console.log(req.params);
+    Drinker.findOneAndUpdate({drinker_id: req.params.drinker_id},
       {$inc: {bean_count: -10}}, // in long run, the deduction can be user input rather than a hard-coded. refactored with Add bean??
       (error, drinkers) => {
       if (error) {
@@ -49,7 +51,7 @@ const BaristaController ={
         res.json('Beans used successfully')
       }
     })
-  }
+  },
 }
 
 module.exports = BaristaController;
