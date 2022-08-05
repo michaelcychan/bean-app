@@ -10,7 +10,7 @@ const BaristaController ={
   },
 
   AddLoyaltyBean: (req, res) => {
-    Drinker.findOneAndUpdate({email: req.body.drinker_email},
+    Drinker.findOneAndUpdate({drinker_id: req.body.drinker_id},
       {$inc: {bean_count: 1}}, // in long run, the addition can be user input rather than a hard-coded 1
       (error, drinkers) => {
       if (error) {

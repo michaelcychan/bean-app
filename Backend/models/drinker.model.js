@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const drinkerSchema = new Schema({
   drinker_id: {
     type: Number,
-    required: true,
+    // required: true, // it will be created in the pre-save function
     unique: true
   },
   firstname: {
@@ -48,6 +48,7 @@ drinkerSchema.pre('save', function (done){
           .catch(error => done(error))
       } else {
         doc.drinker_id = counter;
+        console.log(`doc: ${doc}`)
         done();
       }
     })
