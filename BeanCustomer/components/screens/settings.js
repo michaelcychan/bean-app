@@ -7,6 +7,7 @@ export const Settings = ({ navigation, route}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
+        style={styles.button}
         onPress={() =>
           navigation.navigate('Home')
         }
