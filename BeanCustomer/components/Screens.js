@@ -4,8 +4,28 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FirstName, LastName, Email, Password } from './TextInputs'
 
 export const Home = ({ navigation }) => {
+  const getBeanHome = () => {
+    return fetch('http://localhost:5050/')
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        return json;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() =>
+          getBeanHome()
+        }
+      >
+      <Text>Home</Text>
+      </TouchableOpacity>
       <Text>Receive free coffee</Text>
       <Text>From your favourite independant coffee shop</Text>
     <TouchableOpacity
