@@ -14,7 +14,21 @@ import {
 import {styles} from './stylesheets';
 
 export const EnterID = ({navigation}) => {
+
   const [drinkerID, onChangeDrinkerID] = React.useState(null);
+
+
+  const findDrinkerID = () => {
+    return fetch(`http://localhost:5050/barista/finddrinker/${drinkerID}`)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json.bean_count);
+        return json;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   return (
     <>
@@ -31,9 +45,10 @@ export const EnterID = ({navigation}) => {
       <Button
         title="Search User"
         onPress={() =>
-          navigation.navigate('Customer Profile Screen', {
-            name: 'Customer Name Profile Page',
-          })
+          findDrinkerID()
+          // navigation.navigate('Customer Profile Screen', {
+          //   name: 'Customer Name Profile Page',
+          // })
         }
       />
     </>

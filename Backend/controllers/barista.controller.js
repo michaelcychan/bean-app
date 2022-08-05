@@ -9,8 +9,24 @@ const BaristaController ={
     res.json('Shop page');
   },
 
+  FindDrinker: (req, res) => {
+    Drinker.findOne({drinker_id: req.params.drinker_id},
+      (error, drinker) => {
+        if (error) {
+          console.log(`Error when finding drinker: ${error}`);
+          res.status(404).json(`Error when finding drinker: ${error}`);
+        } 
+        if (drinker != null) {
+          res.json(drinker);
+        } else {
+          res.json('No such drinker');
+        }
+      }
+    ) 
+  },
+
   AddLoyaltyBean: (req, res) => {
-    Drinker.findOneAndUpdate({drinker_id: req.body.drinker_id},
+    Drinker.findOneAndUpdate({drinker_id: req.params.drinker_id},
       {$inc: {bean_count: 1}}, // in long run, the addition can be user input rather than a hard-coded 1
       (error, drinkers) => {
       if (error) {
