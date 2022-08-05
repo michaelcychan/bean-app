@@ -2,7 +2,12 @@ import * as React from 'react';
 import { NavigationContainer, TabActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { Home, SignUp, SignIn, Id, Beans, Settings } from './components/Screens'
+import { Settings } from './components/screens/settings'
+import {Home} from './components/screens/home'
+import {SignIn} from './components/screens/signIn'
+import {SignUp} from './components/screens/signUp'
+import {Id} from './components/screens/id'
+import {Beans} from './components/screens/beans'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 const Stack = createNativeStackNavigator();

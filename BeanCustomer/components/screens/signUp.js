@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { View, Button, Text, TextInput, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Button, Text, TextInput, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
+import {styles} from '../stylesheet';
 
-export const FirstName = (props) => {
+const FirstName = (props) => {
   const [text, onChangeText] =
   React.useState("");
 
@@ -17,7 +18,7 @@ export const FirstName = (props) => {
   )
 }
 
-export const LastName = (props) => {
+const LastName = (props) => {
   const [text, onChangeText] =
   React.useState("");
 
@@ -33,7 +34,7 @@ export const LastName = (props) => {
   )
 }
 
-export const Email = (props) => {
+const Email = (props) => {
   const [text, onChangeText] =
   React.useState("");
 
@@ -49,7 +50,7 @@ export const Email = (props) => {
   )
 }
 
-export const Password = (props) => {
+const Password = (props) => {
   const [text, onChangeText] =
   React.useState("");
 
@@ -65,24 +66,28 @@ export const Password = (props) => {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
-    marginTop: 10,
-    marginBottom: 10
-  },
-  input: {
-    height: 40,
-    width: 240,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  }
-})
+export const SignUp = ({navigation, route}) => {
+  return (
+    <View style={styles.container}>
+      <Text>Signup</Text>
+      {/* using components from TextInputs */}
+      <FirstName />
+      <LastName />
+      <Email />
+      <Password />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('BeanApp')}>
+        <Text>Sign up</Text>
+      </TouchableOpacity>
+      <View>
+        <Text>Already have an account?</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Sign In')}>
+          <Text>Login</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
