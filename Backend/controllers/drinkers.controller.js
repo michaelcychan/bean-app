@@ -5,10 +5,6 @@ const bcrypt = require('bcrypt');
 const saltRound = 5;
 
 const DrinkerController = {
-  // show sign up page
-  ShowSignUpPage: (req, res) => {
-    res.json('Page for Signing up');
-  },
 
   // create a new drinker account
   Create: (req, res) => {
@@ -23,32 +19,13 @@ const DrinkerController = {
       drinker.save((error, result) => {
         if (error) {
           console.log(error);
-          res.status(409).render('/new'); // has to be changed => error message
+          res.status(409).json('Cannot add new drinker'); // has to be changed => error message
         } else {
-          res.json('A new Drinker joined!') // change to render or redirect when we have a better route
+          res.json('A new Drinker joined!') 
         }
       })
     });
   },
-
-  // create a new drinker account for MVP
-  // Create: (req, res) => {
-  //   const drinker = new Drinker({
-  //     firstname: req.body.firstname,
-  //     lastname: req.body.lastname,
-  //     password: req.body.password,
-  //     email: req.body.email,
-  //     bean_count: 0
-  //   });
-  //   drinker.save((error, result) => {
-  //     if (error) {
-  //       console.log(error);
-  //       res.status(409).json('no drinker created!'); // has to be changed => error message
-  //     } else {
-  //       res.json('A new Drinker joined!') // change to render or redirect when we have a better route
-  //     }
-  //   })
-  // },
 
   // show log in page
   LogInPage: (req, res) => {
@@ -69,28 +46,13 @@ const DrinkerController = {
           if (!hashComparison) {
             res.json('password not match!');
           } else {
-            // req.session.user = drinker;
+            // Frontend has to know how to handle the ${drinker} object
             res.json(`Log in successful. Email: ${drinker.email}`);
           }
         })
       }
     });
   },
-
-  // Log in for MVP
-  // LogIn: (req, res) => {
-  //   console.log('trying to log in');
-  //   const email = req.body.email;
-
-  //   Drinker.findOne({ email: email }).then((drinker) => {
-  //     if (!drinker) {
-  //       res.json('No such drinker');
-  //     } else {
-  //       req.session.user = drinker;
-  //       res.json(`Log in successful. Email: ${drinker.email}`);
-  //     }
-  //   });
-  // },
 
   // to get the latest bean_count from database using session email
   ShowBean: (req, res) => {

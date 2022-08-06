@@ -1,12 +1,52 @@
+const Barista = require('../models/barista.model');
 const Drinker = require('../models/drinker.model');
 
+// Bcrypt
+const bcrypt = require('bcrypt');
+const saltRound = 5;
+
 const BaristaController ={
-  ShowLogInPage: (req, res) => {
-    res.json('Barista Log in Page');
+
+  // create a new barista account
+  CreateBarista: (req, res) => {
+    bcrypt.hash(req.body.password, saltRound, (error, hashedPassword) => {
+      const newBarista = new Barista({
+        shop_name: req.body.shop_name,
+        email: req.body.email,
+        password: hashedPassword,
+        shop_address: req.body.shop_address
+      });
+      newBarista.save((error, result) => {
+        if (error) {
+          console.log(error);
+          res.status(409).json('Cannot add new barista'); // has to be changed => error message
+        } else {
+          res.json('A new Barista joined!') // change to render or redirect when we have a better route
+        }
+      })
+    });
   },
 
-  Shop: (req, res) => {
-    res.json('Shop page');
+  // Barista Log in:
+  BaristaLogIn: (req, res) => {
+    console.log('Barista trying to log in');
+    const email = req.body.email;
+    const inputPassword = req.body.password;
+
+    Barista.findOne({ email: email }).then((barista) => {
+      if (!barista) {
+        res.json('No such barista');
+      } else {
+        bcrypt.compare(inputPassword, barista.password, (err, hashComparison) => {
+          if (!hashComparison) {
+            res.json('password not match!');
+          } else {
+            // Frontend has to know how to handle the ${drinker} object
+            res.json(`Log in successful. Email: ${barista.email}`);
+          }
+        })
+      }
+    });
   },
 
   FindDrinker: (req, res) => {
