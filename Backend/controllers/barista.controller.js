@@ -67,7 +67,6 @@ const BaristaController ={
   },
 
   AddLoyaltyBean: (req, res) => {
-    console.log(req.params);
     Drinker.findOneAndUpdate({drinker_id: req.params.drinker_id},
       {$inc: {bean_count: 1}}, // in long run, the addition can be user input rather than a hard-coded 1
       (error, drinkers) => {
@@ -75,13 +74,12 @@ const BaristaController ={
         console.log(`Error when adding beans to database. Error: ${error}`);
         res.status(409).json(`Error when adding beans to database. Error: ${error}`);
       } else {
-        res.json('Beans added successfully')
+        res.json(`Beans added successfully to ID: ${req.params.drinker_id}`)
       }
     })
   },
 
   RedeemDrink: (req, res) => {
-    console.log(req.params);
     Drinker.findOneAndUpdate({drinker_id: req.params.drinker_id},
       {$inc: {bean_count: -10}}, // in long run, the deduction can be user input rather than a hard-coded. refactored with Add bean??
       (error, drinkers) => {
@@ -89,7 +87,7 @@ const BaristaController ={
         console.log(`Error when deducting beans from database. Error: ${error}`);
         res.status(409).json(`Error when deducting beans from database. Error: ${error}`);
       } else {
-        res.json('Beans used successfully')
+        res.json(`Beans used successfully for ID: ${req.params.drinker_id}`)
       }
     })
   },
