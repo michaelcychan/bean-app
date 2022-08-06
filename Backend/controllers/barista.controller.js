@@ -35,14 +35,15 @@ const BaristaController ={
 
     Barista.findOne({ email: email }).then((barista) => {
       if (!barista) {
-        res.json('No such barista');
+        res.status(201).json('No such barista');
       } else {
         bcrypt.compare(inputPassword, barista.password, (err, hashComparison) => {
           if (!hashComparison) {
-            res.json('password not match!');
+            res.status(401).json('password not match!');
           } else {
             // Frontend has to know how to handle the ${drinker} object
-            res.json(`Log in successful. Email: ${barista.email}`);
+            console.log(`Backend found the barista: ${barista.email}`)
+            res.json(barista);
           }
         })
       }

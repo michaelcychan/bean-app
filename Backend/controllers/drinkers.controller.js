@@ -27,12 +27,7 @@ const DrinkerController = {
     });
   },
 
-  // show log in page
-  LogInPage: (req, res) => {
-    res.json('Drinker Log In Page');
-  },
-
-  // log in
+  // Drinker log in
   LogIn: (req, res) => {
     console.log('trying to log in');
     const email = req.body.email;

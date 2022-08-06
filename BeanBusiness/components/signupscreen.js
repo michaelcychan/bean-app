@@ -19,6 +19,34 @@ export const SignupScreen = ({navigation}) => {
   const [shopName, onChangeShopName] = React.useState(null);
   const [shopEmail, onChangeShopEmail] = React.useState(null);
   const [shopPassword, onChangeShopPassword] = React.useState(null);
+  const [shopAddress, onChangeShopAddress] = React.useState(null);
+
+  // creating an object of data to pass into baristaSignUp fetch request
+  let newBaristaData = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      shop_name: shopName,
+      email: shopEmail,
+      password: shopPassword,
+      shop_address: shopAddress,
+    }),
+  };
+
+  // sending request to backend server to signup a new barista
+  const baristaSignUp = () => {
+    return fetch('http://localhost:5050/barista/new-barista', newBaristaData)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   return (
     <>
@@ -46,6 +74,14 @@ export const SignupScreen = ({navigation}) => {
             placeholder="Enter your password"
             keyboardType="default"
             secureTextEntry={true}
+          />
+
+          <TextInput
+            style={styles.input}
+            onChangeText={onChangeShopAddress}
+            value={shopAddress}
+            placeholder="Enter your shop Address"
+            keyboardType="default"
           />
 
           {/* GooglePlacesAutocomplete can show a field, but we should think of a way to save the address text */}
@@ -83,8 +119,11 @@ export const SignupScreen = ({navigation}) => {
         </SafeAreaView>
 
         <Button
-          title="Go to the login page"
-          onPress={() => navigation.navigate('Login', {name: 'LoginNow'})}
+          title="Sign up"
+          onPress={() => {
+            baristaSignUp();
+            navigation.navigate('Login', {name: 'LoginNow'});
+          }}
         />
       </ScrollView>
     </>
