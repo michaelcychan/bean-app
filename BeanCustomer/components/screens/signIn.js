@@ -10,10 +10,13 @@ import {
 import {styles} from '../stylesheet';
 
 export const SignIn = ({navigation, route}) => {
+  // variables created to take the text input
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [userEmail, setUserEmail] = React.useState('');
+  // variable created to take email returned from fetch request
+  const [userEmail, setUserEmail] = React.useState('default email');
 
+  // object to be passed into fetch request
   let data = {
     method: 'POST',
     headers: {
@@ -30,6 +33,8 @@ export const SignIn = ({navigation, route}) => {
     return fetch('http://localhost:5050/drinker/log-in', data)
       .then(response => response.json())
       .then(json => {
+        // set the user email variable to the returned value
+        // note: this isn't happening before navigation occurs
         setUserEmail(json);
       })
       .catch(error => {
@@ -41,24 +46,32 @@ export const SignIn = ({navigation, route}) => {
     <View style={styles.container}>
       <Text>Login</Text>
       <TextInput
+        autoCapitalize='none' // set to stop capitalization of first letter
         style={styles.input}
         onChangeText={setEmail}
         value={email}
         placeholder="Email"
+        textContentType='username' // defined to allow autofill on iPhone
       />
       <TextInput
+        autoCapitalize='none' // set to stop capitalization of first letter
+        secureTextEntry={true} // hides text input on screen
         style={styles.input}
         onChangeText={setPassword}
         value={password}
         placeholder="Password"
+        textContentType='password' // defined to allow autofill on iPhone
       />
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          signIn();
-          navigation.navigate('BeanApp', {
-            screen: 'Beans',
-            params: { email: userEmail}
+          // attempting to work with asynchronous fetch function to navigate after value returned, but not working
+          signIn().then(response => {
+            console.log(userEmail);
+            navigation.navigate('BeanApp', {
+              screen: 'Id',
+              params: {email: userEmail}
+            });
           });
         }}>
         <Text>Login</Text>
