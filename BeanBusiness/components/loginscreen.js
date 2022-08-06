@@ -38,6 +38,7 @@ export const LoginScreen = ({navigation}) => {
       .then(response => response.json())
       .then(json => {
         console.log(json.email);
+        setReturnedObject(json);
         return json;
       })
       .catch(error => {
@@ -69,6 +70,7 @@ export const LoginScreen = ({navigation}) => {
         title="Go to Shop page"
         onPress={() => {
           baristaLogIn();
+          console.log(returnedObject);
           navigation.navigate('Coffee Shop Name', {
             name: 'ShowPage',
           });
