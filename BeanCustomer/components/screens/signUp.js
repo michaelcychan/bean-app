@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  Image
 } from 'react-native';
 import {styles} from '../stylesheet';
 
@@ -46,6 +47,16 @@ export const SignUp = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('Home')
+        }
+      >
+        <Image 
+          source={require('../images/CoffeeMug.png')} 
+          style={styles.image}
+        />
+      </TouchableOpacity>
       <Text>Signup</Text>
       <TextInput
         style={styles.input}

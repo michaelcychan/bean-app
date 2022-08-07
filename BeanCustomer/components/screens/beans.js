@@ -6,13 +6,14 @@ import {styles} from '../stylesheet'
 export const Beans = ({navigation, route}) => {
   // creating a beans variable that has a default state of 0
   const [beans, setBeans] = React.useState(0);
+  const userId = route.params.userId
 
   // this variable will eventually be the user's email or ID
   const fixedemail = 'michael_coffee@brewer.net';
 
   // fetch function to get bean_count from database for user, and set beans variable to that value
   const getBeanCount = () => {
-    return fetch(`http://localhost:5050/drinker/${fixedemail}`)
+    return fetch(`http://localhost:5050/drinker/${userId}`)
       .then(response => response.json())
       .then(json => {
         setBeans(json.bean_count);

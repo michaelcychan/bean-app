@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   SafeAreaView,
+  Image
 } from 'react-native';
 import {styles} from '../stylesheet';
 
@@ -29,21 +30,46 @@ export const SignIn = ({navigation, route}) => {
     }),
   };
 
+  // const enterBeanApp = () => {
+  //   navigation.navigate('BeanApp', {
+  //     screen: 'Id',
+  //     params: {email: userEmail}
+  //   });
+  // }
+
   const signIn = () => {
     return fetch('http://localhost:5050/drinker/log-in', data)
       .then(response => response.json())
       .then(json => {
-        // set the user email variable to the returned value
-        // note: this isn't happening before navigation occurs
-        setUserEmail(json);
+        navigation.navigate('BeanApp', {
+         user: json.drinker_id
+        });
       })
       .catch(error => {
         console.error(error);
       });
   };
 
+  // const signInButton = async () => {
+  //   signIn()
+  //   .then(enterBeanApp())
+  //   .catch(error => {
+  //     console.log(error)
+  //   })
+  // }
+
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('Home')
+        }
+      >
+        <Image 
+          source={require('../images/CoffeeMug.png')} 
+          style={styles.image}
+        />
+      </TouchableOpacity>
       <Text>Login</Text>
       <TextInput
         autoCapitalize='none' // set to stop capitalization of first letter
@@ -65,14 +91,7 @@ export const SignIn = ({navigation, route}) => {
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          // attempting to work with asynchronous fetch function to navigate after value returned, but not working
-          signIn().then(response => {
-            console.log(userEmail);
-            navigation.navigate('BeanApp', {
-              screen: 'Id',
-              params: {email: userEmail}
-            });
-          });
+          signIn();
         }}>
         <Text>Login</Text>
       </TouchableOpacity>

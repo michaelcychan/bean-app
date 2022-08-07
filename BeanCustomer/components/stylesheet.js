@@ -13,6 +13,14 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
+  image: {
+    height: 80,
+    width: 80,
+    alignItems: 'center',
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+  },
   input: {
     height: 40,
     width: 240,

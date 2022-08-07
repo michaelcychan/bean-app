@@ -13,15 +13,19 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 // creating a tab navigation component containing the screens seen when logged in
-const BeanTabs = ({ route }) => {
+const BeanTabs = ({ props, route }) => {
+  // sets a variable as the user id of the logged in user, passed from the login page
+  const userId = route.params.user
 
   return (
       <Tab.Navigator screenOptions={{
         tabBarActiveTintColor: '#B40909',
         }}>
           {/* this screen given a separate title as it isn't the home screen, but we want the user to see that */}
-        <Tab.Screen name="Id" component={Id} options={{title: 'Home'}} />
-        <Tab.Screen name="Beans" component={Beans}  />
+        <Tab.Screen name="Id" options={{title: 'Home'}}>
+          {() => <Id userId={userId} />}
+        </Tab.Screen>
+        <Tab.Screen name="Beans" component={Beans} initialParams={{ userId: userId}} /> 
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
   );
