@@ -3,12 +3,7 @@ import type {Node} from 'react';
 import {
   Button,
   SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
-  useColorScheme,
-  View,
   TextInput
 } from 'react-native';
 import {styles} from './stylesheets';
@@ -17,7 +12,7 @@ export const LoginScreen = ({navigation}) => {
 
   const [shopEmail, onChangeShopEmail] = React.useState(null);
   const [shopPassword, onChangeShopPassword] = React.useState(null);
-  const [returnedObject, setReturnedObject] = React.useState();
+  const [userEmail, setUserEmail] = React.useState();
 
   // creating an object of data to pass into login fetch request
   let baristaLogInData = {
@@ -32,18 +27,23 @@ export const LoginScreen = ({navigation}) => {
     }),
   };
 
+  const logIn = user => {
+    console.log(user);
+    if (user !== undefined) {
+      navigation.navigate('Coffee Shop Home', {email: {user}});
+    }
+  };
+
   // sending request to backend server attempting to log in
   const baristaLogIn = () => {
     fetch('http://localhost:5050/barista/log-in', baristaLogInData)
       .then(response => response.json())
       .then(json => {
-        console.log(json.email);
-        setReturnedObject(json);
-        return json;
+        setUserEmail(json.email);
+        return json.email;
       })
       .then(data => {
-        console.log(`data : ${data}`);
-        console.log(`returnedObject : ${returnedObject.email}`);
+        logIn(data);
       })
       .catch(error => {
         console.error(error);
@@ -55,6 +55,7 @@ export const LoginScreen = ({navigation}) => {
       <Text>Coffee Bean's Login Page</Text>
       <SafeAreaView>
       <TextInput
+          autoCapitalize="none"
           style={styles.input}
           onChangeText={onChangeShopEmail}
           value={shopEmail}
@@ -62,6 +63,7 @@ export const LoginScreen = ({navigation}) => {
           keyboardType="email-address"
         />
         <TextInput
+          autoCapitalize="none"
           style={styles.input}
           onChangeText={onChangeShopPassword}
           value={shopPassword}
@@ -74,10 +76,6 @@ export const LoginScreen = ({navigation}) => {
         title="Go to Shop page"
         onPress={() => {
           baristaLogIn();
-          console.log(returnedObject);
-          navigation.navigate('Coffee Shop Name', {
-            name: 'ShowPage',
-          });
         }}
       />
     </>

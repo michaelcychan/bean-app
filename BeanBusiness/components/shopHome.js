@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 import {styles} from './stylesheets';
 
-export const EnterID = ({navigation}) => {
+export const ShopHome = ({navigation, route}) => {
   const [drinkerIDInput, onChangeDrinkerIDInput] = React.useState(null);
   const [drinkerObject, setDrinkerObject] = React.useState(null);
   const [drinkerID, setDrinkerID] = React.useState();
+  const userEmail = route.params.email;
 
   const findDrinkerID = () => {
     return fetch(`http://localhost:5050/barista/finddrinker/${drinkerIDInput}`)
