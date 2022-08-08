@@ -2,15 +2,13 @@ import * as React from 'react';
 import {NavigationContainer, TabActions} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { Ionicons } from "@expo/vector-icons";
-import Icon from 'react-native-vector-icons/Ionicons'
-import { createAppContainer } from "react-navigation";
 import {Settings} from './components/screens/settings';
 import {Home} from './components/screens/home';
 import {SignIn} from './components/screens/signIn';
 import {SignUp} from './components/screens/signUp';
 import {Id} from './components/screens/id';
 import {Beans} from './components/screens/beans';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {
   View,
   Button,
@@ -30,9 +28,14 @@ const BeanTabs = ({ props, route }) => {
   const userId = route.params.user
 
   return (
-      <Tab.Navigator tabBarOptions={{ showIcon: true }}>
+      <Tab.Navigator>
           {/* this screen given a separate title as it isn't the home screen, but we want the user to see that */}
-        <Tab.Screen name="Id" options={{title: 'Home'}} >
+        <Tab.Screen name="Id" options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }} >
           {() => <Id userId={userId} />}
         </Tab.Screen>
         <Tab.Screen name="Beans" component={Beans} initialParams={{ userId: userId}} /> 
