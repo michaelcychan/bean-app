@@ -5,6 +5,20 @@ Dave Kempsell ||
 Ibrahim Pala ||
 Michael Chan
 
+## Back End
+The Back End application for the Bean app is placed in ./Beanend directory, it is a backend server written in JavaScript and built on Express framework. It links to Atlas MongoDB (MongoDB on cloud) using mongoose.
+
+### Installation
+When in repo root, type:
+```
+cd Backend
+npm install
+```
+
+You need your own Atlas MongoDB account or use a local MongoDB.
+.env.local and .env.sampleAtlas show the respective .env file you neeed for setup a MongoDB for the installation.
+
+For the latest instruction to start your Atlas MongoDB, please visit the MongoDB Documentation: https://www.mongodb.com/docs/atlas/getting-started/
 
 ## Front End
 The Front End application for customer/coffee drinker is placed in the ./BeanFront directory. It is designed to be a mobile application.

@@ -4,12 +4,10 @@ import {
   Button,
   SafeAreaView,
   ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
-  useColorScheme,
-  View,
   TextInput,
+  Image,
+  TouchableOpacity,
 } from 'react-native';
 import {styles} from './stylesheets';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
@@ -19,37 +17,92 @@ export const SignupScreen = ({navigation}) => {
   const [shopName, onChangeShopName] = React.useState(null);
   const [shopEmail, onChangeShopEmail] = React.useState(null);
   const [shopPassword, onChangeShopPassword] = React.useState(null);
+  const [shopAddress, onChangeShopAddress] = React.useState(null);
+
+  // creating an object of data to pass into baristaSignUp fetch request
+  let newBaristaData = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      shop_name: shopName,
+      email: shopEmail,
+      password: shopPassword,
+      shop_address: shopAddress,
+    }),
+  };
+
+  const logIn = response => {
+    console.log(response);
+    if (response == 'A new Barista joined!') {
+      navigation.navigate('Login');
+    }
+  };
+
+  // sending request to backend server to signup a new barista
+  const baristaSignUp = () => {
+    return fetch('http://localhost:5050/barista/new-barista', newBaristaData)
+      .then(response => response.json())
+      .then(json => {
+        return json;
+      })
+      .then(data => logIn(data))
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   return (
-    <>
+    <SafeAreaView style={styles.container}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Home');
+        }}>
+        <Image
+          source={require('./images/CoffeeMug.png')}
+          style={styles.image}
+        />
+      </TouchableOpacity>
       <Text>Coffee Bean's Signup Page</Text>
-      <ScrollView>
-        <SafeAreaView>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeShopName}
-            value={shopName}
-            placeholder="Enter your shop's name"
-            keyboardType="default"
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeShopEmail}
-            value={shopEmail}
-            placeholder="Enter your email address"
-            keyboardType="email-address"
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeShopPassword}
-            value={shopPassword}
-            placeholder="Enter your password"
-            keyboardType="default"
-            secureTextEntry={true}
-          />
+      <TextInput
+        autoCapitalize="none"
+        style={styles.input}
+        onChangeText={onChangeShopName}
+        value={shopName}
+        placeholder="Enter your shop's name"
+        keyboardType="default"
+      />
+      <TextInput
+        autoCapitalize="none"
+        style={styles.input}
+        onChangeText={onChangeShopEmail}
+        value={shopEmail}
+        placeholder="Enter your email address"
+        keyboardType="email-address"
+      />
+      <TextInput
+        autoCapitalize="none"
+        style={styles.input}
+        onChangeText={onChangeShopPassword}
+        value={shopPassword}
+        placeholder="Enter your password"
+        keyboardType="default"
+        secureTextEntry={true}
+      />
 
-          {/* GooglePlacesAutocomplete can show a field, but we should think of a way to save the address text */}
-          {/* <GooglePlacesAutocomplete
+      <TextInput
+        autoCapitalize="none"
+        style={styles.input}
+        onChangeText={onChangeShopAddress}
+        value={shopAddress}
+        placeholder="Enter your shop Address"
+        keyboardType="default"
+      />
+
+      {/* GooglePlacesAutocomplete can show a field, but we should think of a way to save the address text */}
+      {/* <GooglePlacesAutocomplete
             styles={{
               container: {
                 flex: 1,
@@ -80,22 +133,14 @@ export const SignupScreen = ({navigation}) => {
             nearbyPlacesAPI="GooglePlacesSearch"
             debounce={300}
           /> */}
-        </SafeAreaView>
 
-        <Button
-          title="Go to the login page"
-          onPress={() => navigation.navigate('Login', {name: 'LoginNow'})}
-        />
-      </ScrollView>
-    </>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          baristaSignUp();
+        }}>
+        <Text>Sign up</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
-
-// const styles = StyleSheet.create({
-//   input: {
-//     height: 40,
-//     margin: 12,
-//     borderWidth: 1,
-//     padding: 10,
-//   },
-// });
