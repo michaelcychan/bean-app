@@ -8,9 +8,6 @@ export const Beans = ({navigation, route}) => {
   const [beans, setBeans] = React.useState(0);
   const userId = route.params.userId
 
-  // this variable will eventually be the user's email or ID
-  const fixedemail = 'michael_coffee@brewer.net';
-
   // fetch function to get bean_count from database for user, and set beans variable to that value
   const getBeanCount = () => {
     return fetch(`http://localhost:5050/drinker/${userId}`)
