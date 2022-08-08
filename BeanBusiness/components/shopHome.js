@@ -73,7 +73,7 @@ export const ShopHome = ({navigation, route}) => {
       />
       <View>
         <Text style={styles.subtitle}>{drinkerID}</Text>
-        {(drinkerObject == null)
+        {!(drinkerObject.drinker_id > 0)
           ? <Text style={styles.subtitle}>Input one drinker id</Text>
           : <View>
             <Text>Drinker Details: {drinkerObject.bean_count}</Text>
