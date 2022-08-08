@@ -8,20 +8,21 @@ const DrinkerController = {
 
   // create a new drinker account
   Create: (req, res) => {
-    bcrypt.hash(req.body.password, saltRound, (error, hashedPassword) => {
+    let userData = req.body
+    bcrypt.hash(userData.password, saltRound, (error, hashedPassword) => {
       const drinker = new Drinker({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email,
+        firstname: userData.firstname,
+        lastname: userData.lastname,
+        email: userData.email,
         password: hashedPassword,
         bean_count: 0
       });
       drinker.save((error, result) => {
         if (error) {
           console.log(error);
-          res.status(409).json('Cannot add new drinker'); // has to be changed => error message
+          res.status(409) // has to be changed => error message
         } else {
-          res.json('A new Drinker joined!') 
+          res.json('User added') // change to render or redirect when we have a better route
         }
       })
     });
@@ -30,8 +31,9 @@ const DrinkerController = {
   // Drinker log in
   LogIn: (req, res) => {
     console.log('trying to log in');
-    const email = req.body.email;
-    const inputPassword = req.body.password;
+    const userData = req.body
+    const email = userData.email;
+    const inputPassword = userData.password;
 
     Drinker.findOne({ email: email }).then((drinker) => {
       if (!drinker) {
@@ -41,8 +43,7 @@ const DrinkerController = {
           if (!hashComparison) {
             res.json('password not match!');
           } else {
-            // Frontend has to know how to handle the ${drinker} object
-            res.json(`Log in successful. Email: ${drinker.email}`);
+            res.json(drinker);
           }
         })
       }
@@ -51,12 +52,13 @@ const DrinkerController = {
 
   // to get the latest bean_count from database using session email
   ShowBean: (req, res) => {
-    const drinkerEmail = req.session.email;
-    Drinker.findOne({email: drinkerEmail}).then((drinker) => {
+    const drinker_id = req.params.drinker_id
+    const drinkerEmail = req.params.email;
+    Drinker.findOne({drinker_id: drinker_id}).then((drinker) => {
       if (!drinker) {
         res.json('no such drinker');
       } else {
-        res.json({email: drinker.email, bean_count: drinker.bean_count})
+        res.json({bean_count: drinker.bean_count})
       }
     });
   }
