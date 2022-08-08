@@ -51,7 +51,9 @@ const BaristaController ={
   },
 
   FindDrinker: (req, res) => {
-    Drinker.findOne({drinker_id: req.params.drinker_id},
+    console.log(req.params);
+    let userID = req.params.drinker_id == 'null'  ? 0 : req.params.drinker_id
+    Drinker.findOne({drinker_id: userID},
       (error, drinker) => {
         if (error) {
           console.log(`Error when finding drinker: ${error}`);

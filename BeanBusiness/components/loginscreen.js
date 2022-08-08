@@ -4,12 +4,13 @@ import {
   Button,
   SafeAreaView,
   Text,
-  TextInput
+  TextInput,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 import {styles} from './stylesheets';
 
 export const LoginScreen = ({navigation}) => {
-
   const [shopEmail, onChangeShopEmail] = React.useState(null);
   const [shopPassword, onChangeShopPassword] = React.useState(null);
   const [userEmail, setUserEmail] = React.useState();
@@ -51,33 +52,40 @@ export const LoginScreen = ({navigation}) => {
   };
 
   return (
-    <>
+    <SafeAreaView style={styles.container}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Home');
+        }}>
+        <Image
+          source={require('./images/CoffeeMug.png')}
+          style={styles.image}
+        />
+      </TouchableOpacity>
       <Text>Coffee Bean's Login Page</Text>
-      <SafeAreaView>
       <TextInput
-          autoCapitalize="none"
-          style={styles.input}
-          onChangeText={onChangeShopEmail}
-          value={shopEmail}
-          placeholder="Enter your email address"
-          keyboardType="email-address"
-        />
-        <TextInput
-          autoCapitalize="none"
-          style={styles.input}
-          onChangeText={onChangeShopPassword}
-          value={shopPassword}
-          placeholder="Enter your password"
-          keyboardType="default"
-          secureTextEntry={true}
-        />
-      </SafeAreaView>
+        autoCapitalize="none"
+        style={styles.input}
+        onChangeText={onChangeShopEmail}
+        value={shopEmail}
+        placeholder="Enter your email address"
+        keyboardType="email-address"
+      />
+      <TextInput
+        autoCapitalize="none"
+        style={styles.input}
+        onChangeText={onChangeShopPassword}
+        value={shopPassword}
+        placeholder="Enter your password"
+        keyboardType="default"
+        secureTextEntry={true}
+      />
       <Button
         title="Go to Shop page"
         onPress={() => {
           baristaLogIn();
         }}
       />
-    </>
+    </SafeAreaView>
   );
 };

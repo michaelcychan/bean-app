@@ -62,32 +62,30 @@ export const ShopHome = ({navigation, route}) => {
   };
 
   return (
-    <>
-      <SafeAreaView>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeDrinkerIDInput}
-          value={drinkerIDInput}
-          placeholder="Enter customer's membership ID"
-          keyboardType="numeric"
-          maxLength={6}
-        />
-        <View>
-          <Text style={styles.subtitle}>{drinkerID}</Text>
-          {(drinkerObject == null)
-            ? <Text style={styles.subtitle}>Input one drinker id</Text>
-            : <View>
-              <Text>Drinker Details: {drinkerObject.bean_count}</Text>
-              <Button title="Add a bean" onPress={() => addBean()} />
-              {(drinkerObject.bean_count >= 10)
-                ? <Button title="Redeem a drink" onPress={() => redeemDrink()} />
-                : <Text>Drinker has less than 10 beans. Drink more to earn!</Text>
-              }
-              </View>
-          }
-        </View>
-        <Button title="Search User" onPress={() => findDrinkerID()} />
-      </SafeAreaView>
-    </>
+    <SafeAreaView style={styles.container}>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeDrinkerIDInput}
+        value={drinkerIDInput}
+        placeholder="Enter customer's membership ID"
+        keyboardType="numeric"
+        maxLength={6}
+      />
+      <View>
+        <Text style={styles.subtitle}>{drinkerID}</Text>
+        {(drinkerObject == null)
+          ? <Text style={styles.subtitle}>Input one drinker id</Text>
+          : <View>
+            <Text>Drinker Details: {drinkerObject.bean_count}</Text>
+            <Button title="Add a bean" onPress={() => addBean()} />
+            {(drinkerObject.bean_count >= 10)
+              ? <Button title="Redeem a drink" onPress={() => redeemDrink()} />
+              : <Text>Drinker has less than 10 beans. Drink more to earn!</Text>
+            }
+            </View>
+        }
+      </View>
+      <Button title="Search User" onPress={() => findDrinkerID()} />
+    </SafeAreaView>
   );
 };

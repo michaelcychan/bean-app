@@ -1,21 +1,20 @@
 import React from 'react';
 import type {Node} from 'react';
 import {
-  Button,
   Pressable,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
-  useColorScheme,
   View,
+  Image
 } from 'react-native';
 import {styles} from './stylesheets';
 
 export const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <Image 
+          source={require('./images/CoffeeMug.png')} 
+          style={styles.homeImage}
+      />
       <Text style={styles.title}>Loyal Bean</Text>
       <Text style={styles.subtitle}>Form relationships</Text>
       <Text>with loyal coffee drinkers</Text>
