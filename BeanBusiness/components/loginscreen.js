@@ -41,6 +41,10 @@ export const LoginScreen = ({navigation}) => {
         setReturnedObject(json);
         return json;
       })
+      .then(data => {
+        console.log(`data : ${data}`);
+        console.log(`returnedObject : ${returnedObject.email}`);
+      })
       .catch(error => {
         console.error(error);
       });
