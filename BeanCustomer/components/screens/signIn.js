@@ -1,4 +1,5 @@
-import * as React from 'react';
+
+import React, {useState} from 'react';
 import {
   View,
   Button,
@@ -12,10 +13,12 @@ import {styles} from '../stylesheet';
 
 export const SignIn = ({navigation, route}) => {
   // variables created to take the text input
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   // variable created to take drinker ID returned from fetch request
-  const [userId, setUserId] = React.useState('0');
+  const [userId, setUserId] = useState('0');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   // object to be passed into fetch request
   let data = {
@@ -36,6 +39,39 @@ export const SignIn = ({navigation, route}) => {
       navigation.navigate('BeanApp', {user: user});
     }
   };
+
+  // 
+  const handleSubmit = () => {
+    var emailValid = false;
+    if (email.length == 0) {
+      setEmailError('Email is required');
+    } else if (email.length < 6) {
+      setEmailError('Email should be minimum 6 characters');
+    } else if (email.indexOf(' ') >= 0) {
+      setEmailError('Email cannot contain spaces');
+    } else {
+      setEmailError('');
+      emailValid = true;
+    }
+
+    var passwordValid = false;
+    if (password.length == 0) {
+      setPasswordError('Password is required');
+    } else if (password.length < 6) {
+      setPasswordError('Password should be minimum 6 characters');
+    } else if (password.indexOf(' ') >= 0) {
+      setPasswordError('Password cannot contain spaces');
+    } else {
+      setPasswordError('');
+      passwordValid = true;
+    }
+
+    if (emailValid && passwordValid) {
+      signIn();
+    }
+  };
+
+  // 
 
   // fetch request checking email and password against database. Returning drinker id if details valid.
   const signIn = () => {
@@ -72,6 +108,7 @@ export const SignIn = ({navigation, route}) => {
         placeholder="Email"
         textContentType="username" // defined to allow autofill on iPhone
       />
+      {emailError.length > 0 && <Text>{emailError}</Text>}
       <TextInput
         autoCapitalize="none" // set to stop capitalization of first letter
         secureTextEntry={true} // hides text input on screen
@@ -81,11 +118,10 @@ export const SignIn = ({navigation, route}) => {
         placeholder="Password"
         textContentType="password" // defined to allow autofill on iPhone
       />
+      {passwordError.length > 0 && <Text>{passwordError}</Text>}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => {
-          signIn();
-        }}>
+        onPress={handleSubmit}>
         <Text>Login</Text>
       </TouchableOpacity>
       <Text>Haven't signed up yet?</Text>
