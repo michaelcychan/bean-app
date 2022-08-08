@@ -3,7 +3,7 @@ import {NavigationContainer, TabActions} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { Ionicons } from "@expo/vector-icons";
-import {Icon} from 'react-native-ionicons';
+import Icon from 'react-native-vector-icons/Ionicons'
 import { createAppContainer } from "react-navigation";
 import {Settings} from './components/screens/settings';
 import {Home} from './components/screens/home';
@@ -11,6 +11,15 @@ import {SignIn} from './components/screens/signIn';
 import {SignUp} from './components/screens/signUp';
 import {Id} from './components/screens/id';
 import {Beans} from './components/screens/beans';
+import {
+  View,
+  Button,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  SafeAreaView,
+  Image,
+} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
