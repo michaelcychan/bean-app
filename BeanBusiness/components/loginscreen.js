@@ -80,12 +80,13 @@ export const LoginScreen = ({navigation}) => {
         keyboardType="default"
         secureTextEntry={true}
       />
-      <Button
-        title="Go to Shop page"
+      <TouchableOpacity
+        style={styles.button}
         onPress={() => {
           baristaLogIn();
-        }}
-      />
+        }}>
+        <Text>Sign in</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

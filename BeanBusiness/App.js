@@ -1,13 +1,10 @@
 import React from 'react';
-import type {Node} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HomeScreen} from './components/homeScreen';
 import {SignupScreen} from './components/signUpScreen';
 import {LoginScreen} from './components/loginScreen';
 import {ShopHome} from './components/shopHome';
-import {CustomerProfileScreen} from './components/customerprofile';
-import {styles} from './components/stylesheets';
 
 const Stack = createNativeStackNavigator();
 

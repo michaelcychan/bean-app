@@ -11,11 +11,11 @@ export const styles = StyleSheet.create({
   title: {
     alignSelf: 'center',
     fontSize: 36,
-    padding: 10
+    padding: 10,
   },
   subtitle: {
     fontSize: 24,
-    padding: 5
+    padding: 5,
   },
   input: {
     height: 40,
@@ -42,12 +42,10 @@ export const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 4,
-    elevation: 3,
-    backgroundColor: 'black',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
   },
   buttontext: {
     fontSize: 16,

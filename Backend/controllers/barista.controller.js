@@ -71,12 +71,12 @@ const BaristaController ={
   AddLoyaltyBean: (req, res) => {
     Drinker.findOneAndUpdate({drinker_id: req.params.drinker_id},
       {$inc: {bean_count: 1}}, // in long run, the addition can be user input rather than a hard-coded 1
-      (error, drinkers) => {
+      (error, drinker) => {
       if (error) {
         console.log(`Error when adding beans to database. Error: ${error}`);
         res.status(409).json(`Error when adding beans to database. Error: ${error}`);
       } else {
-        res.json(`Beans added successfully to ID: ${req.params.drinker_id}`)
+        res.json(drinker.bean_count)
       }
     })
   },

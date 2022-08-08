@@ -134,12 +134,13 @@ export const SignupScreen = ({navigation}) => {
             debounce={300}
           /> */}
 
-      <Button
-        title="Sign up"
+      <TouchableOpacity
+        style={styles.button}
         onPress={() => {
           baristaSignUp();
-        }}
-      />
+        }}>
+        <Text>Sign up</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
