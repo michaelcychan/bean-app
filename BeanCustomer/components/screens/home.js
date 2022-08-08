@@ -9,7 +9,7 @@ export const Home = ({navigation}) => {
     <View style={styles.container}>
       <Image 
           source={require('../images/CoffeeMug.png')} 
-          style={styles.image}
+          style={styles.homeImage}
       />
       <Text>Receive free coffee</Text>
       <Text>From your favourite independant coffee shop</Text>

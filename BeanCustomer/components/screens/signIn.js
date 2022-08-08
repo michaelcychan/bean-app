@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   SafeAreaView,
-  Image
+  Image,
 } from 'react-native';
 import {styles} from '../stylesheet';
 
@@ -14,8 +14,8 @@ export const SignIn = ({navigation, route}) => {
   // variables created to take the text input
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  // variable created to take email returned from fetch request
-  const [userEmail, setUserEmail] = React.useState('default email');
+  // variable created to take drinker ID returned from fetch request
+  const [userId, setUserId] = React.useState('0');
 
   // object to be passed into fetch request
   let data = {
@@ -30,63 +30,55 @@ export const SignIn = ({navigation, route}) => {
     }),
   };
 
-  // const enterBeanApp = () => {
-  //   navigation.navigate('BeanApp', {
-  //     screen: 'Id',
-  //     params: {email: userEmail}
-  //   });
-  // }
+  // navigation function with If function to only allow navigation if a member number is returned
+  const enterBeanApp = user => {
+    if (user > 0) {
+      navigation.navigate('BeanApp', {user: user});
+    }
+  };
 
+  // fetch request checking email and password against database. Returning drinker id if details valid.
   const signIn = () => {
     return fetch('http://localhost:5050/drinker/log-in', data)
       .then(response => response.json())
-      .then(json => {
-        navigation.navigate('BeanApp', {
-         user: json.drinker_id
-        });
+      .then(responseData => {
+        return responseData;
       })
+      .then(data => {
+        setUserId(data.drinker_id);
+        return data.drinker_id;
+      })
+      .then(user => enterBeanApp(user))
       .catch(error => {
         console.error(error);
       });
   };
 
-  // const signInButton = async () => {
-  //   signIn()
-  //   .then(enterBeanApp())
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-  // }
-
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('Home')
-        }
-      >
-        <Image 
-          source={require('../images/CoffeeMug.png')} 
+      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <Image
+          source={require('../images/CoffeeMug.png')}
           style={styles.image}
         />
       </TouchableOpacity>
       <Text>Login</Text>
       <TextInput
-        autoCapitalize='none' // set to stop capitalization of first letter
+        autoCapitalize="none" // set to stop capitalization of first letter
         style={styles.input}
         onChangeText={setEmail}
         value={email}
         placeholder="Email"
-        textContentType='username' // defined to allow autofill on iPhone
+        textContentType="username" // defined to allow autofill on iPhone
       />
       <TextInput
-        autoCapitalize='none' // set to stop capitalization of first letter
+        autoCapitalize="none" // set to stop capitalization of first letter
         secureTextEntry={true} // hides text input on screen
         style={styles.input}
         onChangeText={setPassword}
         value={password}
         placeholder="Password"
-        textContentType='password' // defined to allow autofill on iPhone
+        textContentType="password" // defined to allow autofill on iPhone
       />
       <TouchableOpacity
         style={styles.button}
