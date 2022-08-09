@@ -2,6 +2,7 @@ const Drinker = require('../models/drinker.model');
 
 // Bcrypt
 const bcrypt = require('bcrypt');
+const Barista = require('../models/barista.model');
 const saltRound = 5;
 
 const DrinkerController = {
@@ -65,3 +66,24 @@ const DrinkerController = {
 };
 
 module.exports = DrinkerController;
+
+  // function to provide shop list array to front end
+  getShopInfo: (req, res) => {
+    const drinker_id = req.params.drinker_id
+    Drinker.findOne({drinker_id: drinker_id})
+    .then((drinker) => {
+        let shopList = [];
+          drinker.beanCounts.map(element => {
+            let beanCount = element.beanCount
+            Barista.findOne({shopId: element.shopId})
+            .then((shopInfo) => {
+              let shopInfoObject = {}
+              shopInfoObject.shopInfo = shopInfo.shopName
+              shopInfoObject.shopImage = shopInfo.shopImage
+              shopInfoObject.beanCount = beanCount
+              shopList.push(shopInfoObject)
+            })
+          })
+        res.json(shopList)
+    });
+  }

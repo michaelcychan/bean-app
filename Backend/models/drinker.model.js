@@ -6,7 +6,6 @@ const Schema = mongoose.Schema;
 const drinkerSchema = new Schema({
   drinker_id: {
     type: Number,
-    // required: true, // it will be created in the pre-save function
     unique: true
   },
   firstname: {
@@ -28,8 +27,8 @@ const drinkerSchema = new Schema({
     type: String,
     required: true
   },
-  bean_count: {
-    type: Number,
+  bean_counts: {
+    type: Array,
   }
 });
 
