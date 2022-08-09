@@ -1,4 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
+'use strict';
 import React from 'react';
 import {
   Button,
@@ -7,7 +8,10 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
+import {RNCamera} from 'react-native-camera';
+import QRCodeScanner from 'react-native-qrcode-scanner';
 import {styles} from './stylesheets';
 
 export const ShopHome = ({navigation, route}) => {
@@ -15,6 +19,31 @@ export const ShopHome = ({navigation, route}) => {
   const [drinkerObject, setDrinkerObject] = React.useState(null);
   const [bean_count, setBeanCount] = React.useState(0);
   const userEmail = route.params.email;
+
+  const onSuccess = e => {
+    Linking.openURL(e.data).catch(err => console.error('error', err));
+  };
+
+  const QRScanner = () => {
+    return (
+      <View>
+      <QRCodeScanner
+        onRead={onSuccess()}
+        flashMode={RNCamera.Constants.FlashMode.torch}
+        topContent={
+          <Text>
+            Scan the QR Code
+          </Text>
+        }
+        bottomContent={
+          <TouchableOpacity style={styles.buttonTouchable}>
+            <Text style={styles.buttonText}>OK. Got it!</Text>
+          </TouchableOpacity>
+        }
+      />
+      </View>
+    )
+  };
 
   const findDrinkerID = () => {
     return fetch(`http://localhost:5050/barista/finddrinker/${drinkerIDInput}`)
@@ -118,6 +147,7 @@ export const ShopHome = ({navigation, route}) => {
           align: 'center',
           flex: 1,
         }}>
+          {QRScanner()}
         <Text style={{alignSelf: 'center'}}>
           Enter Customer ID number below:
         </Text>
