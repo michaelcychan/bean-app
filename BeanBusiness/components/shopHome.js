@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
-  Button,
   SafeAreaView,
   Text,
   View,
@@ -14,7 +13,7 @@ export const ShopHome = ({navigation, route}) => {
   const [drinkerIDInput, setDrinkerIDInput] = React.useState(null);
   const [drinkerObject, setDrinkerObject] = React.useState(null);
   const [bean_count, setBeanCount] = React.useState(0);
-  const userEmail = route.params.email;
+  const shopID = route.params.shopID;
 
   const findDrinkerID = () => {
     return fetch(`http://localhost:5050/barista/finddrinker/${drinkerIDInput}`)
@@ -33,13 +32,21 @@ export const ShopHome = ({navigation, route}) => {
       });
   };
 
+  // creating an object to be passed to backend for the addBean function
+  let addBeanObject = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      shopId: shopID,
+      drinker_id: drinkerObject.drinker_id,
+    }),
+  };
+
   const addBean = () => {
-    return fetch(
-      `http://localhost:5050/barista/addbeans/${drinkerObject.drinker_id}`,
-      {
-        method: 'POST',
-      },
-    )
+    return fetch('http://localhost:5050/barista/addbeans', addBeanObject)
       .then(response => response.json())
       .then(json => {
         return json;

@@ -69,7 +69,28 @@ const BaristaController ={
   },
 
   AddLoyaltyBean: (req, res) => {
-    Drinker.findOneAndUpdate({drinker_id: req.params.drinker_id},
+    
+    // Need to check if the shop id is present in the current info
+    const shopID = req.body.shopId; // this is the shopID
+    let shopList = [];
+    Drinker.findOne({drinker_id: req.body.drinker_id}, (error, result) = {
+      if (error) {
+        console.error(error)
+      } else {
+        return result.bean_counts;
+      }
+    })
+      .then(beanCounts => {
+        const indexOfShop = beanCounts.findIndex(element => {
+          return element.shopId == shopID ? true : false
+        })
+        // indexOfShop will be -1 if it does not exist, or an empty array
+        if (indexOfShop < 0) {
+          
+        }
+      }) 
+    // Add a bean to the info
+    Drinker.findOneAndUpdate({drinker_id: req.body.drinker_id},
       {$inc: {bean_count: 1}}, // in long run, the addition can be user input rather than a hard-coded 1
       (error, drinker) => {
       if (error) {
