@@ -68,38 +68,48 @@ const BaristaController ={
     ) 
   },
 
-  AddLoyaltyBean: (req, res) => {
-    
-    // Need to check if the shop id is present in the current info
-    const shopID = req.body.shopId; // this is the shopID
+  AddLoyaltyBean: async (req, res) => {
+    // declaring variable from POST request from frontend
+    const shopID = req.body.shopId; // this is the shopID from frontend
+    const drinkerID = req.body.drinker_id // this is the drinker ID from frontend
+
+
+    // check if the shop id is present in the current info
     let shopList = [];
-    Drinker.findOne({drinker_id: req.body.drinker_id}, (error, result) = {
-      if (error) {
-        console.error(error)
-      } else {
-        return result.bean_counts;
-      }
-    })
-      .then(beanCounts => {
-        const indexOfShop = beanCounts.findIndex(element => {
-          return element.shopId == shopID ? true : false
-        })
-        // indexOfShop will be -1 if it does not exist, or an empty array
-        if (indexOfShop < 0) {
-          
-        }
-      }) 
-    // Add a bean to the info
-    Drinker.findOneAndUpdate({drinker_id: req.body.drinker_id},
-      {$inc: {bean_count: 1}}, // in long run, the addition can be user input rather than a hard-coded 1
-      (error, drinker) => {
-      if (error) {
-        console.log(`Error when adding beans to database. Error: ${error}`);
-        res.status(409).json(`Error when adding beans to database. Error: ${error}`);
-      } else {
-        res.json(drinker.bean_count)
-      }
-    })
+    const beanCounts = await Drinker.findOne({drinker_id: req.body.drinker_id});
+
+    console.log(beanCounts);
+    let indexOfShop = beanCounts.bean_counts.findIndex(element => {
+      return element.shopId == shopID ? true : false
+    });
+
+    // indexOfShop will be -1 if it does not exist, or an empty array
+    if (indexOfShop < 0) {
+      await Drinker.updateOne( // Dave, this is what I added after we paired today.
+        {drinker_id: drinkerID},
+        { $push: {bean_counts: {
+          shopId: shopID,
+          bean_count: 0
+        }}}
+      )
+    }
+
+    // setting indexOfShop if it is less than 0
+    if (indexOfShop < 0 && beanCounts.bean_counts.length != 0) {
+      indexOfShop = beanCounts.bean_counts.length
+    } else if (indexOfShop < 0 && beanCounts.bean_counts.length == 0) {
+      indexOfShop = 0
+    }
+    console.log(`indexOfShop: ${indexOfShop}`)
+
+    // Add a bean to the shop
+    const resultAfterAddingBean = await Drinker.findOneAndUpdate(
+      {drinker_id: drinkerID},
+      {$inc: {"bean_counts.$[elem].bean_count": 1}},
+      {arrayFilters: [{"elem.shopId": shopID}]}
+    )
+    
+    res.json(resultAfterAddingBean.bean_count)
   },
 
   RedeemDrink: (req, res) => {

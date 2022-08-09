@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon server.js --env=dev",
     "start:test": "nodemon server.js --env=test",
+    "start:local": "nodemon server.js --env=local",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
