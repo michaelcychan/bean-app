@@ -5,16 +5,17 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {styles} from '../stylesheet';
 
 export const Beans = ({navigation, route}) => {
-  // creating a beans variable that has a default state of 0
-  const [beans, setBeans] = React.useState(0);
-  const userId = route.params.userId;
+  // getting userId from params to pass to get request
+   const userId = route.params.userId;
+  // creating a empty array variable that can take the shop list from customer
+  const [shopList, setShopList] = React.useState([]);
 
-  // fetch function to get bean_count from database for user, and set beans variable to that value
-  const getBeanCount = () => {
+  // fetch function to get shopList from database for user, and set shopList variable to it
+  const getShopList = () => {
     return fetch(`http://localhost:5050/drinker/${userId}`)
       .then(response => response.json())
       .then(json => {
-        setBeans(json.bean_count);
+        setShopList(json);
       })
       .catch(error => {
         console.error(error);
@@ -22,9 +23,9 @@ export const Beans = ({navigation, route}) => {
   };
 
   // getBeanCount function called when component is rendered
-  getBeanCount();
+  getShopList();
 
-  const shops = [
+  const exampleshops = [
     {
       shopName: 'Coffee Shop1',
       shopBeans: 7,
@@ -40,6 +41,17 @@ export const Beans = ({navigation, route}) => {
       id: 2,
     },
   ];
+
+  const shopListExample = [
+    {
+      shopId: 1,
+      shopBeanCount: 6
+    },
+    {
+      shopId: 2,
+      shopBeanCount: 6
+    }
+  ]
 
   return (
     <SafeAreaView style={styles.card_container}>
