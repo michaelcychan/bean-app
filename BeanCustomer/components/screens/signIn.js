@@ -1,4 +1,3 @@
-
 import React, {useState} from 'react';
 import {
   View,
@@ -40,15 +39,19 @@ export const SignIn = ({navigation, route}) => {
     }
   };
 
-  // 
+  //
   const handleSubmit = () => {
     var emailValid = false;
+    const pattern =
+      /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g;
     if (email.length == 0) {
       setEmailError('Email is required');
     } else if (email.length < 6) {
       setEmailError('Email should be minimum 6 characters');
     } else if (email.indexOf(' ') >= 0) {
       setEmailError('Email cannot contain spaces');
+    } else if (pattern.test(email) === false) {
+      setEmailError('Email is invalid');
     } else {
       setEmailError('');
       emailValid = true;
@@ -71,7 +74,7 @@ export const SignIn = ({navigation, route}) => {
     }
   };
 
-  // 
+  //
 
   // fetch request checking email and password against database. Returning drinker id if details valid.
   const signIn = () => {
@@ -81,7 +84,7 @@ export const SignIn = ({navigation, route}) => {
         return responseData;
       })
       .then(data => {
-        console.log(data.drinker_id)
+        console.log(data.drinker_id);
         setUserId(data.drinker_id);
         return data.drinker_id;
       })
@@ -119,9 +122,7 @@ export const SignIn = ({navigation, route}) => {
         textContentType="password" // defined to allow autofill on iPhone
       />
       {passwordError.length > 0 && <Text>{passwordError}</Text>}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={handleSubmit}>
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text>Login</Text>
       </TouchableOpacity>
       <Text>Haven't signed up yet?</Text>
