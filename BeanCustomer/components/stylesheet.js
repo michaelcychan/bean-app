@@ -1,3 +1,4 @@
+import { BottomTabBarHeightCallbackContext } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -35,5 +36,37 @@ export const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  card_container: {
+    alignItems: 'center',
+
+  },
+  card_template: {
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 10,
+    width: 250,
+    height: 250,
+    margin: 10
+  },
+  card_title: {
+    color: "white",
+    fontWeight: 'bold',
+  },
+  card_beanCount: {
+    left: 180,
+    bottom: 15,
+    color: "white",
+    fontWeight: 'bold',
+  },
+  text_container:{
+    position: "absolute",
+    width: 248,
+    height: 30,
+    bottom:0,
+    padding: 5,
+    backgroundColor: "rgba(0,0,0, 0.3)",
+    borderBottomLeftRadius : 10,
+    borderBottomRightRadius: 10
   },
 });
