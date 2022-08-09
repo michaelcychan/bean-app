@@ -22,16 +22,22 @@ export const SignUp = ({navigation, route}) => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [firstNameError, setFirstNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
 
   // error handling for emails
   const handleSubmit = () => {
     var emailValid = false;
+    const pattern =
+      /[a-zA-Z0-9]+[\.]?([a-zA-Z0-9]+)?[\@][a-z]{3,9}[\.][a-z]{2,5}/g;
     if (email.length == 0) {
       setEmailError('Email is required');
     } else if (email.length < 6) {
       setEmailError('Email should be minimum 6 characters');
     } else if (email.indexOf(' ') >= 0) {
       setEmailError('Email cannot contain spaces');
+    } else if (pattern.test(email) === false) {
+      setEmailError('Email is invalid');
     } else {
       setEmailError('');
       emailValid = true;
@@ -49,7 +55,31 @@ export const SignUp = ({navigation, route}) => {
       passwordValid = true;
     }
 
-    if (emailValid && passwordValid) {
+    var firstNameValid = false;
+    if (firstName.length == 0) {
+      setFirstNameError('First Name is required');
+    } else if (firstName.length < 6) {
+      setFirstNameError('First Name should be minimum 6 characters');
+    } else if (firstName.indexOf(' ') >= 0) {
+      setFirstNameError('First Name cannot contain spaces');
+    } else {
+      setFirstNameError('');
+      firstNameValid = true;
+    }
+
+    var lastNameValid = false;
+    if (lastName.length == 0) {
+      setLastNameError('Last Name is required');
+    } else if (lastName.length < 6) {
+      setLastNameError('Last Name should be minimum 6 characters');
+    } else if (lastName.indexOf(' ') >= 0) {
+      setLastNameError('Last Name cannot contain spaces');
+    } else {
+      setLastNameError('');
+      lastNameValid = true;
+    }
+
+    if (emailValid && passwordValid && firstNameValid && lastNameValid) {
       signUp();
     }
   };
@@ -106,12 +136,14 @@ export const SignUp = ({navigation, route}) => {
         value={firstName}
         placeholder="First Name"
       />
+      {firstNameError.length > 0 && <Text>{firstNameError}</Text>}
       <TextInput
         style={styles.input}
         onChangeText={setLastName}
         value={lastName}
         placeholder="Last Name"
       />
+      {lastNameError.length > 0 && <Text>{lastNameError}</Text>}
       <TextInput
         autoCapitalize="none" // turns off capitalization of first letter
         style={styles.input}
