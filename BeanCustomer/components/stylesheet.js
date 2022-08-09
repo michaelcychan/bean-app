@@ -50,12 +50,13 @@ export const styles = StyleSheet.create({
     margin: 10
   },
   card_title: {
+    left: 10,
     color: "white",
     fontWeight: 'bold',
   },
   card_beanCount: {
     left: 190,
-    bottom: 15,
+    bottom: 17,
     color: "white",
     fontWeight: 'bold',
   },

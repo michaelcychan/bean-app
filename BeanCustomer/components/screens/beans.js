@@ -24,8 +24,6 @@ export const Beans = ({navigation, route}) => {
   // getBeanCount function called when component is rendered
   getBeanCount();
 
-  //image
-  // 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1522&q=80'
   const shops = [
     {
       shopName: 'Coffee Shop1',
