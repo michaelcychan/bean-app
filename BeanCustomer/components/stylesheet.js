@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   card_beanCount: {
-    left: 180,
+    left: 190,
     bottom: 15,
     color: "white",
     fontWeight: 'bold',
@@ -68,5 +68,13 @@ export const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0, 0.3)",
     borderBottomLeftRadius : 10,
     borderBottomRightRadius: 10
+  },
+  card_image: {
+    left: 24,
+    top: 10,
+    align: 'top',
+    width: 200,
+    height: 200,
+    borderRadius : 10
   },
 });
