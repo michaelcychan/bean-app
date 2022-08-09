@@ -19,7 +19,7 @@ export const Id = (props) => {
       size={200}
       value={qrcodeText}
       enableLinearGradient={true}
-      linearGradient={['rgb(112,49,45)','rgb(0,211,247)']}
+      linearGradient={['rgb(0,49,45)','rgb(255,211,247)']}
       />
       </View>
     )

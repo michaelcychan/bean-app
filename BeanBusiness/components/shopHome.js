@@ -36,8 +36,8 @@ export const ShopHome = ({navigation, route}) => {
           </Text>
         }
         bottomContent={
-          <TouchableOpacity style={styles.buttonTouchable}>
-            <Text style={styles.buttonText}>OK. Got it!</Text>
+          <TouchableOpacity>
+            <Text>OK. Got it!</Text>
           </TouchableOpacity>
         }
       />
