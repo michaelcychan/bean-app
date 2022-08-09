@@ -69,14 +69,13 @@ const BaristaController ={
   },
 
   AddLoyaltyBean: async (req, res) => {
-    // declaring variable from POST request from frontend
+    // declaring variables from POST requests
     const shopID = req.body.shopId; // this is the shopID from frontend
     const drinkerID = req.body.drinker_id // this is the drinker ID from frontend
 
-
     // check if the shop id is present in the current info
     let shopList = [];
-    const beanCounts = await Drinker.findOne({drinker_id: req.body.drinker_id});
+    const beanCounts = await Drinker.findOne({drinker_id: drinkerID});
 
     console.log(beanCounts);
     let indexOfShop = beanCounts.bean_counts.findIndex(element => {
@@ -102,14 +101,39 @@ const BaristaController ={
     }
     console.log(`indexOfShop: ${indexOfShop}`)
 
-    // Add a bean to the shop
+    // Add a bean 
     const resultAfterAddingBean = await Drinker.findOneAndUpdate(
       {drinker_id: drinkerID},
       {$inc: {"bean_counts.$[elem].bean_count": 1}},
-      {arrayFilters: [{"elem.shopId": shopID}]}
+      {arrayFilters: [{"elem.shopId": shopID}], returnDocument: "after"}
     )
-    
-    res.json(resultAfterAddingBean.bean_count)
+    res.json(resultAfterAddingBean.bean_counts[indexOfShop])
+  },
+
+  NewRedeemDrink: async (req, res) => {
+    // declaring variables from POST requests
+    const shopID = req.body.shopId; // this is the shopID from frontend
+    const drinkerID = req.body.drinker_id // this is the drinker ID from frontend
+
+    // As it is assumed that the button only appears when bean number > 10
+    // this function assumes that the shopId must be present in bean_counts array
+
+    // indexOfShop is used to prevent sending excessive data (beans count of other shops)
+    let shopList = [];
+    const beanCounts = await Drinker.findOne({drinker_id: drinkerID});
+
+    console.log(beanCounts);
+    let indexOfShop = beanCounts.bean_counts.findIndex(element => {
+      return element.shopId == shopID ? true : false
+    });
+
+    // Reduce 10 beans 
+    const resultAfterReducingBean = await Drinker.findOneAndUpdate(
+      {drinker_id: drinkerID},
+      {$inc: {"bean_counts.$[elem].bean_count": -10}},
+      {arrayFilters: [{"elem.shopId": shopID}], returnDocument: "after"}
+    )
+    res.json(resultAfterReducingBean.bean_counts[indexOfShop]);
   },
 
   RedeemDrink: (req, res) => {
