@@ -14,7 +14,6 @@ export const ShopHome = ({navigation, route}) => {
   const [drinkerObject, setDrinkerObject] = React.useState(null);
   const [bean_count, setBeanCount] = React.useState('X');
   const shopID = route.params.shopId.user;
-  console.log(`shop ID: ${shopID}`)
 
   const findDrinkerID = () => {
     let findBeanObject = {
@@ -36,17 +35,20 @@ export const ShopHome = ({navigation, route}) => {
       .then(data => {
         if (data != 'No such drinker') {
           setDrinkerObject(data);
-          return data;
+        } else {
+          setDrinkerObject(null);
         }
+        return data;
       })
       .then(data => {
-        console.log(`fetch request data: ${data}`)
-        const beanCount = data.bean_counts.find(
-          object => object.shopId === shopID,
-        ).bean_count;
-        setBeanCount(beanCount);
-        setDrinkerIDInput(null);
-        return data;
+        if (data != 'No such drinker') {
+          const beanCount = data.bean_counts.find(
+            object => object.shopId === shopID,
+          ).bean_count;
+          setBeanCount(beanCount);
+          setDrinkerIDInput(null);
+          return data;
+        }
       })
       .catch(error => {
         console.error(error);
@@ -120,7 +122,7 @@ export const ShopHome = ({navigation, route}) => {
   };
 
   const addBeanButtons = () => {
-    if (drinkerObject && drinkerObject != 'No such drinker') {
+    if (drinkerObject != null && drinkerObject != 'No such drinker') {
       return (
         <View
           style={{

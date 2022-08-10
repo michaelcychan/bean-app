@@ -56,36 +56,36 @@ const BaristaController = {
   FindDrinker: async (req, res) => {
     let userID = req.body.drinker_id == "null" ? 0 : req.body.drinker_id;
     let shopID = req.body.shopID;
-    console.log(`req.body: ${req.body.shopID}`)
+    console.log(`req.body: ${req.body.shopID}`);
 
     // check if the drinker is present in the database
-    const drinker = await Drinker.findOne({ drinker_id: userID })
-    console.log(drinker)
+    const drinker = await Drinker.findOne({ drinker_id: userID });
+    console.log(drinker);
     if (drinker == null) {
-      res.json('No such drinker')
+      res.json("No such drinker");
     } else {
-    let indexOfShop = drinker.bean_counts.findIndex((element) => {
-      return element.shopId == shopID ? true : false;
-    });
+      let indexOfShop = drinker.bean_counts.findIndex((element) => {
+        return element.shopId == shopID ? true : false;
+      });
 
-    // indexOfShop will be -1 if it does not exist, or an empty array
-    if (indexOfShop < 0) {
-      const newDrinker = await Drinker.findOneAndUpdate(
-        { drinker_id: userID },
-        {
-          $push: {
-            bean_counts: {
-              shopId: shopID,
-              bean_count: 0,
+      // indexOfShop will be -1 if it does not exist, or an empty array
+      if (indexOfShop < 0) {
+        const newDrinker = await Drinker.findOneAndUpdate(
+          { drinker_id: userID },
+          {
+            $push: {
+              bean_counts: {
+                shopId: shopID,
+                bean_count: 0,
+              },
             },
           },
-        },
-        { returnDocument: "after"}
-      );
-      res.json(newDrinker)
-    } else {
-      res.json(drinker)
-    }
+          { returnDocument: "after" }
+        );
+        res.json(newDrinker);
+      } else {
+        res.json(drinker);
+      }
     }
   },
 
