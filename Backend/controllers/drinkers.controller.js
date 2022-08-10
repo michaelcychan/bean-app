@@ -16,7 +16,7 @@ const DrinkerController = {
         lastname: userData.lastname,
         email: userData.email,
         password: hashedPassword,
-        bean_count: 0
+        bean_counts: []
       });
       drinker.save((error, result) => {
         if (error) {
@@ -52,37 +52,27 @@ const DrinkerController = {
   },
 
   // to get the latest bean_count from database using session email
-  ShowBeanCounts: (req, res) => {
+  // ShowBeanCounts: (req, res) => {
+  //   const drinker_id = req.params.drinker_id;
+  //   Drinker.findOne({drinker_id: drinker_id}).then((drinker) => {
+  //     if (!drinker) {
+  //       res.json('no such drinker');
+  //     } else {
+  //       res.json({bean_count: drinker.bean_counts})
+  //     }
+  //   });
+  // }
+
+  GetShopList: async (req, res) => {
     const drinker_id = req.params.drinker_id;
-    Drinker.findOne({drinker_id: drinker_id}).then((drinker) => {
-      if (!drinker) {
-        res.json('no such drinker');
-      } else {
-        res.json({bean_count: drinker.bean_counts})
-      }
-    });
+    
+    drinker = await Drinker.findOne({drinker_id: drinker_id})
+
+    let shopList = drinker.bean_counts
+
+    res.json(shopList)
   }
+
 };
 
 module.exports = DrinkerController;
-
-  // function to provide shop list array to front end
-  getShopInfo: (req, res) => {
-    const drinker_id = req.params.drinker_id
-    Drinker.findOne({drinker_id: drinker_id})
-    .then((drinker) => {
-        let shopList = [];
-          drinker.beanCounts.map(element => {
-            let beanCount = element.beanCount
-            Barista.findOne({shopId: element.shopId})
-            .then((shopInfo) => {
-              let shopInfoObject = {}
-              shopInfoObject.shopInfo = shopInfo.shopName
-              shopInfoObject.shopImage = shopInfo.shopImage
-              shopInfoObject.beanCount = beanCount
-              shopList.push(shopInfoObject)
-            })
-          })
-        res.json(shopList)
-    });
-  }

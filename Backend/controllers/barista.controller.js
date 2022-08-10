@@ -68,6 +68,9 @@ const BaristaController = {
         return element.shopId == shopID ? true : false;
       });
 
+      // get shop information to pass to customer
+      const shopInfo = await Barista.findOne({shopId: shopID});
+
       // indexOfShop will be -1 if it does not exist, or an empty array
       if (indexOfShop < 0) {
         const newDrinker = await Drinker.findOneAndUpdate(
@@ -77,6 +80,7 @@ const BaristaController = {
               bean_counts: {
                 shopId: shopID,
                 bean_count: 0,
+                shopName: shopInfo.shop_name,
               },
             },
           },
