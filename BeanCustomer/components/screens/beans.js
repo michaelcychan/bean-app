@@ -33,13 +33,13 @@ export const Beans = ({navigation, route}) => {
     <ScrollView>
       <SafeAreaView style={styles.card_container}>
         {shopList.reverse().map(({shopName, bean_count, shopId, shopLogo}) => (
-          <View key={shopId} style={styles.card_template}>
+          <TouchableOpacity key={shopId} style={styles.card_template}>
             <Image style={styles.card_image} source={{uri: shopLogo}} />
             <View style={styles.text_container}>
               <Text style={styles.card_title}>{shopName}</Text>
               <Text style={styles.card_beanCount}>🫘 {bean_count}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
       </SafeAreaView>
     </ScrollView>
