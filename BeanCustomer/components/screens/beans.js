@@ -30,16 +30,18 @@ export const Beans = ({navigation, route}) => {
   getShopList();
 
   return (
-    <SafeAreaView style={styles.card_container}>
-      {shopList.map(({shopName, bean_count, shopId, shopLogo}) => (
-        <View key={shopId} style={styles.card_template}>
-          <Image style={styles.card_image} source={{uri: shopLogo}} />
-          <View style={styles.text_container}>
-            <Text style={styles.card_title}>{shopName}</Text>
-            <Text style={styles.card_beanCount}>🫘 {bean_count}</Text>
+    <ScrollView>
+      <SafeAreaView style={styles.card_container}>
+        {shopList.reverse().map(({shopName, bean_count, shopId, shopLogo}) => (
+          <View key={shopId} style={styles.card_template}>
+            <Image style={styles.card_image} source={{uri: shopLogo}} />
+            <View style={styles.text_container}>
+              <Text style={styles.card_title}>{shopName}</Text>
+              <Text style={styles.card_beanCount}>🫘 {bean_count}</Text>
+            </View>
           </View>
-        </View>
-      ))}
-    </SafeAreaView>
+        ))}
+      </SafeAreaView>
+    </ScrollView>
   );
 };
