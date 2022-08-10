@@ -13,7 +13,7 @@ const BaristaController = {
         shop_name: req.body.shop_name,
         email: req.body.email,
         password: hashedPassword,
-        shop_address: req.body.shop_address,
+        shopLogo: req.body.shopLogo,
       });
       newBarista.save((error, result) => {
         if (error) {
