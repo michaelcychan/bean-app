@@ -37,7 +37,7 @@ export const LoginScreen = ({navigation}) => {
 
   // sending request to backend server attempting to log in
   const baristaLogIn = () => {
-    fetch('http://localhost:5050/barista/log-in', baristaLogInData)
+    fetch('http://192.168.0.2:5050/barista/log-in', baristaLogInData)
       .then(response => response.json())
       .then(json => {
         setUserEmail(json.email);
