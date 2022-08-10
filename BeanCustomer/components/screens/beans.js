@@ -26,9 +26,6 @@ export const Beans = ({navigation, route}) => {
       });
   }, []);
 
-  // getBeanCount function called when component is rendered
-  // getShopList();
-
   return (
     <ScrollView>
       <SafeAreaView style={styles.card_container}>
