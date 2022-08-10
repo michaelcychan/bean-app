@@ -92,21 +92,14 @@ const BaristaController ={
       )
     }
 
-    // setting indexOfShop if it is less than 0 (indexOfShop was created before we add a new shop record)
-    if (indexOfShop < 0 && drinker.bean_counts.length != 0) {
-      indexOfShop = drinker.bean_counts.length
-    } else if (indexOfShop < 0 && drinker.bean_counts.length == 0) {
-      indexOfShop = 0
-    }
-    console.log(`indexOfShop: ${indexOfShop}`)
-
     // Add a bean 
     const resultAfterAddingBean = await Drinker.findOneAndUpdate(
       {drinker_id: drinkerID},
       {$inc: {"bean_counts.$[elem].bean_count": 1}},
       {arrayFilters: [{"elem.shopId": shopID}], returnDocument: "after"}
     )
-    res.json(resultAfterAddingBean.bean_counts[indexOfShop].bean_count)
+    const newBeanCountOfShop = resultAfterAddingBean.bean_counts.find(object => object.shopId === shopID).bean_count;
+    res.json(newBeanCountOfShop);
   },
 
   NewRedeemDrink: async (req, res) => {
@@ -117,21 +110,14 @@ const BaristaController ={
     // As it is assumed that the button only appears when bean number > 10
     // this function assumes that the shopId must be present in bean_counts array
 
-    // indexOfShop is used to prevent sending excessive data (beans count of other shops)
-    let shopList = [];
-    const drinker = await Drinker.findOne({drinker_id: drinkerID});
-
-    let indexOfShop = drinker.bean_counts.findIndex(element => {
-      return element.shopId == shopID ? true : false
-    });
-
     // Reduce 10 beans 
     const resultAfterReducingBean = await Drinker.findOneAndUpdate(
       {drinker_id: drinkerID},
       {$inc: {"bean_counts.$[elem].bean_count": -10}},
       {arrayFilters: [{"elem.shopId": shopID}], returnDocument: "after"}
     )
-    res.json(resultAfterReducingBean.bean_counts[indexOfShop].bean_count);
+    const newBeanCountOfShop = resultAfterReducingBean.bean_counts.find(object => object.shopId === shopID).bean_count;
+    res.json(newBeanCountOfShop);
   },
 
   RedeemDrink: (req, res) => {
