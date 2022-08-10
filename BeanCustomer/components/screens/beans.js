@@ -11,8 +11,8 @@ export const Beans = ({navigation, route}) => {
   const [shopList, setShopList] = React.useState([]);
 
   // fetch function to get shopList from database for user, and set shopList variable to it
-  const getShopList = () => {
-    return fetch(`http://localhost:5050/drinker/${userId}`)
+  React.useEffect(() => {
+    fetch(`http://localhost:5050/drinker/${userId}`)
       .then(response => response.json())
       .then(json => {
         return json
@@ -24,10 +24,10 @@ export const Beans = ({navigation, route}) => {
       .catch(error => {
         console.error(error);
       });
-  };
+  }, []);
 
   // getBeanCount function called when component is rendered
-  getShopList();
+  // getShopList();
 
   return (
     <ScrollView>

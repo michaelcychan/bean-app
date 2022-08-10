@@ -84,7 +84,6 @@ export const SignIn = ({navigation, route}) => {
         return responseData;
       })
       .then(data => {
-        console.log(data.drinker_id);
         setUserId(data.drinker_id);
         return data.drinker_id;
       })
