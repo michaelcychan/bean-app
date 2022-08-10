@@ -52,14 +52,13 @@ const DrinkerController = {
   },
 
   // to get the latest bean_count from database using session email
-  ShowBean: (req, res) => {
-    const drinker_id = req.params.drinker_id
-    const drinkerEmail = req.params.email;
+  ShowBeanCounts: (req, res) => {
+    const drinker_id = req.params.drinker_id;
     Drinker.findOne({drinker_id: drinker_id}).then((drinker) => {
       if (!drinker) {
         res.json('no such drinker');
       } else {
-        res.json({bean_count: drinker.bean_count})
+        res.json({bean_count: drinker.bean_counts})
       }
     });
   }

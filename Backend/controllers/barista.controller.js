@@ -75,10 +75,9 @@ const BaristaController ={
 
     // check if the shop id is present in the current info
     let shopList = [];
-    const beanCounts = await Drinker.findOne({drinker_id: drinkerID});
+    const drinker = await Drinker.findOne({drinker_id: drinkerID});
 
-    console.log(beanCounts);
-    let indexOfShop = beanCounts.bean_counts.findIndex(element => {
+    let indexOfShop = drinker.bean_counts.findIndex(element => {
       return element.shopId == shopID ? true : false
     });
 
@@ -93,10 +92,10 @@ const BaristaController ={
       )
     }
 
-    // setting indexOfShop if it is less than 0
-    if (indexOfShop < 0 && beanCounts.bean_counts.length != 0) {
-      indexOfShop = beanCounts.bean_counts.length
-    } else if (indexOfShop < 0 && beanCounts.bean_counts.length == 0) {
+    // setting indexOfShop if it is less than 0 (indexOfShop was created before we add a new shop record)
+    if (indexOfShop < 0 && drinker.bean_counts.length != 0) {
+      indexOfShop = drinker.bean_counts.length
+    } else if (indexOfShop < 0 && drinker.bean_counts.length == 0) {
       indexOfShop = 0
     }
     console.log(`indexOfShop: ${indexOfShop}`)
@@ -107,7 +106,7 @@ const BaristaController ={
       {$inc: {"bean_counts.$[elem].bean_count": 1}},
       {arrayFilters: [{"elem.shopId": shopID}], returnDocument: "after"}
     )
-    res.json(resultAfterAddingBean.bean_counts[indexOfShop])
+    res.json(resultAfterAddingBean.bean_counts[indexOfShop].bean_count)
   },
 
   NewRedeemDrink: async (req, res) => {
@@ -120,10 +119,9 @@ const BaristaController ={
 
     // indexOfShop is used to prevent sending excessive data (beans count of other shops)
     let shopList = [];
-    const beanCounts = await Drinker.findOne({drinker_id: drinkerID});
+    const drinker = await Drinker.findOne({drinker_id: drinkerID});
 
-    console.log(beanCounts);
-    let indexOfShop = beanCounts.bean_counts.findIndex(element => {
+    let indexOfShop = drinker.bean_counts.findIndex(element => {
       return element.shopId == shopID ? true : false
     });
 
@@ -133,7 +131,7 @@ const BaristaController ={
       {$inc: {"bean_counts.$[elem].bean_count": -10}},
       {arrayFilters: [{"elem.shopId": shopID}], returnDocument: "after"}
     )
-    res.json(resultAfterReducingBean.bean_counts[indexOfShop]);
+    res.json(resultAfterReducingBean.bean_counts[indexOfShop].bean_count);
   },
 
   RedeemDrink: (req, res) => {
