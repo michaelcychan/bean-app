@@ -13,7 +13,7 @@ const BaristaController = {
         shop_name: req.body.shop_name,
         email: req.body.email,
         password: hashedPassword,
-        shop_address: req.body.shop_address,
+        shopLogo: req.body.shopLogo,
       });
       newBarista.save((error, result) => {
         if (error) {
@@ -56,7 +56,6 @@ const BaristaController = {
   FindDrinker: async (req, res) => {
     let userID = req.body.drinker_id == "null" ? 0 : req.body.drinker_id;
     let shopID = req.body.shopID;
-    console.log(`req.body: ${req.body.shopID}`);
 
     // check if the drinker is present in the database
     const drinker = await Drinker.findOne({ drinker_id: userID });
@@ -81,6 +80,7 @@ const BaristaController = {
                 shopId: shopID,
                 bean_count: 0,
                 shopName: shopInfo.shop_name,
+                shopLogo: shopInfo.shopLogo
               },
             },
           },
