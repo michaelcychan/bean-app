@@ -81,6 +81,7 @@ const BaristaController = {
                 shopId: shopID,
                 bean_count: 0,
                 shopName: shopInfo.shop_name,
+                shopLogo: shopInfo.shopLogo
               },
             },
           },
