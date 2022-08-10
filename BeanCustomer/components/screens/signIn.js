@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native';
 import {styles} from '../stylesheet';
+import {backendDomain} from '../backendDomain';
 
 export const SignIn = ({navigation, route}) => {
   // variables created to take the text input
@@ -78,7 +79,7 @@ export const SignIn = ({navigation, route}) => {
 
   // fetch request checking email and password against database. Returning drinker id if details valid.
   const signIn = () => {
-    return fetch('http://localhost:5050/drinker/log-in', data)
+    return fetch(`${backendDomain}drinker/log-in`, data)
       .then(response => response.json())
       .then(responseData => {
         return responseData;

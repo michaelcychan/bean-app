@@ -10,6 +10,7 @@ import {
   Image,
 } from 'react-native';
 import {styles} from '../stylesheet';
+import {backendDomain} from '../backendDomain';
 
 export const SignUp = ({navigation, route}) => {
   // create an error message variable to communicate to a user why they couldn't sign up
@@ -109,7 +110,7 @@ export const SignUp = ({navigation, route}) => {
   };
 
   const signUp = () => {
-    return fetch('http://localhost:5050/drinker/new-drinker', data)
+    return fetch(`${backendDomain}drinker/new-drinker`, data)
       .then(response => response.json())
       .then(responseData => {
         console.log(responseData);
