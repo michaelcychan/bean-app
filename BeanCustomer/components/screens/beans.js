@@ -9,7 +9,6 @@ export const Beans = ({navigation, route}) => {
    const userId = route.params.userId;
   // creating a empty array variable that can take the shop list from customer
   const [shopList, setShopList] = React.useState([]);
-  console.log('shop')
 
   // fetch function to get shopList from database for user, and set shopList variable to it
   const getShopList = () => {
@@ -32,9 +31,9 @@ export const Beans = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.card_container}>
-      {shopList.map(({shopName, bean_count, shopId}) => (
+      {shopList.map(({shopName, bean_count, shopId, shopLogo}) => (
         <View key={shopId} style={styles.card_template}>
-          {/* <Image style={styles.card_image} source={{uri: shopImage}} /> */}
+          <Image style={styles.card_image} source={{uri: shopLogo}} />
           <View style={styles.text_container}>
             <Text style={styles.card_title}>{shopName}</Text>
             <Text style={styles.card_beanCount}>🫘 {bean_count}</Text>
