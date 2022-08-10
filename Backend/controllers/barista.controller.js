@@ -56,7 +56,6 @@ const BaristaController = {
   FindDrinker: async (req, res) => {
     let userID = req.body.drinker_id == "null" ? 0 : req.body.drinker_id;
     let shopID = req.body.shopID;
-    console.log(`req.body: ${req.body.shopID}`);
 
     // check if the drinker is present in the database
     const drinker = await Drinker.findOne({ drinker_id: userID });
