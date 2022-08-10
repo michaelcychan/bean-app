@@ -29,9 +29,8 @@ export const LoginScreen = ({navigation}) => {
   };
 
   const logIn = user => {
-    console.log(user);
     if (user !== undefined) {
-      navigation.navigate('Coffee Shop Home', {shopID: {user}});
+      navigation.navigate('Coffee Shop Home', {shopId: {user}});
     }
   };
 
@@ -40,10 +39,10 @@ export const LoginScreen = ({navigation}) => {
     fetch('http://localhost:5050/barista/log-in', baristaLogInData)
       .then(response => response.json())
       .then(json => {
-        return json.shopId;
+        return json;
       })
       .then(data => {
-        logIn(data);
+        logIn(data.shopId);
       })
       .catch(error => {
         console.error(error);
