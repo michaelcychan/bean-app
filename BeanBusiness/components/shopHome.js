@@ -12,6 +12,7 @@ import {
 import {styles} from './stylesheets';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {RNCamera} from 'react-native-camera';
+import Config from 'react-native-config';
 
 export const ShopHome = ({navigation, route}) => {
   onSuccess = e => {
@@ -26,7 +27,7 @@ export const ShopHome = ({navigation, route}) => {
   const userEmail = route.params.email;
 
   const findDrinkerID = () => {
-    return fetch(`http://192.168.0.2:5050/barista/finddrinker/${drinkerIDInput}`)
+    return fetch(`${Config.DOMAIN_ADD}:5050/barista/finddrinker/${drinkerIDInput}`)
       .then(response => response.json())
       .then(json => {
         setDrinkerObject(json);
@@ -44,7 +45,7 @@ export const ShopHome = ({navigation, route}) => {
 
   const addBean = () => {
     return fetch(
-      `http://192.168.0.2:5050/barista/addbeans/${drinkerObject.drinker_id}`,
+      `${Config.DOMAIN_ADD}:5050/barista/addbeans/${drinkerObject.drinker_id}`,
       {
         method: 'POST',
       },
@@ -61,7 +62,7 @@ export const ShopHome = ({navigation, route}) => {
 
   const redeemDrink = () => {
     return fetch(
-      `http://192.168.0.2:5050/barista/redeemdrink/${drinkerObject.drinker_id}`,
+      `${Config.DOMAIN_ADD}:5050/barista/redeemdrink/${drinkerObject.drinker_id}`,
       {
         method: 'POST',
       },

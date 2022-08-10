@@ -1,7 +1,5 @@
 import React from 'react';
-import type {Node} from 'react';
 import {
-  Button,
   SafeAreaView,
   ScrollView,
   Text,
@@ -43,7 +41,7 @@ export const SignupScreen = ({navigation}) => {
 
   // sending request to backend server to signup a new barista
   const baristaSignUp = () => {
-    return fetch('http://192.168.0.2/barista/new-barista', newBaristaData)
+    return fetch(`${Config.DOMAIN_ADD}:5050/barista/new-barista`, newBaristaData)
       .then(response => response.json())
       .then(json => {
         return json;

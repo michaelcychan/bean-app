@@ -1,7 +1,5 @@
 import React from 'react';
-import type {Node} from 'react';
 import {
-  Button,
   SafeAreaView,
   Text,
   TextInput,
@@ -9,6 +7,7 @@ import {
   Image,
 } from 'react-native';
 import {styles} from './stylesheets';
+import Config from 'react-native-config';
 
 export const LoginScreen = ({navigation}) => {
   const [shopEmail, onChangeShopEmail] = React.useState(null);
@@ -37,7 +36,7 @@ export const LoginScreen = ({navigation}) => {
 
   // sending request to backend server attempting to log in
   const baristaLogIn = () => {
-    fetch('http://192.168.0.2:5050/barista/log-in', baristaLogInData)
+    return fetch(`${Config.DOMAIN_ADD}:5050/barista/log-in`, baristaLogInData)
       .then(response => response.json())
       .then(json => {
         setUserEmail(json.email);
