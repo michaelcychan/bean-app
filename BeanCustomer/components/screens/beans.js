@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {View, Button, Text, TouchableOpacity, Image} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {View, Button, Text, TouchableOpacity, Image, ScrollView, SafeAreaView} from 'react-native';
 import {styles} from '../stylesheet';
 
 export const Beans = ({navigation, route}) => {
