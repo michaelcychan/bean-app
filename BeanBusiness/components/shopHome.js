@@ -17,7 +17,7 @@ export const ShopHome = ({navigation, route}) => {
   const userEmail = route.params.email;
 
   const findDrinkerID = () => {
-    return fetch(`http://localhost:5050/barista/finddrinker/${drinkerIDInput}`)
+    return fetch(`http://192.168.0.2:5050/barista/finddrinker/${drinkerIDInput}`)
       .then(response => response.json())
       .then(json => {
         setDrinkerObject(json);
@@ -35,7 +35,7 @@ export const ShopHome = ({navigation, route}) => {
 
   const addBean = () => {
     return fetch(
-      `http://localhost:5050/barista/addbeans/${drinkerObject.drinker_id}`,
+      `http://192.168.0.2:5050/barista/addbeans/${drinkerObject.drinker_id}`,
       {
         method: 'POST',
       },
@@ -52,7 +52,7 @@ export const ShopHome = ({navigation, route}) => {
 
   const redeemDrink = () => {
     return fetch(
-      `http://localhost:5050/barista/redeemdrink/${drinkerObject.drinker_id}`,
+      `http://192.168.0.2:5050/barista/redeemdrink/${drinkerObject.drinker_id}`,
       {
         method: 'POST',
       },

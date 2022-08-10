@@ -20,5 +20,5 @@ const MyStack = () => {
     </NavigationContainer>
   );
 };
-
+ 
 export default MyStack;
