@@ -23,7 +23,7 @@ const baristaSchema = new Schema({
     type: String,
     required: true
   },
-  shop_address: {
+  shopLogo: {
     type: String,
   }
 });

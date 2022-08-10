@@ -59,8 +59,8 @@ export const SignUp = ({navigation, route}) => {
     var firstNameValid = false;
     if (firstName.length == 0) {
       setFirstNameError('First Name is required');
-    } else if (firstName.length < 6) {
-      setFirstNameError('First Name should be minimum 6 characters');
+    } else if (firstName.length < 2) {
+      setFirstNameError('First Name should be minimum 2 characters');
     } else if (firstName.indexOf(' ') >= 0) {
       setFirstNameError('First Name cannot contain spaces');
     } else {
@@ -71,8 +71,8 @@ export const SignUp = ({navigation, route}) => {
     var lastNameValid = false;
     if (lastName.length == 0) {
       setLastNameError('Last Name is required');
-    } else if (lastName.length < 6) {
-      setLastNameError('Last Name should be minimum 6 characters');
+    } else if (lastName.length < 2) {
+      setLastNameError('Last Name should be minimum 2 characters');
     } else if (lastName.indexOf(' ') >= 0) {
       setLastNameError('Last Name cannot contain spaces');
     } else {

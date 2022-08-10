@@ -18,7 +18,7 @@ export const SignupScreen = ({navigation}) => {
   const [shopName, onChangeShopName] = React.useState(null);
   const [shopEmail, onChangeShopEmail] = React.useState(null);
   const [shopPassword, onChangeShopPassword] = React.useState(null);
-  const [shopAddress, onChangeShopAddress] = React.useState(null);
+  const [shopLogo, onChangeShopLogo] = React.useState(null);
 
   // creating an object of data to pass into baristaSignUp fetch request
   let newBaristaData = {
@@ -31,7 +31,7 @@ export const SignupScreen = ({navigation}) => {
       shop_name: shopName,
       email: shopEmail,
       password: shopPassword,
-      shop_address: shopAddress,
+      shopLogo: shopLogo,
     }),
   };
 
@@ -95,9 +95,9 @@ export const SignupScreen = ({navigation}) => {
       <TextInput
         autoCapitalize="none"
         style={styles.input}
-        onChangeText={onChangeShopAddress}
-        value={shopAddress}
-        placeholder="Enter your shop Address"
+        onChangeText={onChangeShopLogo}
+        value={shopLogo}
+        placeholder="Enter your shop logo url"
         keyboardType="default"
       />
 
