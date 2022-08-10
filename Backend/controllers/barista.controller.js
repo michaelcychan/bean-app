@@ -74,7 +74,6 @@ const BaristaController ={
     const drinkerID = req.body.drinker_id // this is the drinker ID from frontend
 
     // check if the shop id is present in the current info
-    let shopList = [];
     const drinker = await Drinker.findOne({drinker_id: drinkerID});
 
     let indexOfShop = drinker.bean_counts.findIndex(element => {
