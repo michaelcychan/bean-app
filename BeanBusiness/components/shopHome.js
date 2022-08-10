@@ -7,10 +7,19 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 import {styles} from './stylesheets';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import {RNCamera} from 'react-native-camera';
 
 export const ShopHome = ({navigation, route}) => {
+  onSuccess = e => {
+    Linking.openURL(e.data).catch(err =>
+      console.error('An error occured', err),
+    );
+  };
+
   const [drinkerIDInput, setDrinkerIDInput] = React.useState(null);
   const [drinkerObject, setDrinkerObject] = React.useState(null);
   const [bean_count, setBeanCount] = React.useState(0);
@@ -145,6 +154,22 @@ export const ShopHome = ({navigation, route}) => {
         }}>
         <Text>Log out</Text>
       </TouchableOpacity>
+      <QRCodeScanner
+        onRead={this.onSuccess}
+        flashMode={RNCamera.Constants.FlashMode.torch}
+        topContent={
+          <Text style={styles.centerText}>
+            Go to{' '}
+            <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on
+            your computer and scan the QR code.
+          </Text>
+        }
+        bottomContent={
+          <TouchableOpacity style={styles.buttonTouchable}>
+            <Text style={styles.buttonText}>OK. Got it!</Text>
+          </TouchableOpacity>
+        }
+      />
     </SafeAreaView>
   );
 };
