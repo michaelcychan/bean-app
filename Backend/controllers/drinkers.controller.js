@@ -2,6 +2,7 @@ const Drinker = require('../models/drinker.model');
 
 // Bcrypt
 const bcrypt = require('bcrypt');
+const Barista = require('../models/barista.model');
 const saltRound = 5;
 
 const DrinkerController = {
@@ -15,7 +16,7 @@ const DrinkerController = {
         lastname: userData.lastname,
         email: userData.email,
         password: hashedPassword,
-        bean_count: 0
+        bean_counts: []
       });
       drinker.save((error, result) => {
         if (error) {
@@ -51,17 +52,27 @@ const DrinkerController = {
   },
 
   // to get the latest bean_count from database using session email
-  ShowBean: (req, res) => {
-    const drinker_id = req.params.drinker_id
-    const drinkerEmail = req.params.email;
-    Drinker.findOne({drinker_id: drinker_id}).then((drinker) => {
-      if (!drinker) {
-        res.json('no such drinker');
-      } else {
-        res.json({bean_count: drinker.bean_count})
-      }
-    });
+  // ShowBeanCounts: (req, res) => {
+  //   const drinker_id = req.params.drinker_id;
+  //   Drinker.findOne({drinker_id: drinker_id}).then((drinker) => {
+  //     if (!drinker) {
+  //       res.json('no such drinker');
+  //     } else {
+  //       res.json({bean_count: drinker.bean_counts})
+  //     }
+  //   });
+  // }
+
+  GetShopList: async (req, res) => {
+    const drinker_id = req.params.drinker_id;
+    
+    drinker = await Drinker.findOne({drinker_id: drinker_id})
+
+    let shopList = drinker.bean_counts
+
+    res.json(shopList)
   }
+
 };
 
 module.exports = DrinkerController;

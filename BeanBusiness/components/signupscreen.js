@@ -35,7 +35,6 @@ export const SignupScreen = ({navigation}) => {
   };
 
   const logIn = response => {
-    console.log(response);
     if (response == 'A new Barista joined!') {
       navigation.navigate('Login');
     }

@@ -20,6 +20,18 @@ You need your own Atlas MongoDB account or use a local MongoDB.
 
 For the latest instruction to start your Atlas MongoDB, please visit the MongoDB Documentation: https://www.mongodb.com/docs/atlas/getting-started/
 
+### Starting the Backend
+To use local mongdoDB:
+```
+npm run start:local
+```
+
+To use Atlas mongoDB:
+Copy .env.smapleAtlas to .env.test and change the DB_URI as instructed from MongoDB Atlas instruction. Then run:
+```
+npm run start:test
+```
+
 ## Front End
 The Front End application for customer/coffee drinker is placed in the ./BeanFront directory. It is designed to be a mobile application.
 

@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
-  Button,
   SafeAreaView,
   Text,
   View,
@@ -13,20 +12,43 @@ import {styles} from './stylesheets';
 export const ShopHome = ({navigation, route}) => {
   const [drinkerIDInput, setDrinkerIDInput] = React.useState(null);
   const [drinkerObject, setDrinkerObject] = React.useState(null);
-  const [bean_count, setBeanCount] = React.useState(0);
-  const userEmail = route.params.email;
+  const [bean_count, setBeanCount] = React.useState('X');
+  const shopID = route.params.shopId.user;
 
   const findDrinkerID = () => {
-    return fetch(`http://localhost:5050/barista/finddrinker/${drinkerIDInput}`)
+    let findBeanObject = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        shopID: shopID,
+        drinker_id: drinkerIDInput,
+      }),
+    };
+    return fetch('http://localhost:5050/barista/finddrinker', findBeanObject)
       .then(response => response.json())
       .then(json => {
-        setDrinkerObject(json);
-        console.log(json);
         return json;
       })
       .then(data => {
-        setBeanCount(data.bean_count);
-        setDrinkerIDInput(null);
+        if (data != 'No such drinker') {
+          setDrinkerObject(data);
+        } else {
+          setDrinkerObject(null);
+        }
+        return data;
+      })
+      .then(data => {
+        if (data != 'No such drinker') {
+          const beanCount = data.bean_counts.find(
+            object => object.shopId === shopID,
+          ).bean_count;
+          setBeanCount(beanCount);
+          setDrinkerIDInput(null);
+          return data;
+        }
       })
       .catch(error => {
         console.error(error);
@@ -34,34 +56,50 @@ export const ShopHome = ({navigation, route}) => {
   };
 
   const addBean = () => {
-    return fetch(
-      `http://localhost:5050/barista/addbeans/${drinkerObject.drinker_id}`,
-      {
-        method: 'POST',
+    // creating an object to be passed to backend for the addBean function
+    let updateBeanObject = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-    )
+      body: JSON.stringify({
+        shopId: shopID,
+        drinker_id: drinkerObject.drinker_id,
+      }),
+    };
+
+    return fetch('http://localhost:5050/barista/addbeans', updateBeanObject)
       .then(response => response.json())
       .then(json => {
         return json;
       })
-      .then(setBeanCount(bean_count + 1))
+      .then(data => setBeanCount(data))
       .catch(error => {
         console.error(error);
       });
   };
 
   const redeemDrink = () => {
-    return fetch(
-      `http://localhost:5050/barista/redeemdrink/${drinkerObject.drinker_id}`,
-      {
-        method: 'POST',
+    // creating an object to be passed to backend for the redeemDrink function
+    let updateBeanObject = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-    )
+      body: JSON.stringify({
+        shopId: shopID,
+        drinker_id: drinkerObject.drinker_id,
+      }),
+    };
+
+    return fetch('http://localhost:5050/barista/redeemdrink', updateBeanObject)
       .then(response => response.json())
       .then(json => {
         return json;
       })
-      .then(setBeanCount(bean_count - 10))
+      .then(data => setBeanCount(data))
       .catch(error => {
         console.error(error);
       });
@@ -84,7 +122,7 @@ export const ShopHome = ({navigation, route}) => {
   };
 
   const addBeanButtons = () => {
-    if (drinkerObject && drinkerObject != 'No such drinker') {
+    if (drinkerObject != null && drinkerObject != 'No such drinker') {
       return (
         <View
           style={{
