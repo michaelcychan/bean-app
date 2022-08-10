@@ -7,17 +7,27 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 import {styles} from './stylesheets';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import {RNCamera} from 'react-native-camera';
+import Config from 'react-native-config';
 
 export const ShopHome = ({navigation, route}) => {
+  onSuccess = e => {
+    Linking.openURL(e.data).catch(err =>
+      console.error('An error occured', err),
+    );
+  };
+
   const [drinkerIDInput, setDrinkerIDInput] = React.useState(null);
   const [drinkerObject, setDrinkerObject] = React.useState(null);
   const [bean_count, setBeanCount] = React.useState(0);
   const userEmail = route.params.email;
 
   const findDrinkerID = () => {
-    return fetch(`http://localhost:5050/barista/finddrinker/${drinkerIDInput}`)
+    return fetch(`${Config.DOMAIN_ADD}:5050/barista/finddrinker/${drinkerIDInput}`)
       .then(response => response.json())
       .then(json => {
         setDrinkerObject(json);
@@ -35,7 +45,7 @@ export const ShopHome = ({navigation, route}) => {
 
   const addBean = () => {
     return fetch(
-      `http://localhost:5050/barista/addbeans/${drinkerObject.drinker_id}`,
+      `${Config.DOMAIN_ADD}:5050/barista/addbeans/${drinkerObject.drinker_id}`,
       {
         method: 'POST',
       },
@@ -52,7 +62,7 @@ export const ShopHome = ({navigation, route}) => {
 
   const redeemDrink = () => {
     return fetch(
-      `http://localhost:5050/barista/redeemdrink/${drinkerObject.drinker_id}`,
+      `${Config.DOMAIN_ADD}:5050/barista/redeemdrink/${drinkerObject.drinker_id}`,
       {
         method: 'POST',
       },
@@ -145,6 +155,22 @@ export const ShopHome = ({navigation, route}) => {
         }}>
         <Text>Log out</Text>
       </TouchableOpacity>
+      <QRCodeScanner
+        onRead={this.onSuccess}
+        flashMode={RNCamera.Constants.FlashMode.torch}
+        topContent={
+          <Text style={styles.centerText}>
+            Go to{' '}
+            <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on
+            your computer and scan the QR code.
+          </Text>
+        }
+        bottomContent={
+          <TouchableOpacity style={styles.buttonTouchable}>
+            <Text style={styles.buttonText}>OK. Got it!</Text>
+          </TouchableOpacity>
+        }
+      />
     </SafeAreaView>
   );
 };
