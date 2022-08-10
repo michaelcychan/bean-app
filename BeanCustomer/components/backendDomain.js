@@ -1,0 +1,1 @@
+export const backendDomain = 'https://loyaltybean.herokuapp.com/';

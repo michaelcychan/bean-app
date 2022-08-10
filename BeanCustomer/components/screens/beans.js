@@ -3,6 +3,7 @@ import {View, Button, Text, TouchableOpacity, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {styles} from '../stylesheet';
+import {backendDomain} from '../backendDomain';
 
 export const Beans = ({navigation, route}) => {
   // getting userId from params to pass to get request
@@ -11,8 +12,9 @@ export const Beans = ({navigation, route}) => {
   const [shopList, setShopList] = React.useState([]);
 
   // fetch function to get shopList from database for user, and set shopList variable to it
+
   React.useEffect(() => {
-    fetch(`http://localhost:5050/drinker/${userId}`)
+    fetch(`${backendDomain}drinker/${userId}`)
       .then(response => response.json())
       .then(json => {
         return json

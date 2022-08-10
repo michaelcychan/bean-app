@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {styles} from './stylesheets';
+import {backendDomain} from './backendDomain';
 
 export const ShopHome = ({navigation, route}) => {
   const [drinkerIDInput, setDrinkerIDInput] = React.useState(null);
@@ -27,7 +28,7 @@ export const ShopHome = ({navigation, route}) => {
         drinker_id: drinkerIDInput,
       }),
     };
-    return fetch('http://localhost:5050/barista/finddrinker', findBeanObject)
+    return fetch(`${backendDomain}barista/finddrinker`, findBeanObject)
       .then(response => response.json())
       .then(json => {
         return json;
@@ -69,7 +70,7 @@ export const ShopHome = ({navigation, route}) => {
       }),
     };
 
-    return fetch('http://localhost:5050/barista/addbeans', updateBeanObject)
+    return fetch(`${backendDomain}barista/addbeans`, updateBeanObject)
       .then(response => response.json())
       .then(json => {
         return json;
@@ -94,7 +95,7 @@ export const ShopHome = ({navigation, route}) => {
       }),
     };
 
-    return fetch('http://localhost:5050/barista/redeemdrink', updateBeanObject)
+    return fetch(`${backendDomain}barista/redeemdrink`, updateBeanObject)
       .then(response => response.json())
       .then(json => {
         return json;

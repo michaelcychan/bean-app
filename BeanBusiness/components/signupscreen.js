@@ -12,6 +12,7 @@ import {
 import {styles} from './stylesheets';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import Config from 'react-native-config';
+import {backendDomain} from './backendDomain';
 
 export const SignupScreen = ({navigation}) => {
   const [shopName, onChangeShopName] = React.useState(null);
@@ -42,7 +43,7 @@ export const SignupScreen = ({navigation}) => {
 
   // sending request to backend server to signup a new barista
   const baristaSignUp = () => {
-    return fetch('http://localhost:5050/barista/new-barista', newBaristaData)
+    return fetch(`${backendDomain}barista/new-barista`, newBaristaData)
       .then(response => response.json())
       .then(json => {
         return json;
