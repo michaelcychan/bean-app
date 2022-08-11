@@ -26,7 +26,7 @@ Michael Chan
 
 ## Back End
 
-  The Back End application for the Bean app is placed in ./Beanend directory. It can link to a local MongoDB or MongoDB Atlas using mongoose. See below for different setup.
+  The Back End application for the Bean app is placed in `./Beanend` directory. It can link to a local MongoDB or MongoDB Atlas using mongoose. See below for different setup.
 
 ### Installation
 
@@ -37,7 +37,7 @@ npm install
 ```
 
 You need your own Atlas MongoDB account or use a local MongoDB.
-.env.local and .env.sampleAtlas show the respective .env file you neeed for setup a MongoDB for the installation.
+`.env.local` and `.env.sampleAtlas` show the respective `.env` file you neeed for setup a MongoDB for the installation.
 
 For the latest instruction to start your Atlas MongoDB, please visit the MongoDB Documentation: https://www.mongodb.com/docs/atlas/getting-started/
 
@@ -49,13 +49,19 @@ npm run start:local
 ```
 
 To use Atlas mongoDB:
-Copy .env.smapleAtlas to .env.test and change the DB_URI as instructed from MongoDB Atlas [instructions](https://www.mongodb.com/docs/atlas/driver-connection/). Then run:
+Copy .env.smapleAtlas to .env.test and change the `DB_URI` as instructed from MongoDB Atlas [instructions](https://www.mongodb.com/docs/atlas/driver-connection/). Then run:
 ```
 npm run start:test
 ```
 
+If the backend server could run on the local server, you should be able to see the following messages on your terminal:
+```
+Server started, listening to port: 5050   <-- or other assigned ports
+Connection to database successful
+```
+
 ## Front End
-The Front End application for customer/coffee drinker is placed in the ./BeanFront directory. It is designed to be a mobile application.
+The Front End application for customer/coffee drinker is placed in the `./BeanFront` directory. It is designed to be a mobile application.
 
 ### Installation
 to install Node.JS and Watchman:
@@ -136,7 +142,7 @@ heroku/nodejs
 ## Database design
 
 <img src="./images/bean-database-mvp.jpg" height=350px />
-<img src="./images/bean-database.jpg" height=350px s/>
+<img src="./images/bean-database.jpg" height=350px />
 
 
 Wireframing
