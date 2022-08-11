@@ -102,13 +102,14 @@ export const SignIn = ({navigation, route}) => {
           style={styles.image}
         />
       </TouchableOpacity>
-      <Text>Login</Text>
+      <Text style={styles.title}>Login</Text>
       <TextInput
         autoCapitalize="none" // set to stop capitalization of first letter
         style={styles.input}
         onChangeText={setEmail}
         value={email}
         placeholder="Email"
+        placeholderTextColor='#999999'
         textContentType="username" // defined to allow autofill on iPhone
       />
       {emailError.length > 0 && <Text>{emailError}</Text>}
@@ -119,17 +120,18 @@ export const SignIn = ({navigation, route}) => {
         onChangeText={setPassword}
         value={password}
         placeholder="Password"
+        placeholderTextColor='#999999'
         textContentType="password" // defined to allow autofill on iPhone
       />
       {passwordError.length > 0 && <Text>{passwordError}</Text>}
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text>Login</Text>
+        <Text style={styles.buttontext}>Login</Text>
       </TouchableOpacity>
       <Text>Haven't signed up yet?</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Sign Up')}>
-        <Text>Sign up</Text>
+        <Text style={styles.buttontext}>Sign up</Text>
       </TouchableOpacity>
     </View>
   );

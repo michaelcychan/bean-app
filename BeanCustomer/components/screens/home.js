@@ -17,14 +17,14 @@ export const Home = ({navigation}) => {
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Sign Up')}>
-        <Text>Sign up for rewards</Text>
+        <Text style={styles.buttontext}>Sign up for rewards</Text>
       </TouchableOpacity>
       <Text>Already have an account?</Text>
         {/* touchable opacity view used to allow navigation to Sign In page */}
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Sign In')}>
-        <Text>Login</Text>
+        <Text style={styles.buttontext}>Login</Text>
       </TouchableOpacity>
     </View>
   );

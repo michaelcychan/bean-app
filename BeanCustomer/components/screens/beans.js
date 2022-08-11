@@ -39,14 +39,15 @@ export const Beans = ({navigation, route}) => {
     if(shopInfo === true) {
       return (
         <View style={styles.shop_info}> 
-        {confetti()}
         <TouchableOpacity 
-            style={styles.button}
+            style={styles.back_button}
             onPress={() => 
               setShopInfo(false)
             }>
-            <Text>X</Text>
+            <Text>Back</Text>
           </TouchableOpacity>
+          {confetti()}
+          
           <Text>{name}</Text>
           <Text>{website}</Text>
           <Text>{beanCount} 🫘</Text>
@@ -78,7 +79,7 @@ export const Beans = ({navigation, route}) => {
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.scrollcontainer}>
       {showShopInfo()}
       <SafeAreaView style={styles.card_container}>
         {shopList.map(({shopName, bean_count, shopId, shopLogo, shopWebsite, openingHours}) => (

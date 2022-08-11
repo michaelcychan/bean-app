@@ -8,6 +8,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  scrollcontainer: {
+    backgroundColor: '#0BA8D3',
+    flex: 1,
+  },
+  title: {
+    fontWeight: 'bold'
+  },
   button: {
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
@@ -17,6 +24,9 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 3,
     paddingHorizontal: 30
+  },
+  buttontext:{
+    fontWeight: 'bold'
   },
   homeImage: {
     height: 320,
@@ -41,7 +51,8 @@ export const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white',
     borderRadius: 20,
-    borderWidth: 2
+    borderWidth: 2,
+    placeholderTextColor: '#000000'
   },
   card_container: {
     alignItems: 'center',
@@ -53,7 +64,8 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     width: 250,
     height: 250,
-    margin: 10
+    margin: 10,
+    backgroundColor: "silver"
   },
   card_title: {
     left: 10,
@@ -98,4 +110,16 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
     zIndex: 1,
   },
+  back_button:{
+    top: 2,
+    right: 2,
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 20,
+    borderWidth: 3,
+    paddingHorizontal: 30,
+  }
 });

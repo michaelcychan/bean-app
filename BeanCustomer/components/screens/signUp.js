@@ -130,12 +130,13 @@ export const SignUp = ({navigation, route}) => {
           style={styles.image}
         />
       </TouchableOpacity>
-      <Text>Signup</Text>
+      <Text style={styles.title}>Signup</Text>
       <TextInput
         style={styles.input}
         onChangeText={setFirstName}
         value={firstName}
         placeholder="First Name"
+        placeholderTextColor='#999999'
       />
       {firstNameError.length > 0 && <Text>{firstNameError}</Text>}
       <TextInput
@@ -143,6 +144,7 @@ export const SignUp = ({navigation, route}) => {
         onChangeText={setLastName}
         value={lastName}
         placeholder="Last Name"
+        placeholderTextColor='#999999'
       />
       {lastNameError.length > 0 && <Text>{lastNameError}</Text>}
       <TextInput
@@ -151,6 +153,7 @@ export const SignUp = ({navigation, route}) => {
         onChangeText={text => setEmail(text)}
         value={email}
         placeholder="Email"
+        placeholderTextColor='#999999'
       />
       {emailError.length > 0 && <Text>{emailError}</Text>}
       <TextInput
@@ -160,6 +163,7 @@ export const SignUp = ({navigation, route}) => {
         onChangeText={text => setPassword(text)}
         value={password}
         placeholder="Password"
+        placeholderTextColor='#999999'
       />
       {passwordError.length > 0 && <Text>{passwordError}</Text>}
       <Text>{signUpError}</Text>
@@ -168,14 +172,14 @@ export const SignUp = ({navigation, route}) => {
         // pressing the button calls the sign up function, and navigates to the Sign In page.
         // an alternative path needs to be written where the user can not sign up with the details provided, currently it crashes the server
         onPress={handleSubmit}>
-        <Text>Sign up</Text>
+        <Text style={styles.buttontext}>Sign up</Text>
       </TouchableOpacity>
       <View>
         <Text>Already have an account?</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Sign In')}>
-          <Text>Login</Text>
+          <Text style={styles.buttontext}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>
