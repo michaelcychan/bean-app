@@ -11,10 +11,18 @@ Michael Chan
 
 ## Tech used
 
+<img src="images/tech-brands/reactnative.png" style="height:100px" />
+<img src="images/tech-brands/nodejs.png" style="height:100px" />
+<img src="images/tech-brands/express.png" style="height:100px" />
+<img src="images/tech-brands/mongodbatlas.png" style="height:100px" />
+<img src="images/tech-brands/heroku.png" style="height:100px" />
+
+
 [React Native](https://reactnative.dev/) for the two frontend applications  
 [Node.js](https://nodejs.org/) for backend Javascript runtime  
 [Express](https://expressjs.com/) for the web framework for Node.js  
 [MongoDb Atlas](https://www.mongodb.com/) for backend database  
+[Heroku](https://www.heroku.com) for hosting the backend server
 
 ## Back End
 
