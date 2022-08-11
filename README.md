@@ -4,10 +4,10 @@
 
 ## The team
 
-Abhiram Nandakumar   
-Dave Kempsell   
-Ibrahim Pala   
-Michael Chan  
+[Abhiram Nandakumar](https://github.com/abacus2020)   
+[Dave Kempsell](https://github.com/davekempsell)   
+[Ibrahim Pala](https://github.com/IbrahimPala1)   
+[Michael Chan](https://github.com/michaelcychan)  
 
 ## Tech used
 <p float="left">
