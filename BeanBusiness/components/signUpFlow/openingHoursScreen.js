@@ -62,7 +62,6 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setMondayHours}
           value={mondayHours}
           placeholder="hh:mm - hh:mm"
-          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -74,7 +73,6 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setTuesdayHours}
           value={tuesdayHours}
           placeholder="hh:mm - hh:mm"
-          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -86,7 +84,6 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setWednesdayHours}
           value={wednesdayHours}
           placeholder="hh:mm - hh:mm"
-          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -98,7 +95,6 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setThursdayHours}
           value={thursdayHours}
           placeholder="hh:mm - hh:mm"
-          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -110,7 +106,6 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setFridayHours}
           value={fridayHours}
           placeholder="hh:mm - hh:mm"
-          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -122,7 +117,6 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setSaturdayHours}
           value={saturdayHours}
           placeholder="hh:mm - hh:mm"
-          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -134,7 +128,6 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setSundayHours}
           value={sundayHours}
           placeholder="hh:mm - hh:mm"
-          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>

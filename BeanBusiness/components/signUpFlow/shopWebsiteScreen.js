@@ -47,7 +47,6 @@ export const ShopWebsiteScreen = ({navigation, route}) => {
         onChangeText={setShopWebsite}
         value={shopWebsite}
         placeholder="Enter your shop's web address"
-        placeholderTextColor="#F1B62C"
         keyboardType="default"
       />
       <TouchableOpacity

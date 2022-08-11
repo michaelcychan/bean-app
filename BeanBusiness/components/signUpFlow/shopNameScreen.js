@@ -38,7 +38,6 @@ export const ShopNameScreen = ({navigation, route}) => {
         onChangeText={onChangeShopName}
         value={shopName}
         placeholder="Enter your shop's name"
-        placeholderTextColor="#F1B62C"
         keyboardType="default"
       />
       <TouchableOpacity

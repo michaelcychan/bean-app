@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     width: 240,
     backgroundColor: 'white',
-    color: 'black',
+    color: '#50009E',
   },
   hoursContainer: {
     flexDirection: 'row',
@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
   },
   primaryButton: {
     alignItems: 'center',
-    backgroundColor: '#F1B62C',
+    backgroundColor: '#7C00F5',
     padding: 10,
     marginTop: 10,
     marginBottom: 10,
@@ -83,7 +83,7 @@ export const styles = StyleSheet.create({
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-    color: 'black',
+    color: 'white',
   },
   secondaryButton: {
     alignItems: 'center',
@@ -92,7 +92,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 10,
     borderWidth: 3,
-    borderColor: '#F1B62C',
+    borderColor: '#7C00F5',
   },
   secondaryButtonText: {
     fontSize: 14,
@@ -104,7 +104,7 @@ export const styles = StyleSheet.create({
   beanButton: {
     width: 180,
     alignItems: 'center',
-    backgroundColor: '#F1B62C',
+    backgroundColor: '#7C00F5',
     padding: 10,
     marginTop: 10,
     marginBottom: 10,

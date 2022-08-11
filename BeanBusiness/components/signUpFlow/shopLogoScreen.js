@@ -40,7 +40,6 @@ export const ShopLogoScreen = ({navigation, route}) => {
         onChangeText={onChangeShopLogo}
         value={shopLogo}
         placeholder="Enter your shop logo url"
-        placeholderTextColor="#F1B62C"
         keyboardType="default"
       />
       <TouchableOpacity

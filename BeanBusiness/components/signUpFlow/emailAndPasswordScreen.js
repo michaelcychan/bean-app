@@ -41,7 +41,6 @@ export const EmailAndPasswordScreen = ({navigation}) => {
         onChangeText={onChangeShopEmail}
         value={shopEmail}
         placeholder="Enter your email address"
-        placeholderTextColor="#F1B62C"
         keyboardType="email-address"
       />
       <TextInput
@@ -50,7 +49,6 @@ export const EmailAndPasswordScreen = ({navigation}) => {
         onChangeText={onChangeShopPassword}
         value={shopPassword}
         placeholder="Enter your password"
-        placeholderTextColor="#F1B62C"
         keyboardType="default"
         secureTextEntry={true}
       />
