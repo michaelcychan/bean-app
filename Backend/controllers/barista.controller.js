@@ -10,10 +10,12 @@ const BaristaController = {
   CreateBarista: (req, res) => {
     bcrypt.hash(req.body.password, saltRound, (error, hashedPassword) => {
       const newBarista = new Barista({
-        shop_name: req.body.shop_name,
         email: req.body.email,
         password: hashedPassword,
+        shop_name: req.body.shop_name,
         shopLogo: req.body.shopLogo,
+        shopWebsite: req.body.website,
+        openingHours: req.body.openingHours
       });
       newBarista.save((error, result) => {
         if (error) {
