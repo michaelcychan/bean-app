@@ -63,7 +63,7 @@ export const Beans = ({navigation, route}) => {
   }
 
   const confetti = () => {
-    if(beanCount > 1) {
+    if(beanCount >= 10) {
       return (
       <ConfettiCannon 
         count={1000}
