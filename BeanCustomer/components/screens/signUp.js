@@ -126,7 +126,7 @@ export const SignUp = ({navigation, route}) => {
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <Image
-          source={require('../images/CoffeeMug.png')}
+          source={require('../images/logos_transparent.png')}
           style={styles.image}
         />
       </TouchableOpacity>

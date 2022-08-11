@@ -3,32 +3,35 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#0BA8D3',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    backgroundColor: '#FFFFFF',
     padding: 10,
     marginTop: 10,
     marginBottom: 10,
+    borderRadius: 20,
+    borderWidth: 3,
+    paddingHorizontal: 30
   },
   homeImage: {
-    height: 160,
-    width: 160,
+    height: 320,
+    width: 320,
     alignItems: 'center',
     padding: 10,
     marginTop: 10,
-    marginBottom: 40,
+    marginBottom: 2,
   },
   image: {
-    height: 80,
-    width: 80,
+    height: 200,
+    width: 200,
     alignItems: 'center',
     padding: 10,
     marginTop: 10,
-    marginBottom: 10,
   },
   input: {
     height: 40,
@@ -36,6 +39,9 @@ export const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    borderWidth: 2
   },
   card_container: {
     alignItems: 'center',

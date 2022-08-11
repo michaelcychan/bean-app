@@ -8,7 +8,7 @@ export const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image 
-          source={require('../images/CoffeeMug.png')} 
+          source={require('../images/logos_transparent.png')} 
           style={styles.homeImage}
       />
       <Text>Receive free coffee</Text>
