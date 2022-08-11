@@ -48,8 +48,12 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           style={styles.image}
         />
       </TouchableOpacity>
-      <Text>Customers need to know when they can get their coffee!</Text>
-      <Text>Please provide your opening hours below</Text>
+      <Text style={{color: 'white'}}>
+        Customers need to know when they can get their coffee!
+      </Text>
+      <Text style={{color: 'white'}}>
+        Please provide your opening hours below
+      </Text>
       <View style={styles.hoursContainer}>
         <Text style={styles.hoursLabel}>Monday:</Text>
         <TextInput
@@ -58,6 +62,7 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setMondayHours}
           value={mondayHours}
           placeholder="hh:mm - hh:mm"
+          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -69,6 +74,7 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setTuesdayHours}
           value={tuesdayHours}
           placeholder="hh:mm - hh:mm"
+          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -80,6 +86,7 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setWednesdayHours}
           value={wednesdayHours}
           placeholder="hh:mm - hh:mm"
+          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -91,6 +98,7 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setThursdayHours}
           value={thursdayHours}
           placeholder="hh:mm - hh:mm"
+          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -102,6 +110,7 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setFridayHours}
           value={fridayHours}
           placeholder="hh:mm - hh:mm"
+          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -113,6 +122,7 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setSaturdayHours}
           value={saturdayHours}
           placeholder="hh:mm - hh:mm"
+          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
@@ -124,15 +134,16 @@ export const OpeningHoursScreen = ({navigation, route}) => {
           onChangeText={setSundayHours}
           value={sundayHours}
           placeholder="hh:mm - hh:mm"
+          placeholderTextColor="#F1B62C"
           keyboardType="default"
         />
       </View>
       <TouchableOpacity
-        style={styles.purpleButton}
+        style={styles.primaryButton}
         onPress={() => {
           nextPage();
         }}>
-        <Text style={styles.buttontext}>NEXT</Text>
+        <Text style={styles.primaryButtonText}>NEXT</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

@@ -40,14 +40,15 @@ export const ShopLogoScreen = ({navigation, route}) => {
         onChangeText={onChangeShopLogo}
         value={shopLogo}
         placeholder="Enter your shop logo url"
+        placeholderTextColor="#F1B62C"
         keyboardType="default"
       />
       <TouchableOpacity
-        style={styles.purpleButton}
+        style={styles.primaryButton}
         onPress={() => {
           nextPage();
         }}>
-        <Text style={styles.buttontext}>NEXT</Text>
+        <Text style={styles.primaryButtonText}>NEXT</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

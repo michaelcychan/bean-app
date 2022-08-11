@@ -69,6 +69,7 @@ export const LoginScreen = ({navigation}) => {
         onChangeText={onChangeShopEmail}
         value={shopEmail}
         placeholder="Enter your email address"
+        placeholderTextColor="#F1B62C"
         keyboardType="email-address"
       />
       <TextInput
@@ -77,15 +78,16 @@ export const LoginScreen = ({navigation}) => {
         onChangeText={onChangeShopPassword}
         value={shopPassword}
         placeholder="Enter your password"
+        placeholderTextColor="#F1B62C"
         keyboardType="default"
         secureTextEntry={true}
       />
       <TouchableOpacity
-        style={styles.purpleButton}
+        style={styles.primaryButton}
         onPress={() => {
           baristaLogIn();
         }}>
-        <Text style={styles.buttontext}>Sign in</Text>
+        <Text style={styles.primaryButtonText}>Login</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

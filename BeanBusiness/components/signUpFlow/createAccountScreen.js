@@ -76,9 +76,8 @@ export const CreateAccountScreen = ({navigation, route}) => {
         />
       </TouchableOpacity>
       <View style={styles.details}>
-        <Text style={styles.title}>Your details</Text>
+        <Text style={styles.title}>{shopName}</Text>
         <Image source={{uri: shopLogo}} style={styles.logo} />
-        <Text style={styles.detailsText}>Shop name: {shopName}</Text>
         <Text style={styles.detailsText}>Shop website: {shopWebsite}</Text>
         <Text style={styles.detailsText}>Email address: {shopEmail}</Text>
         <Text style={styles.detailsText}>Password: {shopPassword}</Text>
@@ -94,11 +93,11 @@ export const CreateAccountScreen = ({navigation, route}) => {
         </View>
       </View>
       <TouchableOpacity
-        style={styles.purpleButton}
+        style={styles.primaryButton}
         onPress={() => {
           baristaSignUp();
         }}>
-        <Text style={styles.buttontext}>Sign up</Text>
+        <Text style={styles.primaryButtonText}>Sign up</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

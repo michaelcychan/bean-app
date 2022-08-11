@@ -128,18 +128,14 @@ export const ShopHome = ({navigation, route}) => {
           <View style={styles.details}>
             <Text
               style={{
-                fontSize: 24,
-                padding: 4,
-                marginLeft: 35,
+                fontSize: 18,
                 marginBottom: 10,
+                textAlign: 'center',
               }}>
-              Drinker Details
+              {drinkerObject.firstname} {drinkerObject.lastname}
             </Text>
             <Text style={styles.detailsText}>
               Drinker ID: {drinkerObject.drinker_id}
-            </Text>
-            <Text style={styles.detailsText}>
-              Name: {drinkerObject.firstname} {drinkerObject.lastname}
             </Text>
             <Text style={styles.detailsText}>Bean count: {bean_count}</Text>
           </View>
@@ -168,21 +164,21 @@ export const ShopHome = ({navigation, route}) => {
           maxLength={6}
         />
         <TouchableOpacity
-          style={styles.purpleButton}
+          style={styles.primaryButton}
           onPress={() => {
             findDrinkerID();
           }}>
-          <Text style={styles.buttontext}>Search user</Text>
+          <Text style={styles.primaryButtonText}>Search user</Text>
         </TouchableOpacity>
       </View>
       {addBeanButtons()}
       <View>
         <TouchableOpacity
-          style={styles.purpleButton}
+          style={styles.primaryButton}
           onPress={() => {
             navigation.navigate('Home');
           }}>
-          <Text style={styles.buttontext}>Log out</Text>
+          <Text style={styles.primaryButtonText}>Log out</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

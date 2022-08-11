@@ -19,7 +19,7 @@ const SignUp = ({route, props}) => {
     <SignUpStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#7C00F5',
+          backgroundColor: '#F1B62C',
         },
         headerTintColor: 'white',
         headerTitleStyle: {

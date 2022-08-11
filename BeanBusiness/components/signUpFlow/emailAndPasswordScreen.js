@@ -32,13 +32,16 @@ export const EmailAndPasswordScreen = ({navigation}) => {
         />
       </TouchableOpacity>
       <Text style={styles.subtitle}>Enter your email and password</Text>
-      <Text>Keep these details safe, you'll need them to login</Text>
+      <Text style={{color: 'white'}}>
+        Keep these details safe, you'll need them to login
+      </Text>
       <TextInput
         autoCapitalize="none"
         style={styles.input}
         onChangeText={onChangeShopEmail}
         value={shopEmail}
         placeholder="Enter your email address"
+        placeholderTextColor="#F1B62C"
         keyboardType="email-address"
       />
       <TextInput
@@ -47,16 +50,16 @@ export const EmailAndPasswordScreen = ({navigation}) => {
         onChangeText={onChangeShopPassword}
         value={shopPassword}
         placeholder="Enter your password"
+        placeholderTextColor="#F1B62C"
         keyboardType="default"
         secureTextEntry={true}
       />
-
       <TouchableOpacity
-        style={styles.purpleButton}
+        style={styles.primaryButton}
         onPress={() => {
           nextPage();
         }}>
-        <Text style={styles.buttontext}>NEXT</Text>
+        <Text style={styles.primaryButtonText}>NEXT</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

@@ -12,18 +12,22 @@ export const HomeScreen = ({navigation}) => {
       />
       <View style={{alignItems: 'center', marginBottom: 30}}>
         <Text style={styles.subtitle}>Form relationships</Text>
-        <Text>with loyal coffee drinkers</Text>
+        <Text style={styles.subtitle}>with loyal coffee drinkers</Text>
       </View>
       <TouchableOpacity
-        style={styles.purpleButton}
+        style={styles.primaryButton}
         onPress={() => navigation.navigate('SignupFlow', {name: 'SignupNow'})}>
-        <Text style={styles.buttontext}>Start building your customer base</Text>
+        <Text style={styles.primaryButtonText}>
+          Start building your customer base
+        </Text>
       </TouchableOpacity>
-      <Text style={{marginBottom: 20}}>Already have an account?</Text>
+      <Text style={{marginTop: 20, color: 'white'}}>
+        Already have an account?
+      </Text>
       <TouchableOpacity
-        style={styles.purpleButton}
+        style={styles.secondaryButton}
         onPress={() => navigation.navigate('Login', {name: 'LoginNow'})}>
-        <Text style={styles.buttontext}>Go to the login page</Text>
+        <Text style={styles.secondaryButtonText}>Go to the login page</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

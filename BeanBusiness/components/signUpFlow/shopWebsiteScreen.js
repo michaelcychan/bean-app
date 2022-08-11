@@ -34,23 +34,28 @@ export const ShopWebsiteScreen = ({navigation, route}) => {
           style={styles.homeImage}
         />
       </TouchableOpacity>
-      <Text style={styles.subtitle}>What's your website address?</Text>
-      <Text>Need help creating a website? Let Loyal Bean help!</Text>
-      <Text style={styles.link}>www.loyalbean.co.uk/website-builder</Text>
+      <Text style={styles.subtitle}>Do you have a website?</Text>
+      <Text style={{color: 'white'}}>
+        Your customers will want to get as much information
+      </Text>
+      <Text style={{color: 'white'}}>
+        as they can about their favourite coffee shop!
+      </Text>
       <TextInput
         autoCapitalize="none"
         style={styles.input}
         onChangeText={setShopWebsite}
         value={shopWebsite}
-        placeholder="Enter your shop's website address'"
+        placeholder="Enter your shop's web address"
+        placeholderTextColor="#F1B62C"
         keyboardType="default"
       />
       <TouchableOpacity
-        style={styles.purpleButton}
+        style={styles.primaryButton}
         onPress={() => {
           nextPage();
         }}>
-        <Text style={styles.buttontext}>NEXT</Text>
+        <Text style={styles.primaryButtonText}>NEXT</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
