@@ -6,15 +6,49 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Dimensions,
+  Alert,
 } from 'react-native';
 import {styles} from './stylesheets';
 import {backendDomain} from './backendDomain';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import {RNCamera} from 'react-native-camera';
 
 export const ShopHome = ({navigation, route}) => {
+
   const [drinkerIDInput, setDrinkerIDInput] = React.useState(null);
   const [drinkerObject, setDrinkerObject] = React.useState(null);
   const [bean_count, setBeanCount] = React.useState('X');
   const shopID = route.params.shopId.user;
+
+  // qr scanner parts
+  const [dataFromQR, setDataFromQR] = React.useState('');
+  
+  const onSuccess = e => {
+    console.log(e.data);
+    setDrinkerIDInput(e.data);
+    scanner.reactivate();
+  };
+  // generate qr scanner camera
+  const showQRCodeScanner = () => (
+      <QRCodeScanner
+        ref={node => {
+          scanner = node;
+        }}
+        cameraStyle={{
+          height: 150,
+          width: 150,
+          alignSelf: 'center',
+          alignItems: 'center',
+          alignContent: 'center',
+        }}
+        onRead={onSuccess}
+        flashMode={RNCamera.Constants.FlashMode.off}
+        reactivate={true}
+        reactivateTimeout={5000}
+      />
+  );
+
 
   const findDrinkerID = () => {
     let findBeanObject = {
@@ -154,9 +188,20 @@ export const ShopHome = ({navigation, route}) => {
       <View
         style={{
           marginTop: 100,
-          align: 'center',
-          flex: 1,
+          alignSelf: 'center',
+          alignItems: 'center',
+          alignContent: 'center',
+          flex: 2,
         }}>
+      {showQRCodeScanner()}
+      </View>
+      <View
+        style={{
+          marginTop: 100,
+          align: 'center',
+          flex: 9,
+        }}>
+          
         <Text style={{alignSelf: 'center'}}>
           Enter Customer ID number below:
         </Text>
@@ -175,7 +220,7 @@ export const ShopHome = ({navigation, route}) => {
           }}>
           <Text>Search user</Text>
         </TouchableOpacity>
-      </View>
+      
       {addBeanButtons()}
       <TouchableOpacity
         style={styles.button}
@@ -184,6 +229,7 @@ export const ShopHome = ({navigation, route}) => {
         }}>
         <Text>Log out</Text>
       </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
