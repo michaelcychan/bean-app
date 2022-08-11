@@ -1,14 +1,27 @@
-# Created by:
+# Loyalty Bean
 
-Abhiram Nandakumar ||
-Dave Kempsell ||
-Ibrahim Pala ||
-Michael Chan
+  It is the Engineering Project III of the Makers Bootcamp
+
+## The team
+
+Abhiram Nandakumar   
+Dave Kempsell   
+Ibrahim Pala   
+Michael Chan  
+
+## Tech used
+
+[React Native](https://reactnative.dev/) for the two frontend applications  
+[Node.js](https://nodejs.org/) for backend Javascript runtime  
+[Express](https://expressjs.com/) for the web framework for Node.js  
+[MongoDb Atlas](https://www.mongodb.com/) for backend database  
 
 ## Back End
-The Back End application for the Bean app is placed in ./Beanend directory, it is a backend server written in JavaScript and built on Express framework. It links to Atlas MongoDB (MongoDB on cloud) using mongoose.
+
+  The Back End application for the Bean app is placed in ./Beanend directory. It can link to a local MongoDB or MongoDB Atlas using mongoose. See below for different setup.
 
 ### Installation
+
 When in repo root, type:
 ```
 cd Backend
@@ -21,13 +34,14 @@ You need your own Atlas MongoDB account or use a local MongoDB.
 For the latest instruction to start your Atlas MongoDB, please visit the MongoDB Documentation: https://www.mongodb.com/docs/atlas/getting-started/
 
 ### Starting the Backend
+
 To use local mongdoDB:
 ```
 npm run start:local
 ```
 
 To use Atlas mongoDB:
-Copy .env.smapleAtlas to .env.test and change the DB_URI as instructed from MongoDB Atlas instruction. Then run:
+Copy .env.smapleAtlas to .env.test and change the DB_URI as instructed from MongoDB Atlas [instructions](https://www.mongodb.com/docs/atlas/driver-connection/). Then run:
 ```
 npm run start:test
 ```
@@ -59,44 +73,33 @@ At the root, run:
 npm install
 ```
 Then run:
+```
 gem install bundler
 bundle install
-
 gem i bundler -v 2.3.19
 bundle i
+```
 
+Then go into the ios folder and run:
+`pod install`
 
-Then go into the ios folder and run
-pod install
+If you have problems with cocoapods, uninstall using:
 
-If you have problems with cocoapods, uninstall using
 `gem list --local | grep cocoapods | awk '{print $1}' | xargs sudo gem uninstall`
 
 ### To run the front-end application
-At ./BeanFront directory:
-```
-npm run ios
-```
-Wait for the xcode simulator to come up.
+At ./BeanBusiness or ./BeanCustomer directory:
 
-Bundler will start up in another terminal. It is responsible for building a bundle file for the iOS application to run. 
+`npm run ios` or `npm run android`
+
+Wait for the xcode simulator / android emulator / connected physical device to load the application.
+
+Bundler will start up in another terminal. It is responsible for building a bundle file for the mobile application to run. 
 At the simulator, CMD + D can bring up the menu. When Fash Refresh is enabled, it will refresh the web application when the the bundel is rebuilt. 
 
-### Podfiles
+### Podfiles (iOS only)
 To view your podfiles:
 `open -a Xcode Podfile`
-
-### Test
-At ./BeanFront directory:
-```
-npm run test
-```
-
-### Multiple react native simulations
-change to the same port as npm config
-```
-${RCT_METRO_PORT:=
-```
 
 ### clear cache
 ```
@@ -107,6 +110,20 @@ rm -fr $TMPDIR/metro-cache
 rm -fr $TMPDIR/react
 ```
 
+
+## Heroku setup
+
+Additional steps are needed to setup the Heroku for it to work properly:
+
+Settings:  
+
+Config Vars:  
+DB_URI: add your mongodb connection domain  
+PROJECT_PATH: Backend/  
+
+Buildpacks:  
+https://github.com/timanovsky/subdir-heroku-buildpack.git  
+heroku/nodejs  
 
 ## Database design
 
