@@ -76,6 +76,20 @@ export const styles = StyleSheet.create({
     align: 'top',
     width: 200,
     height: 200,
-    borderRadius : 10
+    borderRadius : 10, 
+  },
+  shop_info: {
+    width: '94%', 
+    height: "80%",
+    alignItems: "center",
+    justifyContent: "center",
+    position: 'absolute',
+    backgroundColor: 'white',
+    borderColor: 'black',
+    borderRadius: 50,
+    flex: 1,
+    marginTop: 20,
+    marginLeft: 10,
+    zIndex: 1,
   },
 });

@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {View, Button, Text, TouchableOpacity, Image} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {View, Button, Text, TouchableOpacity, Image, ScrollView, SafeAreaView} from 'react-native';
 import {styles} from '../stylesheet';
 
 export const Beans = ({navigation, route}) => {
@@ -9,6 +7,8 @@ export const Beans = ({navigation, route}) => {
    const userId = route.params.userId;
   // creating a empty array variable that can take the shop list from customer
   const [shopList, setShopList] = React.useState([]);
+
+  const [shopInfo, setShopInfo] = React.useState(false)
 
   // fetch function to get shopList from database for user, and set shopList variable to it
   React.useEffect(() => {
@@ -18,7 +18,7 @@ export const Beans = ({navigation, route}) => {
         return json
       })
       .then(data => {
-        setShopList(data);
+        setShopList(data.reverse());
         return data
       })
       .catch(error => {
@@ -26,11 +26,32 @@ export const Beans = ({navigation, route}) => {
       });
   }, []);
 
+  const [beanCount, setBeanCount] = React.useState(null)
+
+  const showShopInfo = () => {
+    if(shopInfo == true) {
+      return (
+        <View style={styles.shop_info}> 
+          <Text>Beans Collected</Text>
+          <Text>{beanCount} /10</Text>
+        </View>
+      )
+    }
+  }
+
   return (
     <ScrollView>
+      {showShopInfo()}
       <SafeAreaView style={styles.card_container}>
-        {shopList.reverse().map(({shopName, bean_count, shopId, shopLogo}) => (
-          <TouchableOpacity key={shopId} style={styles.card_template}>
+        {shopList.map(({shopName, bean_count, shopId, shopLogo}) => (
+          <TouchableOpacity
+            key={shopId} 
+            style={styles.card_template}
+            onPress={() => {
+              setShopInfo(true);
+              setBeanCount(bean_count)
+            }}
+          >
             <Image style={styles.card_image} source={{uri: shopLogo}} />
             <View style={styles.text_container}>
               <Text style={styles.card_title}>{shopName}</Text>
@@ -38,7 +59,7 @@ export const Beans = ({navigation, route}) => {
             </View>
           </TouchableOpacity>
         ))}
-      </SafeAreaView>
+      </SafeAreaView> 
     </ScrollView>
   );
 };
