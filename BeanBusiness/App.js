@@ -7,6 +7,7 @@ import {ShopNameScreen} from './components/signUpFlow/shopNameScreen';
 import {ShopLogoScreen} from './components/signUpFlow/shopLogoScreen';
 import {ShopWebsiteScreen} from './components/signUpFlow/shopWebsiteScreen';
 import {OpeningHoursScreen} from './components/signUpFlow/openingHoursScreen';
+import {CreateAccountScreen} from './components/signUpFlow/createAccountScreen';
 import {LoginScreen} from './components/loginScreen';
 import {ShopHome} from './components/shopHome';
 
@@ -40,6 +41,10 @@ const SignUp = ({route, props}) => {
         name="Opening Hours"
         component={OpeningHoursScreen}
         options={{title: 'Opening Hours'}}
+      />
+      <SignUpStack.Screen
+        name="Create Account"
+        component={CreateAccountScreen}
       />
     </SignUpStack.Navigator>
   );
