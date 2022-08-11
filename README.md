@@ -10,13 +10,13 @@ Ibrahim Pala
 Michael Chan  
 
 ## Tech used
-
-<img src="images/tech-brands/reactnative.png" style="height:100px" />
-<img src="images/tech-brands/nodejs.png" style="height:100px" />
-<img src="images/tech-brands/express.png" style="height:100px" />
-<img src="images/tech-brands/mongodbatlas.png" style="height:100px" />
-<img src="images/tech-brands/heroku.png" style="height:100px" />
-
+<p float="left">
+  <img src="images/tech-brands/reactnative.png" style="height:100px" />
+  <img src="images/tech-brands/nodejs.png" style="height:100px" />
+  <img src="images/tech-brands/express.png" style="height:100px" />
+  <img src="images/tech-brands/mongodbatlas.png" style="height:100px" />
+  <img src="images/tech-brands/heroku.png" style="height:100px" />
+</p>
 
 [React Native](https://reactnative.dev/) for the two frontend applications  
 [Node.js](https://nodejs.org/) for backend Javascript runtime  
