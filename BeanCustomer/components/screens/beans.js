@@ -20,7 +20,7 @@ export const Beans = ({navigation, route}) => {
         return json
       })
       .then(data => {
-        setShopList(data);
+        setShopList(data.reverse());
         return data
       })
       .catch(error => {
@@ -31,7 +31,7 @@ export const Beans = ({navigation, route}) => {
   return (
     <ScrollView>
       <SafeAreaView style={styles.card_container}>
-        {shopList.reverse().map(({shopName, bean_count, shopId, shopLogo}) => (
+        {shopList.map(({shopName, bean_count, shopId, shopLogo}) => (
           <TouchableOpacity key={shopId} style={styles.card_template}>
             <Image style={styles.card_image} source={{uri: shopLogo}} />
             <View style={styles.text_container}>
