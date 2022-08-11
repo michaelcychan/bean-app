@@ -21,13 +21,13 @@ export const HomeScreen = ({navigation}) => {
           Start building your customer base
         </Text>
       </TouchableOpacity>
-      <Text style={{marginTop: 20, color: 'white'}}>
+      <Text style={{marginTop: 20, color: 'white', fontWeight: 'bold'}}>
         Already have an account?
       </Text>
       <TouchableOpacity
         style={styles.secondaryButton}
         onPress={() => navigation.navigate('Login', {name: 'LoginNow'})}>
-        <Text style={styles.secondaryButtonText}>Go to the login page</Text>
+        <Text style={styles.secondaryButtonText}>Login</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

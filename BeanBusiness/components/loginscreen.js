@@ -28,7 +28,7 @@ export const LoginScreen = ({navigation}) => {
 
   const logIn = userData => {
     if (userData.shopId !== undefined) {
-      navigation.navigate('Coffee Shop Home', {
+      navigation.navigate('BeanBusinessApp', {
         shopId: userData.shopId,
         shopName: userData.shop_name,
       });

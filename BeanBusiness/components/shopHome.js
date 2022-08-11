@@ -115,7 +115,7 @@ export const ShopHome = ({navigation, route}) => {
           onPress={() => {
             redeemDrink();
           }}>
-          <Text style={styles.buttontext}>Redeem a drink ☕</Text>
+          <Text style={styles.secondaryButtonText}>Redeem a drink ☕</Text>
         </TouchableOpacity>
       );
     }
@@ -144,7 +144,7 @@ export const ShopHome = ({navigation, route}) => {
             onPress={() => {
               addBean();
             }}>
-            <Text style={styles.buttontext}>Add a bean 🫘</Text>
+            <Text style={styles.secondaryButtonText}>Add a bean 🫘</Text>
           </TouchableOpacity>
           {redeemDrinkButton()}
         </View>
@@ -172,15 +172,6 @@ export const ShopHome = ({navigation, route}) => {
         </TouchableOpacity>
       </View>
       {addBeanButtons()}
-      <View>
-        <TouchableOpacity
-          style={styles.primaryButton}
-          onPress={() => {
-            navigation.navigate('Home');
-          }}>
-          <Text style={styles.primaryButtonText}>Log out</Text>
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
