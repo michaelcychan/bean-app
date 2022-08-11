@@ -75,19 +75,15 @@ export const CreateAccountScreen = ({navigation, route}) => {
           style={styles.image}
         />
       </TouchableOpacity>
-      <View style={styles.accountDetails}>
+      <View style={styles.details}>
         <Text style={styles.title}>Your details</Text>
         <Image source={{uri: shopLogo}} style={styles.logo} />
-        <Text style={styles.accountDetailsText}>Shop name: {shopName}</Text>
-        <Text style={styles.accountDetailsText}>
-          Shop website: {shopWebsite}
-        </Text>
-        <Text style={styles.accountDetailsText}>
-          Email address: {shopEmail}
-        </Text>
-        <Text style={styles.accountDetailsText}>Password: {shopPassword}</Text>
+        <Text style={styles.detailsText}>Shop name: {shopName}</Text>
+        <Text style={styles.detailsText}>Shop website: {shopWebsite}</Text>
+        <Text style={styles.detailsText}>Email address: {shopEmail}</Text>
+        <Text style={styles.detailsText}>Password: {shopPassword}</Text>
         <View style={{marginBottom: 20, marginTop: 20}}>
-          <Text style={styles.accountDetailsText}>Opening Hours:</Text>
+          <Text style={styles.detailsText}>Opening Hours:</Text>
           <Text style={styles.openingHoursText}>Monday: {monday}</Text>
           <Text style={styles.openingHoursText}>Tuesday: {tuesday}</Text>
           <Text style={styles.openingHoursText}>Wednesday: {wednesday}</Text>

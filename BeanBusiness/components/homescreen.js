@@ -19,7 +19,7 @@ export const HomeScreen = ({navigation}) => {
         onPress={() => navigation.navigate('SignupFlow', {name: 'SignupNow'})}>
         <Text style={styles.buttontext}>Start building your customer base</Text>
       </TouchableOpacity>
-      <Text style={{marginTop: 30}}>Already have an account?</Text>
+      <Text style={{marginBottom: 20}}>Already have an account?</Text>
       <TouchableOpacity
         style={styles.purpleButton}
         onPress={() => navigation.navigate('Login', {name: 'LoginNow'})}>

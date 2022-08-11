@@ -16,7 +16,16 @@ const SignUpStack = createNativeStackNavigator();
 
 const SignUp = ({route, props}) => {
   return (
-    <SignUpStack.Navigator>
+    <SignUpStack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#7C00F5',
+        },
+        headerTintColor: 'white',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
       <SignUpStack.Screen
         name="Email/Password"
         component={EmailAndPasswordScreen}

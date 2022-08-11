@@ -80,7 +80,18 @@ export const styles = StyleSheet.create({
   },
   purpleButton: {
     alignItems: 'center',
-    backgroundColor: '#7C00F5',
+    backgroundColor: '#50009E',
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+  beanButton: {
+    width: 180,
+    alignItems: 'center',
+    backgroundColor: '#50009E',
     padding: 10,
     marginTop: 10,
     marginBottom: 10,
@@ -95,21 +106,33 @@ export const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: 'white',
   },
-  accountDetails: {
+  details: {
     justifyContent: 'center',
     width: 280,
-    // padding: 2,
-    // alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: 'black',
+    marginBottom: 20,
+    padding: 20,
   },
-  accountDetailsText: {
+  detailsText: {
     marginLeft: 20,
+    padding: 2,
   },
   openingHoursText: {
     marginLeft: 20,
     fontSize: 12,
+  },
+  homeScreenContainer: {
+    flex: 2,
+    padding: 24,
+    alignItems: 'center',
+    backgroundColor: '#0BA8D3',
+  },
+  searchBar: {
+    flex: 1,
+    marginTop: 20,
+    marginBottom: 20,
   },
 });
