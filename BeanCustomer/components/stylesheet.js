@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
   },
   shop_info: {
     width: '94%', 
-    height: "80%",
+    height: 600,
     alignItems: "center",
     justifyContent: "center",
     position: 'absolute',

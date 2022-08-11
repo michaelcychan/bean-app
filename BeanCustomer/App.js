@@ -46,6 +46,7 @@ const BeanTabs = ({props, route}) => {
         component={Beans}
         initialParams={{userId: userId}}
         options={{
+          unmountOnBlur: true,
           tabBarLabel: 'Beans',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="coffee" color={color} size={size} />

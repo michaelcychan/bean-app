@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {View, Button, Text, TouchableOpacity, Image, ScrollView, SafeAreaView} from 'react-native';
 import {styles} from '../stylesheet';
+import ConfettiCannon from 'react-native-confetti-cannon';
 
 export const Beans = ({navigation, route}) => {
   // getting userId from params to pass to get request
@@ -28,28 +29,86 @@ export const Beans = ({navigation, route}) => {
 
   const [beanCount, setBeanCount] = React.useState(null)
 
+  const [website, setWebsite] = React.useState('')
+  const [shopOpeningHours, setOpeningHours] = React.useState([])
+
   const showShopInfo = () => {
-    if(shopInfo == true) {
+    if(shopInfo === true) {
+      confetti()
       return (
         <View style={styles.shop_info}> 
+        <TouchableOpacity 
+            style={styles.button}
+            onPress={() => 
+              setShopInfo(false)
+            }>
+            <Text>X</Text>
+          </TouchableOpacity>
           <Text>Beans Collected</Text>
-          <Text>{beanCount} /10</Text>
+          <Text>{beanCount} /10 🫘</Text>
         </View>
+      ) 
+    } 
+  }
+
+  const confetti = () => {
+    if(beanCount == '6') {
+      return (
+      <ConfettiCannon 
+        count={1000}
+        origin={{x: 100, y: 100}}
+        fallSpeed={3000}
+        fadeOut={true}
+        />
       )
     }
   }
+  // const confettiMessage = () => {
+  //   if(beanCount == "6") {
+  //     return (
+  //       <View style={styles.shop_info}>
+  //       <Text> You have 1 free coffee to claim!! 🫘🫘🫘</Text>
+  //       {confetti()}
+  //       <TouchableOpacity 
+  //           style={styles.button}
+  //           onPress={() => setShopInfo(false)
+  //           }>
+  //           <Text>Go back</Text>
+  //         </TouchableOpacity>
+  //       </View>
+  //     )
+  //   } else {
+  //     return (
+  //       <View style={styles.shop_info}>
+  //       <Text>Beans Collected</Text>
+  //     <Text>{beanCount + "/10🫘"}</Text>
+  //     <TouchableOpacity 
+  //           style={styles.button}
+  //           onPress={() => 
+  //             setShopInfo(false)
+  //           }
+  //           >
+  //           <Text>Go back</Text>
+  //         </TouchableOpacity>
+  //       </View>
+  //     )
+  //   }
+  // }
+
+  //
 
   return (
     <ScrollView>
       {showShopInfo()}
       <SafeAreaView style={styles.card_container}>
-        {shopList.map(({shopName, bean_count, shopId, shopLogo}) => (
+      {/* {confettiMessage()} */}
+        {shopList.map(({shopName, bean_count, shopId, shopLogo, shopWebsite, openingHours}) => (
           <TouchableOpacity
             key={shopId} 
             style={styles.card_template}
             onPress={() => {
-              setShopInfo(true);
               setBeanCount(bean_count)
+              setShopInfo(true);
             }}
           >
             <Image style={styles.card_image} source={{uri: shopLogo}} />
