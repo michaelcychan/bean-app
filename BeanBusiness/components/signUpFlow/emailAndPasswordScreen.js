@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-  Button,
   SafeAreaView,
-  ScrollView,
   Text,
   TextInput,
   Image,
@@ -15,7 +13,7 @@ export const EmailAndPasswordScreen = ({navigation}) => {
   const [shopPassword, onChangeShopPassword] = React.useState(null);
 
   const nextPage = response => {
-    navigation.navigate('Name/Logo', {
+    navigation.navigate('Name', {
       shopEmail: shopEmail,
       shopPassword: shopPassword,
     });
@@ -23,8 +21,17 @@ export const EmailAndPasswordScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image source={require('../images/CoffeeMug.png')} style={styles.image} />
-      <Text>Please enter the email and password you want to log in with</Text>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Home');
+        }}>
+        <Image
+          source={require('../images/CoffeeMug.png')}
+          style={styles.image}
+        />
+      </TouchableOpacity>
+      <Text>Please enter your email and password</Text>
+      <Text>Keep these details safe, you'll need them to login</Text>
       <TextInput
         autoCapitalize="none"
         style={styles.input}

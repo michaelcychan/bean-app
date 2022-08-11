@@ -10,7 +10,7 @@ import {
 import {styles} from '../stylesheets';
 import {backendDomain} from '../backendDomain';
 
-export const ShopDetailsScreen = ({navigation, route}) => {
+export const OpeningHoursScreen = ({navigation, route}) => {
   const shopEmail = route.params.shopEmail;
   const shopPassword = route.params.shopPassword;
   const shopName = route.params.shopName;
@@ -79,7 +79,15 @@ export const ShopDetailsScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.openingHoursContainer}>
-      <Image source={require('../images/CoffeeMug.png')} style={styles.image} />
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Home');
+        }}>
+        <Image
+          source={require('../images/CoffeeMug.png')}
+          style={styles.image}
+        />
+      </TouchableOpacity>
       <Text>Customers need to know when they can get their coffee!</Text>
       <Text>Please provide your opening hours below</Text>
       <View style={styles.hoursContainer}>
