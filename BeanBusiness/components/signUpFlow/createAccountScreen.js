@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  SafeAreaView,
-  Text,
-  TextInput,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {View, SafeAreaView, Text, Image, TouchableOpacity} from 'react-native';
 import {styles} from '../stylesheets';
 import {backendDomain} from '../backendDomain';
 
@@ -34,7 +27,6 @@ export const CreateAccountScreen = ({navigation, route}) => {
     sunday,
   ];
 
-  console.log(shopOpeningHours);
   // creating an object of data to pass into baristaSignUp fetch request
   let newBaristaData = {
     method: 'POST',
@@ -72,38 +64,45 @@ export const CreateAccountScreen = ({navigation, route}) => {
   };
 
   return (
-    <SafeAreaView style={styles.openingHoursContainer}>
+    <SafeAreaView style={styles.container}>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Home');
         }}>
         <Image
-          source={require('../images/CoffeeMug.png')}
+          resizeMethod="resize"
+          source={require('../images/BeanLogo.png')}
           style={styles.image}
         />
       </TouchableOpacity>
-      <View>
-        <Text>Your details:</Text>
-        <Text>Shop name: {shopName}</Text>
-        <Text>Shop website: {shopWebsite}</Text>
-        <Image source={{uri: shopLogo}} style={styles.image} />
-        <Text>Email address: {shopEmail}</Text>
-        <Text>Password: {shopPassword}</Text>
-        <Text>Opening Hours:</Text>
-        <Text>Monday: {monday}</Text>
-        <Text>Tuesday: {tuesday}</Text>
-        <Text>Wednesday: {wednesday}</Text>
-        <Text>Thursday: {thursday}</Text>
-        <Text>Friday: {friday}</Text>
-        <Text>Saturday: {saturday}</Text>
-        <Text>Sunday: {sunday}</Text>
+      <View style={styles.accountDetails}>
+        <Text style={styles.title}>Your details</Text>
+        <Image source={{uri: shopLogo}} style={styles.logo} />
+        <Text style={styles.accountDetailsText}>Shop name: {shopName}</Text>
+        <Text style={styles.accountDetailsText}>
+          Shop website: {shopWebsite}
+        </Text>
+        <Text style={styles.accountDetailsText}>
+          Email address: {shopEmail}
+        </Text>
+        <Text style={styles.accountDetailsText}>Password: {shopPassword}</Text>
+        <View style={{marginBottom: 20, marginTop: 20}}>
+          <Text style={styles.accountDetailsText}>Opening Hours:</Text>
+          <Text style={styles.openingHoursText}>Monday: {monday}</Text>
+          <Text style={styles.openingHoursText}>Tuesday: {tuesday}</Text>
+          <Text style={styles.openingHoursText}>Wednesday: {wednesday}</Text>
+          <Text style={styles.openingHoursText}>Thursday: {thursday}</Text>
+          <Text style={styles.openingHoursText}>Friday: {friday}</Text>
+          <Text style={styles.openingHoursText}>Saturday: {saturday}</Text>
+          <Text style={styles.openingHoursText}>Sunday: {sunday}</Text>
+        </View>
       </View>
       <TouchableOpacity
-        style={styles.button}
+        style={styles.purpleButton}
         onPress={() => {
           baristaSignUp();
         }}>
-        <Text>Sign up</Text>
+        <Text style={styles.buttontext}>Sign up</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

@@ -1,7 +1,5 @@
 import React from 'react';
-import type {Node} from 'react';
 import {
-  Button,
   SafeAreaView,
   Text,
   TextInput,
@@ -57,11 +55,12 @@ export const LoginScreen = ({navigation}) => {
           navigation.navigate('Home');
         }}>
         <Image
-          source={require('./images/CoffeeMug.png')}
-          style={styles.image}
+          resizeMethod="resize"
+          source={require('./images/BeanLogo.png')}
+          style={styles.homeImage}
         />
       </TouchableOpacity>
-      <Text>Coffee Bean's Login Page</Text>
+      <Text style={styles.subtitle}>Login to Loyal Bean</Text>
       <TextInput
         autoCapitalize="none"
         style={styles.input}
@@ -80,11 +79,11 @@ export const LoginScreen = ({navigation}) => {
         secureTextEntry={true}
       />
       <TouchableOpacity
-        style={styles.button}
+        style={styles.purpleButton}
         onPress={() => {
           baristaLogIn();
         }}>
-        <Text>Sign in</Text>
+        <Text style={styles.buttontext}>Sign in</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

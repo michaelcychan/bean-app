@@ -29,11 +29,14 @@ export const ShopWebsiteScreen = ({navigation, route}) => {
           navigation.navigate('Home');
         }}>
         <Image
-          source={require('../images/CoffeeMug.png')}
-          style={styles.image}
+          resizeMethod="resize"
+          source={require('../images/BeanLogo.png')}
+          style={styles.homeImage}
         />
       </TouchableOpacity>
-      <Text>Fill in your shop's website</Text>
+      <Text style={styles.subtitle}>What's your website address?</Text>
+      <Text>Need help creating a website? Let Loyal Bean help!</Text>
+      <Text style={styles.link}>www.loyalbean.co.uk/website-builder</Text>
       <TextInput
         autoCapitalize="none"
         style={styles.input}
@@ -43,11 +46,11 @@ export const ShopWebsiteScreen = ({navigation, route}) => {
         keyboardType="default"
       />
       <TouchableOpacity
-        style={styles.button}
+        style={styles.purpleButton}
         onPress={() => {
           nextPage();
         }}>
-        <Text>Next</Text>
+        <Text style={styles.buttontext}>NEXT</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
