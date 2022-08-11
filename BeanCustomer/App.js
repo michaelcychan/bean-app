@@ -34,6 +34,7 @@ const BeanTabs = ({props, route}) => {
       <Tab.Screen
         name="Id"
         options={{
+          title: 'Home',
           tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
@@ -46,6 +47,7 @@ const BeanTabs = ({props, route}) => {
         component={Beans}
         initialParams={{userId: userId}}
         options={{
+          unmountOnBlur: true,
           tabBarLabel: 'Beans',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="coffee" color={color} size={size} />
