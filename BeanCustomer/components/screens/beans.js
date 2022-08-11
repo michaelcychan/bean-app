@@ -31,12 +31,13 @@ export const Beans = ({navigation, route}) => {
 
   const [website, setWebsite] = React.useState('')
   const [shopOpeningHours, setOpeningHours] = React.useState([])
+  const [name, setName] = React.useState('')
 
   const showShopInfo = () => {
     if(shopInfo === true) {
-      confetti()
       return (
         <View style={styles.shop_info}> 
+        {confetti()}
         <TouchableOpacity 
             style={styles.button}
             onPress={() => 
@@ -44,15 +45,25 @@ export const Beans = ({navigation, route}) => {
             }>
             <Text>X</Text>
           </TouchableOpacity>
-          <Text>Beans Collected</Text>
-          <Text>{beanCount} /10 🫘</Text>
+          <Text>{name}</Text>
+          <Text>{website}</Text>
+          <Text>{beanCount} 🫘</Text>
+          <Text>  </Text>
+          <Text>Opening Hours:</Text>
+          <Text>Monday: {shopOpeningHours[0]}</Text>
+          <Text>Tuesday: {shopOpeningHours[1]}</Text>
+          <Text>Wednesday: {shopOpeningHours[2]}</Text>
+          <Text>Thursday: {shopOpeningHours[3]}</Text>
+          <Text>Friday: {shopOpeningHours[4]}</Text>
+          <Text>Saturday: {shopOpeningHours[5]}</Text>
+          <Text>Sunday: {shopOpeningHours[6]}</Text>
         </View>
       ) 
     } 
   }
 
   const confetti = () => {
-    if(beanCount == '6') {
+    if(beanCount > 1) {
       return (
       <ConfettiCannon 
         count={1000}
@@ -63,39 +74,6 @@ export const Beans = ({navigation, route}) => {
       )
     }
   }
-  // const confettiMessage = () => {
-  //   if(beanCount == "6") {
-  //     return (
-  //       <View style={styles.shop_info}>
-  //       <Text> You have 1 free coffee to claim!! 🫘🫘🫘</Text>
-  //       {confetti()}
-  //       <TouchableOpacity 
-  //           style={styles.button}
-  //           onPress={() => setShopInfo(false)
-  //           }>
-  //           <Text>Go back</Text>
-  //         </TouchableOpacity>
-  //       </View>
-  //     )
-  //   } else {
-  //     return (
-  //       <View style={styles.shop_info}>
-  //       <Text>Beans Collected</Text>
-  //     <Text>{beanCount + "/10🫘"}</Text>
-  //     <TouchableOpacity 
-  //           style={styles.button}
-  //           onPress={() => 
-  //             setShopInfo(false)
-  //           }
-  //           >
-  //           <Text>Go back</Text>
-  //         </TouchableOpacity>
-  //       </View>
-  //     )
-  //   }
-  // }
-
-  //
 
   return (
     <ScrollView>
@@ -107,7 +85,10 @@ export const Beans = ({navigation, route}) => {
             key={shopId} 
             style={styles.card_template}
             onPress={() => {
-              setBeanCount(bean_count)
+              setName(shopName)
+              setWebsite(shopWebsite)
+              setOpeningHours(openingHours)
+              setBeanCount(Number(bean_count))
               setShopInfo(true);
             }}
           >
