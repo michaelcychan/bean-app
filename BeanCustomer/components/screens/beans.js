@@ -2,6 +2,7 @@ import * as React from 'react';
 import {View, Button, Text, TouchableOpacity, Image, ScrollView, SafeAreaView} from 'react-native';
 import {styles} from '../stylesheet';
 import ConfettiCannon from 'react-native-confetti-cannon';
+import {backendDomain} from '../backendDomain';
 
 export const Beans = ({navigation, route}) => {
   // getting userId from params to pass to get request
@@ -12,8 +13,9 @@ export const Beans = ({navigation, route}) => {
   const [shopInfo, setShopInfo] = React.useState(false)
 
   // fetch function to get shopList from database for user, and set shopList variable to it
+
   React.useEffect(() => {
-    fetch(`http://localhost:5050/drinker/${userId}`)
+    fetch(`${backendDomain}drinker/${userId}`)
       .then(response => response.json())
       .then(json => {
         return json
@@ -79,7 +81,6 @@ export const Beans = ({navigation, route}) => {
     <ScrollView>
       {showShopInfo()}
       <SafeAreaView style={styles.card_container}>
-      {/* {confettiMessage()} */}
         {shopList.map(({shopName, bean_count, shopId, shopLogo, shopWebsite, openingHours}) => (
           <TouchableOpacity
             key={shopId} 
@@ -90,8 +91,8 @@ export const Beans = ({navigation, route}) => {
               setOpeningHours(openingHours)
               setBeanCount(Number(bean_count))
               setShopInfo(true);
-            }}
-          >
+            }} 
+            >
             <Image style={styles.card_image} source={{uri: shopLogo}} />
             <View style={styles.text_container}>
               <Text style={styles.card_title}>{shopName}</Text>

@@ -34,6 +34,7 @@ const BeanTabs = ({props, route}) => {
       <Tab.Screen
         name="Id"
         options={{
+          title: 'Home',
           tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />

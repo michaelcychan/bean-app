@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native';
 import {styles} from './stylesheets';
+import {backendDomain} from './backendDomain';
 
 export const LoginScreen = ({navigation}) => {
   const [shopEmail, onChangeShopEmail] = React.useState(null);
@@ -36,7 +37,7 @@ export const LoginScreen = ({navigation}) => {
 
   // sending request to backend server attempting to log in
   const baristaLogIn = () => {
-    fetch('http://localhost:5050/barista/log-in', baristaLogInData)
+    fetch(`${backendDomain}barista/log-in`, baristaLogInData)
       .then(response => response.json())
       .then(json => {
         return json;
