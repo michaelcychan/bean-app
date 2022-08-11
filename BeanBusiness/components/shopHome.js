@@ -127,7 +127,6 @@ export const ShopHome = ({navigation, route}) => {
       return (
         <View
           style={{
-            flex: 2,
             alignItems: 'center',
           }}>
           <Text style={styles.subtitle}>Drinker Details</Text>
@@ -151,15 +150,8 @@ export const ShopHome = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          marginTop: 100,
-          align: 'center',
-          flex: 9,
-        }}>
-        <Text style={{alignSelf: 'center'}}>
-          Enter Customer ID number below:
-        </Text>
+      <View style={styles.container}>
+        <Text>Enter Customer ID number below:</Text>
         <TextInput
           style={styles.input}
           onChangeText={setDrinkerIDInput}

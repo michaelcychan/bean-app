@@ -2,11 +2,11 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
+    justifyContent: 'center',
     flex: 1,
     padding: 24,
     backgroundColor: '#eaeaea',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   openingHoursContainer: {
     flex: 1,
