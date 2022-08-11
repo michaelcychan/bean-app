@@ -8,6 +8,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  openingHoursContainer: {
+    flex: 1,
+    backgroundColor: '#eaeaea',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   title: {
     alignSelf: 'center',
     fontSize: 36,
@@ -23,6 +30,23 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     width: 240,
+  },
+  hoursContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+  },
+  hoursInput: {
+    flex: 1,
+    height: 30,
+    borderWidth: 1,
+    width: 130,
+    textAlign: 'center',
+  },
+  hoursLabel: {
+    flex: 1,
   },
   homeImage: {
     height: 160,
