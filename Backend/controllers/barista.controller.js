@@ -82,7 +82,9 @@ const BaristaController = {
                 shopId: shopID,
                 bean_count: 0,
                 shopName: shopInfo.shop_name,
-                shopLogo: shopInfo.shopLogo
+                shopLogo: shopInfo.shopLogo,
+                shopWebsite: shopInfo.shopWebsite,
+                openingHours: shopInfo.openingHours,
               },
             },
           },

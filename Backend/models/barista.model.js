@@ -30,7 +30,7 @@ const baristaSchema = new Schema({
     type: String,
   },
   openingHours: {
-    type: Object,
+    type: Array,
   }
 });
 
