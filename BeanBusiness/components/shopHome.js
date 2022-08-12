@@ -149,7 +149,7 @@ export const ShopHome = ({navigation, route}) => {
           onPress={() => {
             redeemDrink();
           }}>
-          <Text style={styles.secondaryButtonText}>Redeem a drink ☕</Text>
+          <Text style={styles.primaryButtonText}>Redeem a drink ☕</Text>
         </TouchableOpacity>
       );
     }
@@ -178,7 +178,7 @@ export const ShopHome = ({navigation, route}) => {
             onPress={() => {
               addBean();
             }}>
-            <Text style={styles.secondaryButtonText}>Add a bean 🫘</Text>
+            <Text style={styles.primaryButtonText}>Add a bean 🫘</Text>
           </TouchableOpacity>
           {redeemDrinkButton()}
         </View>
