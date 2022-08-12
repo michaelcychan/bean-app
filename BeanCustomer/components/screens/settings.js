@@ -7,12 +7,12 @@ export const Settings = ({ navigation, route}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={styles.button}
+        style={styles.primaryButton}
         onPress={() =>
           navigation.navigate('Home')
         }
       >
-        <Text>Logout</Text>
+        <Text style={styles.primaryButtonText}>Logout</Text>
       </TouchableOpacity>
     </View>
   )

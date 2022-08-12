@@ -114,7 +114,7 @@ export const styles = StyleSheet.create({
     width: 250,
     height: 250,
     margin: 10,
-    backgroundColor: "silver"
+    backgroundColor: "white"
   },
   card_title: {
     left: 10,
@@ -148,27 +148,53 @@ export const styles = StyleSheet.create({
   shop_info: {
     width: '94%', 
     height: 600,
-    alignItems: "center",
-    justifyContent: "center",
     position: 'absolute',
     backgroundColor: 'white',
     borderColor: 'black',
+    borderWidth: 1,
     borderRadius: 50,
     flex: 1,
     marginTop: 20,
     marginLeft: 10,
     zIndex: 1,
+    padding: 10
+  },
+  shopBeanCount: {
+    marginRight: 10,
+    fontWeight: 'bold',
+    textAlign: 'right'
+  },
+  shopInfoText: {
+    fontWeight: 'bold',
+    marginTop: 80,
+    marginLeft: 10,
+    fontSize: 28,
+  },
+  shopLink: {
+    bottom: 10,
+    marginLeft: 10,
+    color: '#0000EE',
+    textDecorationLine: 'underline',
+  },
+  freeCoffee:{
+    padding: 5,
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 20,
+    marginTop: 80,
+    alignItems: 'center'
+  },
+  freeCoffeeText: {
+    fontWeight: 'bold'
   },
   back_button:{
-    top: 2,
-    right: 2,
+    position: 'absolute',
+    left: 25,
+    top: 25,
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    padding: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    borderRadius: 20,
-    borderWidth: 3,
-    paddingHorizontal: 30,
+    backgroundColor: '#a7b2c2',
+    padding: 7,
+    borderRadius: 10,
+    borderWidth: 1,
   }
 });
