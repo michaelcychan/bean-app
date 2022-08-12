@@ -37,18 +37,23 @@ export const OpeningHoursScreen = ({navigation, route}) => {
   };
 
   return (
-    <SafeAreaView style={styles.openingHoursContainer}>
+    <SafeAreaView style={styles.container}>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Home');
         }}>
         <Image
-          source={require('../images/CoffeeMug.png')}
+          resizeMethod="resize"
+          source={require('../images/BeanLogo.png')}
           style={styles.image}
         />
       </TouchableOpacity>
-      <Text>Customers need to know when they can get their coffee!</Text>
-      <Text>Please provide your opening hours below</Text>
+      <Text style={{color: 'white'}}>
+        Customers need to know when they can get their coffee!
+      </Text>
+      <Text style={{color: 'white'}}>
+        Please provide your opening hours below
+      </Text>
       <View style={styles.hoursContainer}>
         <Text style={styles.hoursLabel}>Monday:</Text>
         <TextInput
@@ -127,11 +132,11 @@ export const OpeningHoursScreen = ({navigation, route}) => {
         />
       </View>
       <TouchableOpacity
-        style={styles.button}
+        style={styles.primaryButton}
         onPress={() => {
           nextPage();
         }}>
-        <Text>Next</Text>
+        <Text style={styles.primaryButtonText}>NEXT</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

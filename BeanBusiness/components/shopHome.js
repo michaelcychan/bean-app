@@ -13,8 +13,9 @@ import {backendDomain} from './backendDomain';
 export const ShopHome = ({navigation, route}) => {
   const [drinkerIDInput, setDrinkerIDInput] = React.useState(null);
   const [drinkerObject, setDrinkerObject] = React.useState(null);
-  const [bean_count, setBeanCount] = React.useState('X');
-  const shopID = route.params.shopId.user;
+  const [bean_count, setBeanCount] = React.useState(0);
+  const shopID = route.params.shopId;
+  const shopName = route.params.shopName;
 
   const findDrinkerID = () => {
     let findBeanObject = {
@@ -44,9 +45,9 @@ export const ShopHome = ({navigation, route}) => {
       .then(data => {
         if (data != 'No such drinker') {
           const beanCount = data.bean_counts.find(
-            object => object.shopId === shopID,
+            object => object.shopId == shopID,
           ).bean_count;
-          setBeanCount(beanCount);
+          setBeanCount(Number(beanCount));
           setDrinkerIDInput(null);
           return data;
         }
@@ -75,7 +76,7 @@ export const ShopHome = ({navigation, route}) => {
       .then(json => {
         return json;
       })
-      .then(data => setBeanCount(data))
+      .then(data => setBeanCount(Number(data)))
       .catch(error => {
         console.error(error);
       });
@@ -100,7 +101,7 @@ export const ShopHome = ({navigation, route}) => {
       .then(json => {
         return json;
       })
-      .then(data => setBeanCount(data))
+      .then(data => setBeanCount(Number(data)))
       .catch(error => {
         console.error(error);
       });
@@ -110,38 +111,40 @@ export const ShopHome = ({navigation, route}) => {
     if (bean_count >= 10) {
       return (
         <TouchableOpacity
-          style={styles.button}
+          style={styles.beanButton}
           onPress={() => {
             redeemDrink();
           }}>
-          <Text>Redeem a drink ☕</Text>
+          <Text style={styles.primaryButtonText}>Redeem a drink ☕</Text>
         </TouchableOpacity>
       );
-    } else {
-      return <Text>Drinker has less than 10 beans. Drink more to earn!</Text>;
     }
   };
 
   const addBeanButtons = () => {
     if (drinkerObject != null && drinkerObject != 'No such drinker') {
       return (
-        <View
-          style={{
-            flex: 2,
-            alignItems: 'center',
-          }}>
-          <Text style={styles.subtitle}>Drinker Details</Text>
-          <Text>Drinker ID: {drinkerObject.drinker_id}</Text>
-          <Text>
-            Name: {drinkerObject.firstname} {drinkerObject.lastname}
-          </Text>
-          <Text>Bean count: {bean_count}</Text>
+        <View style={styles.homeScreenContainer}>
+          <View style={styles.details}>
+            <Text
+              style={{
+                fontSize: 18,
+                marginBottom: 10,
+                textAlign: 'center',
+              }}>
+              {drinkerObject.firstname} {drinkerObject.lastname}
+            </Text>
+            <Text style={styles.detailsText}>
+              Drinker ID: {drinkerObject.drinker_id}
+            </Text>
+            <Text style={styles.detailsText}>Bean count: {bean_count}</Text>
+          </View>
           <TouchableOpacity
-            style={styles.button}
+            style={styles.beanButton}
             onPress={() => {
               addBean();
             }}>
-            <Text>Add a bean 🫘</Text>
+            <Text style={styles.primaryButtonText}>Add a bean 🫘</Text>
           </TouchableOpacity>
           {redeemDrinkButton()}
         </View>
@@ -150,16 +153,8 @@ export const ShopHome = ({navigation, route}) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          marginTop: 100,
-          align: 'center',
-          flex: 9,
-        }}>
-        <Text style={{alignSelf: 'center'}}>
-          Enter Customer ID number below:
-        </Text>
+    <SafeAreaView style={styles.homeScreenContainer}>
+      <View style={styles.searchBar}>
         <TextInput
           style={styles.input}
           onChangeText={setDrinkerIDInput}
@@ -169,21 +164,14 @@ export const ShopHome = ({navigation, route}) => {
           maxLength={6}
         />
         <TouchableOpacity
-          style={styles.button}
+          style={styles.primaryButton}
           onPress={() => {
             findDrinkerID();
           }}>
-          <Text>Search user</Text>
-        </TouchableOpacity>
-        {addBeanButtons()}
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            navigation.navigate('Home');
-          }}>
-          <Text>Log out</Text>
+          <Text style={styles.primaryButtonText}>Search user</Text>
         </TouchableOpacity>
       </View>
+      {addBeanButtons()}
     </SafeAreaView>
   );
 };

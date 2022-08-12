@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  View,
   SafeAreaView,
   Text,
   TextInput,
@@ -27,11 +26,12 @@ export const ShopNameScreen = ({navigation, route}) => {
           navigation.navigate('Home');
         }}>
         <Image
-          source={require('../images/CoffeeMug.png')}
-          style={styles.image}
+          resizeMethod="resize"
+          source={require('../images/BeanLogo.png')}
+          style={styles.homeImage}
         />
       </TouchableOpacity>
-      <Text>Fill in your shop's name</Text>
+      <Text style={styles.subtitle}>First, tell us your shop's name</Text>
       <TextInput
         autoCapitalize="none"
         style={styles.input}
@@ -41,11 +41,11 @@ export const ShopNameScreen = ({navigation, route}) => {
         keyboardType="default"
       />
       <TouchableOpacity
-        style={styles.button}
+        style={styles.primaryButton}
         onPress={() => {
           nextPage();
         }}>
-        <Text>Next</Text>
+        <Text style={styles.primaryButtonText}>NEXT</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

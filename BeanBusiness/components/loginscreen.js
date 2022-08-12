@@ -1,7 +1,5 @@
 import React from 'react';
-import type {Node} from 'react';
 import {
-  Button,
   SafeAreaView,
   Text,
   TextInput,
@@ -14,7 +12,6 @@ import {backendDomain} from './backendDomain';
 export const LoginScreen = ({navigation}) => {
   const [shopEmail, onChangeShopEmail] = React.useState(null);
   const [shopPassword, onChangeShopPassword] = React.useState(null);
-  const [userEmail, setUserEmail] = React.useState();
 
   // creating an object of data to pass into login fetch request
   let baristaLogInData = {
@@ -29,9 +26,12 @@ export const LoginScreen = ({navigation}) => {
     }),
   };
 
-  const logIn = user => {
-    if (user !== undefined) {
-      navigation.navigate('Coffee Shop Home', {shopId: {user}});
+  const logIn = userData => {
+    if (userData.shopId !== undefined) {
+      navigation.navigate('BeanBusinessApp', {
+        shopId: userData.shopId,
+        shopName: userData.shop_name,
+      });
     }
   };
 
@@ -43,7 +43,7 @@ export const LoginScreen = ({navigation}) => {
         return json;
       })
       .then(data => {
-        logIn(data.shopId);
+        logIn(data);
       })
       .catch(error => {
         console.error(error);
@@ -57,11 +57,12 @@ export const LoginScreen = ({navigation}) => {
           navigation.navigate('Home');
         }}>
         <Image
-          source={require('./images/CoffeeMug.png')}
-          style={styles.image}
+          resizeMethod="resize"
+          source={require('./images/BeanLogo.png')}
+          style={styles.homeImage}
         />
       </TouchableOpacity>
-      <Text>Coffee Bean's Login Page</Text>
+      <Text style={styles.subtitle}>Login to Loyal Bean</Text>
       <TextInput
         autoCapitalize="none"
         style={styles.input}
@@ -80,11 +81,11 @@ export const LoginScreen = ({navigation}) => {
         secureTextEntry={true}
       />
       <TouchableOpacity
-        style={styles.button}
+        style={styles.primaryButton}
         onPress={() => {
           baristaLogIn();
         }}>
-        <Text>Sign in</Text>
+        <Text style={styles.primaryButtonText}>Login</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
