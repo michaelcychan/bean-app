@@ -188,10 +188,12 @@ export const ShopHome = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
+      <View style={styles.cameracontainer}>
+        {showQRCodeScanner()}
+      </View>
       <View style={styles.searchBar}>
-      {showQRCodeScanner()}
         <TextInput
-          style={styles.input}
+          style={styles.input_drinker}
           onChangeText={setDrinkerIDInput}
           value={drinkerIDInput}
           placeholder="Enter customer's membership ID"
@@ -205,8 +207,8 @@ export const ShopHome = ({navigation, route}) => {
           }}>
           <Text style={styles.primaryButtonText}>Search user</Text>
         </TouchableOpacity>
+        {addBeanButtons()}
       </View>
-      {addBeanButtons()}
     </SafeAreaView>
   );
 };

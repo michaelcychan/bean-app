@@ -28,6 +28,16 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     color: '#50009E',
   },
+  input_drinker: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    width: 240,
+    backgroundColor: 'white',
+    color: '#50009E',
+    alignSelf: 'center',
+  },
   hoursContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -133,13 +143,20 @@ export const styles = StyleSheet.create({
   },
   homeScreenContainer: {
     flex: 2,
-    padding: 24,
+    padding: 16,
     alignItems: 'center',
     backgroundColor: '#0BA8D3',
+    alignSelf: 'center'
   },
   searchBar: {
     flex: 1,
-    marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 15,
+  },
+  cameracontainer: {
+    flex: 0.5,
+    alignItems: 'center',
+    alignSelf: 'center',
+    margin: 1,
+    padding: 1,
   },
 });
