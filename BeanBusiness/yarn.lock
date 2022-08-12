@@ -1133,15 +1133,15 @@
     "mv" "~2"
     "safe-json-stringify" "~1"
 
-"@expo/cli@0.2.7":
-  "integrity" "sha512-KB+z96RB4vxe01/vDkh6eKwxFuFgSgxGN1gFKKsfXdekosveVV3wc9gNQV32jublWuT5pHLKyb9ZiSYpG0s1aA=="
-  "resolved" "https://registry.npmjs.org/@expo/cli/-/cli-0.2.7.tgz"
-  "version" "0.2.7"
+"@expo/cli@0.2.8":
+  "integrity" "sha512-8+LBXRKommR7Nmmp+anGNnTQaHyGQDvofcbujmo6pjGI99Z07F5lFyeZNL4h5ZJAMxgzjDfJeLxsRHzo0gy4pA=="
+  "resolved" "https://registry.npmjs.org/@expo/cli/-/cli-0.2.8.tgz"
+  "version" "0.2.8"
   dependencies:
     "@babel/runtime" "^7.14.0"
     "@expo/code-signing-certificates" "^0.0.2"
-    "@expo/config" "~7.0.0"
-    "@expo/config-plugins" "~5.0.0"
+    "@expo/config" "~7.0.1"
+    "@expo/config-plugins" "~5.0.1"
     "@expo/dev-server" "~0.1.110"
     "@expo/devcert" "^1.0.0"
     "@expo/json-file" "^8.2.35"
@@ -1149,7 +1149,7 @@
     "@expo/osascript" "^2.0.31"
     "@expo/package-manager" "~0.0.53"
     "@expo/plist" "^0.0.18"
-    "@expo/prebuild-config" "~5.0.0"
+    "@expo/prebuild-config" "~5.0.3"
     "@expo/rudder-sdk-node" "1.1.1"
     "@expo/spawn-async" "1.5.0"
     "@expo/xcpretty" "^4.2.1"
@@ -1207,10 +1207,10 @@
     "node-forge" "^1.2.1"
     "nullthrows" "^1.1.1"
 
-"@expo/config-plugins@~5.0.0":
-  "integrity" "sha512-Bgjgv64f/XqpXXKPAoGhc5dbmuJB8eOBkhV6FMI/RMP06HfL7EQvXgcBBoJThLAZVyd29XikFgaCvABt/NavxQ=="
-  "resolved" "https://registry.npmjs.org/@expo/config-plugins/-/config-plugins-5.0.0.tgz"
-  "version" "5.0.0"
+"@expo/config-plugins@~5.0.0", "@expo/config-plugins@~5.0.1":
+  "integrity" "sha512-1OfnsOrfeSkB0VZfT01UjQ5Uq6p+yYbq8yNkj0e99K/6NLHpyvIxj+5tZIV0nQXgkOcqBIABL2uA7lwB8CkaBQ=="
+  "resolved" "https://registry.npmjs.org/@expo/config-plugins/-/config-plugins-5.0.1.tgz"
+  "version" "5.0.1"
   dependencies:
     "@expo/config-types" "^46.0.0"
     "@expo/json-file" "8.2.36"
@@ -1228,19 +1228,19 @@
     "xcode" "^3.0.1"
     "xml2js" "0.4.23"
 
-"@expo/config-types@^46.0.0":
-  "integrity" "sha512-LQWGDagQ0YXGSJyLomNDZrYXj/cUP+wczs9y2M8MB9UDoSU6dbLRMiSX0FMhhKKdxBK0p92VQxZyqOzGpIYfSw=="
-  "resolved" "https://registry.npmjs.org/@expo/config-types/-/config-types-46.0.1.tgz"
-  "version" "46.0.1"
+"@expo/config-types@^46.0.0", "@expo/config-types@^46.0.1":
+  "integrity" "sha512-PXkmOgNwRyBfgVT1HmFZhfh3Qm7WKKyV6mk3/5HJ/LzPh1t+Zs2JrWX8U2YncTLV1QzV7nV8tnkyvszzqnZEzQ=="
+  "resolved" "https://registry.npmjs.org/@expo/config-types/-/config-types-46.0.2.tgz"
+  "version" "46.0.2"
 
-"@expo/config@~7.0.0", "@expo/config@7.0.0":
-  "integrity" "sha512-4807iau5gTcCAMUDWxsXfBX4E3embZJREO9c098GiRgAvCBc7PCqdGs9jEAKakCxmPbMGBURL17rKYAsHtZuQw=="
-  "resolved" "https://registry.npmjs.org/@expo/config/-/config-7.0.0.tgz"
-  "version" "7.0.0"
+"@expo/config@~7.0.0", "@expo/config@~7.0.1", "@expo/config@7.0.1":
+  "integrity" "sha512-4lu0wr45XXJ2MXiLAm2+fmOyy/jjqF3NuDm92fO6nuulRzEEvTP4w3vsibJ690rT81ohtvhpruKhkRs0wSjKWA=="
+  "resolved" "https://registry.npmjs.org/@expo/config/-/config-7.0.1.tgz"
+  "version" "7.0.1"
   dependencies:
     "@babel/code-frame" "~7.10.4"
-    "@expo/config-plugins" "~5.0.0"
-    "@expo/config-types" "^46.0.0"
+    "@expo/config-plugins" "~5.0.1"
+    "@expo/config-types" "^46.0.1"
     "@expo/json-file" "8.2.36"
     "getenv" "^1.0.0"
     "glob" "7.1.6"
@@ -1315,11 +1315,11 @@
     "write-file-atomic" "^2.3.0"
 
 "@expo/metro-config@~0.3.18":
-  "integrity" "sha512-z3vaB+He/hvO3F65hdpmYjB2y969UtzB8u7M1y91AURDemsMT82xri7fjNxx6R4EVNzhr5a3PG93kArEDnuBfw=="
-  "resolved" "https://registry.npmjs.org/@expo/metro-config/-/metro-config-0.3.21.tgz"
-  "version" "0.3.21"
+  "integrity" "sha512-R81sLbaeUBjN8IXcxiVx7GcpSj8z7szILl1b5yJDb38WdIFwxhrseA5wXaTT1yMhI+59w6n99T2qtFV2yD5qYA=="
+  "resolved" "https://registry.npmjs.org/@expo/metro-config/-/metro-config-0.3.22.tgz"
+  "version" "0.3.22"
   dependencies:
-    "@expo/config" "7.0.0"
+    "@expo/config" "7.0.1"
     "@expo/json-file" "8.2.36"
     "chalk" "^4.1.0"
     "debug" "^4.3.2"
@@ -1361,13 +1361,13 @@
     "base64-js" "^1.2.3"
     "xmlbuilder" "^14.0.0"
 
-"@expo/prebuild-config@~5.0.0":
-  "integrity" "sha512-EYVdPSnZTArC60g1C7ZTt0wFD6EQA23us7JcETae9y2KVdYQwQ+KF8okPJwlqVtMqk3Yaa6jpIXbzdxmHS+2ew=="
-  "resolved" "https://registry.npmjs.org/@expo/prebuild-config/-/prebuild-config-5.0.2.tgz"
-  "version" "5.0.2"
+"@expo/prebuild-config@~5.0.3":
+  "integrity" "sha512-G4j1H3WFjRaiQ+FgFNULrnIm7RsQyjc4xp6lLTP2ydBv79wO3x8wAdeZvaZh7eOkfu9BESpQzACT1uuJTag5jg=="
+  "resolved" "https://registry.npmjs.org/@expo/prebuild-config/-/prebuild-config-5.0.3.tgz"
+  "version" "5.0.3"
   dependencies:
-    "@expo/config" "7.0.0"
-    "@expo/config-plugins" "~5.0.0"
+    "@expo/config" "7.0.1"
+    "@expo/config-plugins" "~5.0.1"
     "@expo/config-types" "^46.0.0"
     "@expo/image-utils" "0.3.20"
     "@expo/json-file" "8.2.36"
@@ -1945,7 +1945,6 @@
   "integrity" "sha512-KrwSpS1tKI70wuKl68DwJZYEvXktDHdZMG0k2AXD/rJVSlB23/X2CB2cutVR0HwNMJIal9HOUOBB2rVfa6UGtQ=="
   "resolved" "https://registry.npmjs.org/@react-native/assets/-/assets-1.0.0.tgz"
   "version" "1.0.0"
-
 
 "@react-native/normalize-color@*", "@react-native/normalize-color@^2.0.0", "@react-native/normalize-color@2.0.0":
   "integrity" "sha512-Wip/xsc5lw8vsBlmY2MO/gFLp3MvuZ2baBZjDeTjjndMgM0h5sxz7AZR62RDPGgstp8Np7JzjvVqVT7tpFZqsw=="
@@ -4136,12 +4135,12 @@
     "invariant" "^2.2.4"
 
 "expo@*":
-  "integrity" "sha512-tHQgne7IKp+PI8BNaQP5zb259BjijY7XoqOZJA9GYFt/Xld/Yrood2dnQHNQwj3cba6w3E2k/ZRKTD7UohkxKw=="
-  "resolved" "https://registry.npmjs.org/expo/-/expo-46.0.3.tgz"
-  "version" "46.0.3"
+  "integrity" "sha512-60fM7sqLppVd6jP73uWuqiLW7BbC20WxFRfAz+r4a7bRkrD/jUwvdQlVKIj9KpQQHWaDeuASj3rSGtU9CytPhg=="
+  "resolved" "https://registry.npmjs.org/expo/-/expo-46.0.6.tgz"
+  "version" "46.0.6"
   dependencies:
     "@babel/runtime" "^7.14.0"
-    "@expo/cli" "0.2.7"
+    "@expo/cli" "0.2.8"
     "@expo/vector-icons" "^13.0.0"
     "babel-preset-expo" "~9.2.0"
     "cross-spawn" "^6.0.5"
@@ -5181,7 +5180,6 @@
   "integrity" "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng=="
   "resolved" "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz"
   "version" "7.0.0"
-
 
 "is-path-cwd@^2.2.0":
   "integrity" "sha512-w942bTcih8fdJPJmQHFzkS76NEP8Kzzvmw92cXsazb8intwLqPibPPdXf4ANdKV3rYMuuQYGIWtvz9JilB3NFQ=="
