@@ -1,6 +1,9 @@
 import { BottomTabBarHeightCallbackContext } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 
+const primary = '#1C24F5'
+const secondary = '#0BA8D3'
+
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: '#0BA8D3',
@@ -14,6 +17,45 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold'
+  },
+  subtitle: {
+    fontSize: 24,
+    padding: 5,
+    color: 'white',
+  },
+  primaryButton: {
+    alignItems: 'center',
+    backgroundColor: primary,
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'white',
+  },
+  primaryButtonText: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+  },
+  secondaryButton: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+    borderWidth: 3,
+    borderColor: primary,
+  },
+  secondaryButtonText: {
+    fontSize: 14,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: primary,
   },
   button: {
     alignItems: 'center',
@@ -29,31 +71,38 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   homeImage: {
-    height: 320,
-    width: 320,
-    alignItems: 'center',
-    padding: 10,
-    marginTop: 10,
-    marginBottom: 2,
+    marginTop: 100,
+    height: 300,
+    width: 300,
   },
   image: {
     height: 200,
     width: 200,
     alignItems: 'center',
     padding: 10,
-    marginTop: 10,
+    marginTop: 50,
   },
   input: {
     height: 40,
-    width: 240,
     margin: 12,
     borderWidth: 1,
+    borderColor: primary,
     padding: 10,
+    width: 240,
     backgroundColor: 'white',
-    borderRadius: 20,
-    borderWidth: 2,
-    placeholderTextColor: '#000000'
+    color: primary,
   },
+  // input: {
+  //   height: 40,
+  //   width: 240,
+  //   margin: 12,
+  //   borderWidth: 1,
+  //   padding: 10,
+  //   backgroundColor: 'white',
+  //   borderRadius: 20,
+  //   borderWidth: 2,
+  //   placeholderTextColor: '#000000'
+  // },
   card_container: {
     alignItems: 'center',
 

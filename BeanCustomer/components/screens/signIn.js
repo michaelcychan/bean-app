@@ -98,18 +98,18 @@ export const SignIn = ({navigation, route}) => {
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <Image
-          source={require('../images/logos_transparent.png')}
+          source={require('../images/BeanLogoWhite.png')}
           style={styles.image}
         />
       </TouchableOpacity>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.subtitle}>Login</Text>
       <TextInput
         autoCapitalize="none" // set to stop capitalization of first letter
         style={styles.input}
         onChangeText={setEmail}
         value={email}
         placeholder="Email"
-        placeholderTextColor='#999999'
+        placeholderTextColor="#999999"
         textContentType="username" // defined to allow autofill on iPhone
       />
       {emailError.length > 0 && <Text>{emailError}</Text>}
@@ -120,18 +120,20 @@ export const SignIn = ({navigation, route}) => {
         onChangeText={setPassword}
         value={password}
         placeholder="Password"
-        placeholderTextColor='#999999'
+        placeholderTextColor="#999999"
         textContentType="password" // defined to allow autofill on iPhone
       />
       {passwordError.length > 0 && <Text>{passwordError}</Text>}
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttontext}>Login</Text>
+      <TouchableOpacity style={styles.primaryButton} onPress={handleSubmit}>
+        <Text style={styles.primaryButtonText}>Login</Text>
       </TouchableOpacity>
-      <Text>Haven't signed up yet?</Text>
+      <Text style={{color: 'white', fontWeight: 'bold', marginTop: 30}}>
+        Haven't signed up yet?
+      </Text>
       <TouchableOpacity
-        style={styles.button}
+        style={styles.secondaryButton}
         onPress={() => navigation.navigate('Sign Up')}>
-        <Text style={styles.buttontext}>Sign up</Text>
+        <Text style={styles.secondaryButtonText}>Sign up</Text>
       </TouchableOpacity>
     </View>
   );

@@ -29,7 +29,17 @@ const BeanTabs = ({props, route}) => {
   const userId = route.params.user;
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#1C24F5',
+        },
+        headerTintColor: 'white',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}
+    >
       {/* this screen given a separate title as it isn't the home screen, but we want the user to see that */}
       <Tab.Screen
         name="Id"

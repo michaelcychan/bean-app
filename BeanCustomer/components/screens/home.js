@@ -4,28 +4,33 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {styles} from '../stylesheet';
 
 export const Home = ({navigation}) => {
-
   return (
-    <View style={styles.container}>
-      <Image 
-          source={require('../images/logos_transparent.png')} 
+    <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <Image
+          source={require('../images/BeanLogoWhite.png')}
           style={styles.homeImage}
-      />
-      <Text>Receive free coffee</Text>
-      <Text>From your favourite independant coffee shop</Text>
-      {/* touchable opacity view used to allow navigation to Sign Up page */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Sign Up')}>
-        <Text style={styles.buttontext}>Sign up for rewards</Text>
-      </TouchableOpacity>
-      <Text>Already have an account?</Text>
+        />
+      </View>
+      <View style={styles.container}>
+        <Text style={styles.subtitle}>Get free coffee, from your</Text>
+        <Text style={styles.subtitle}>favourite coffee shop!</Text>
+        {/* touchable opacity view used to allow navigation to Sign Up page */}
+        <TouchableOpacity
+          style={styles.primaryButton}
+          onPress={() => navigation.navigate('Sign Up')}>
+          <Text style={styles.primaryButtonText}>Sign up for rewards</Text>
+        </TouchableOpacity>
+        <Text style={{color: 'white', fontWeight: 'bold', marginTop: 30}}>
+          Already have an account?
+        </Text>
         {/* touchable opacity view used to allow navigation to Sign In page */}
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('Sign In')}>
-        <Text style={styles.buttontext}>Login</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity
+          style={styles.secondaryButton}
+          onPress={() => navigation.navigate('Sign In')}>
+          <Text style={styles.secondaryButtonText}>Login</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };
