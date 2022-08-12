@@ -26,12 +26,15 @@ export const EmailAndPasswordScreen = ({navigation}) => {
           navigation.navigate('Home');
         }}>
         <Image
-          source={require('../images/CoffeeMug.png')}
-          style={styles.image}
+          resizeMethod="resize"
+          source={require('../images/BeanLogo.png')}
+          style={styles.homeImage}
         />
       </TouchableOpacity>
-      <Text>Please enter your email and password</Text>
-      <Text>Keep these details safe, you'll need them to login</Text>
+      <Text style={styles.subtitle}>Enter your email and password</Text>
+      <Text style={{color: 'white'}}>
+        Keep these details safe, you'll need them to login
+      </Text>
       <TextInput
         autoCapitalize="none"
         style={styles.input}
@@ -49,13 +52,12 @@ export const EmailAndPasswordScreen = ({navigation}) => {
         keyboardType="default"
         secureTextEntry={true}
       />
-
       <TouchableOpacity
-        style={styles.button}
+        style={styles.primaryButton}
         onPress={() => {
           nextPage();
         }}>
-        <Text>NEXT</Text>
+        <Text style={styles.primaryButtonText}>NEXT</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

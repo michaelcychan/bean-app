@@ -82,6 +82,61 @@ Wait for the xcode simulator to come up.
 Bundler will start up in another terminal. It is responsible for building a bundle file for the iOS application to run. 
 At the simulator, CMD + D can bring up the menu. When Fash Refresh is enabled, it will refresh the web application when the the bundel is rebuilt. 
 
+### Special notes on running QR code scanner
+The Business Application uses [React Native QRCode Scanner](https://github.com/moaazsidat/react-native-qrcode-scanner), it uses one camera dependency [React Native Camera](https://www.npmjs.com/package/react-native-camera), which in turn relies on another dependency: [React Native Permissions](https://github.com/zoontek/react-native-permissions). Because the React Native Camera is currently deprecated and there were changes in React Native the removed certain components that are required by React Native Camera, some extra works have to be done.
+
+1. [For Android] Go to `./BeanBusiness/android/app/src/main/AndroidManifest.xml` and add `<uses-permission android:name="android.permission.VIBRATE"/>`.  
+2. [For Android] Go to `./BeanBusiness/android/app/build.gradle` and add:
+```
+android {
+  ...
+  defaultConfig {
+    ...
+    missingDimensionStrategy 'react-native-camera', 'general' <-- insert this line
+  }
+}
+```
+3. [iOS only] Go to `./BeanBusiness/ios/BeanBusiness/Info.plist` and add the following "Privacy - Camera Usage Description" key:
+```
+<key>NSCameraUsageDescription</key>
+<string>Your message to user when the camera is accessed for the first time</string>
+
+<!-- Include this only if you are planning to use the camera roll -->
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Your message to user when the photo library is accessed for the first time</string>
+
+<!-- Include this only if you are planning to use the microphone for video recording -->
+<key>NSMicrophoneUsageDescription</key>
+<string>Your message to user when the microsphone is accessed for the first time</string>
+```
+
+4. Check if you have `"deprecated-react-native-prop-types"` in `./BeanBusiness/package.json`, if not, run:
+```
+npm i deprecated-react-native-prop-types@2.2.0
+```
+
+5. Go to `./BeanBusiness/node_modules/react-native-camera/src/RNCamera.js`, remove `ViewPropTypes` from
+```
+import {
+      findNodeHandle,
+      Platform,
+      NativeModules,
+      ViewPropTypes,
+      requireNativeComponent,
+      View,
+      ActivityIndicator,
+      Text,
+      StyleSheet,
+      PermissionsAndroid,
+    } from 'react-native';
+```
+and add this line:
+```
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
+```
+
+
+
 ### Podfiles
 To view your podfiles:
 `open -a Xcode Podfile`

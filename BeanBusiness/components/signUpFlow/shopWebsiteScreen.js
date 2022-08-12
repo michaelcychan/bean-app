@@ -29,25 +29,32 @@ export const ShopWebsiteScreen = ({navigation, route}) => {
           navigation.navigate('Home');
         }}>
         <Image
-          source={require('../images/CoffeeMug.png')}
-          style={styles.image}
+          resizeMethod="resize"
+          source={require('../images/BeanLogo.png')}
+          style={styles.homeImage}
         />
       </TouchableOpacity>
-      <Text>Fill in your shop's website</Text>
+      <Text style={styles.subtitle}>Do you have a website?</Text>
+      <Text style={{color: 'white'}}>
+        Your customers will want to get as much information
+      </Text>
+      <Text style={{color: 'white'}}>
+        as they can about their favourite coffee shop!
+      </Text>
       <TextInput
         autoCapitalize="none"
         style={styles.input}
         onChangeText={setShopWebsite}
         value={shopWebsite}
-        placeholder="Enter your shop's website address'"
+        placeholder="Enter your shop's web address"
         keyboardType="default"
       />
       <TouchableOpacity
-        style={styles.button}
+        style={styles.primaryButton}
         onPress={() => {
           nextPage();
         }}>
-        <Text>Next</Text>
+        <Text style={styles.primaryButtonText}>NEXT</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

@@ -25,6 +25,12 @@ const baristaSchema = new Schema({
   },
   shopLogo: {
     type: String,
+  },
+  shopWebsite: {
+    type: String,
+  },
+  openingHours: {
+    type: Array,
   }
 });
 

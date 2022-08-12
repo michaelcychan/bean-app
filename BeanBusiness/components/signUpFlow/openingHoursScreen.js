@@ -8,39 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {styles} from '../stylesheets';
-import {backendDomain} from '../backendDomain';
 
 export const OpeningHoursScreen = ({navigation, route}) => {
-  const shopEmail = route.params.shopEmail;
-  const shopPassword = route.params.shopPassword;
-  const shopName = route.params.shopName;
-  const shopLogo = route.params.shopLogo;
-  const shopWebsite = route.params.shopWebsite;
-  const [shopOpeningHours, setShopOpeningHours] = React.useState(null);
-
-  // creating an object of data to pass into baristaSignUp fetch request
-  let newBaristaData = {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      email: shopEmail,
-      password: shopPassword,
-      shop_name: shopName,
-      shopLogo: shopLogo,
-      openingHours: shopOpeningHours,
-      website: shopWebsite,
-    }),
-  };
-
-  const logIn = response => {
-    if (response == 'A new Barista joined!') {
-      navigation.navigate('Login');
-    }
-  };
-
   // each day's opening hours set by the corresponding text input
   const [mondayHours, setMondayHours] = React.useState(null);
   const [tuesdayHours, setTuesdayHours] = React.useState(null);
@@ -50,9 +19,13 @@ export const OpeningHoursScreen = ({navigation, route}) => {
   const [saturdayHours, setSaturdayHours] = React.useState(null);
   const [sundayHours, setSundayHours] = React.useState(null);
 
-  // when called, passes the opening hours into the variable to be sent in post request
-  const dailyOpeningHours = () => {
-    let openingHours = {
+  const nextPage = () => {
+    navigation.navigate('Create Account', {
+      shopEmail: route.params.shopEmail,
+      shopPassword: route.params.shopPassword,
+      shopName: route.params.shopName,
+      shopLogo: route.params.shopLogo,
+      shopWebsite: route.params.shopWebsite,
       monday: mondayHours,
       tuesday: tuesdayHours,
       wednesday: wednesdayHours,
@@ -60,36 +33,27 @@ export const OpeningHoursScreen = ({navigation, route}) => {
       friday: fridayHours,
       saturday: saturdayHours,
       sunday: sundayHours,
-    };
-    setShopOpeningHours(openingHours);
-  };
-
-  // sending request to backend server to signup a new barista
-  const baristaSignUp = () => {
-    return fetch(`${backendDomain}barista/new-barista`, newBaristaData)
-      .then(response => response.json())
-      .then(json => {
-        return json;
-      })
-      .then(data => logIn(data))
-      .catch(error => {
-        console.error(error);
-      });
+    });
   };
 
   return (
-    <SafeAreaView style={styles.openingHoursContainer}>
+    <SafeAreaView style={styles.container}>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Home');
         }}>
         <Image
-          source={require('../images/CoffeeMug.png')}
+          resizeMethod="resize"
+          source={require('../images/BeanLogo.png')}
           style={styles.image}
         />
       </TouchableOpacity>
-      <Text>Customers need to know when they can get their coffee!</Text>
-      <Text>Please provide your opening hours below</Text>
+      <Text style={{color: 'white'}}>
+        Customers need to know when they can get their coffee!
+      </Text>
+      <Text style={{color: 'white'}}>
+        Please provide your opening hours below
+      </Text>
       <View style={styles.hoursContainer}>
         <Text style={styles.hoursLabel}>Monday:</Text>
         <TextInput
@@ -168,12 +132,11 @@ export const OpeningHoursScreen = ({navigation, route}) => {
         />
       </View>
       <TouchableOpacity
-        style={styles.button}
+        style={styles.primaryButton}
         onPress={() => {
-          dailyOpeningHours();
-          baristaSignUp();
+          nextPage();
         }}>
-        <Text>Sign up</Text>
+        <Text style={styles.primaryButtonText}>NEXT</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
