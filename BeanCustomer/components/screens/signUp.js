@@ -126,16 +126,18 @@ export const SignUp = ({navigation, route}) => {
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <Image
-          source={require('../images/CoffeeMug.png')}
+          source={require('../images/BeanLogoWhite.png')}
           style={styles.image}
         />
       </TouchableOpacity>
-      <Text>Signup</Text>
+      <View style={styles.container}>
+      <Text style={styles.subtitle}>Sign up for Loyal Bean</Text>
       <TextInput
         style={styles.input}
         onChangeText={setFirstName}
         value={firstName}
         placeholder="First Name"
+        placeholderTextColor="#999999"
       />
       {firstNameError.length > 0 && <Text>{firstNameError}</Text>}
       <TextInput
@@ -143,6 +145,7 @@ export const SignUp = ({navigation, route}) => {
         onChangeText={setLastName}
         value={lastName}
         placeholder="Last Name"
+        placeholderTextColor="#999999"
       />
       {lastNameError.length > 0 && <Text>{lastNameError}</Text>}
       <TextInput
@@ -151,6 +154,7 @@ export const SignUp = ({navigation, route}) => {
         onChangeText={text => setEmail(text)}
         value={email}
         placeholder="Email"
+        placeholderTextColor="#999999"
       />
       {emailError.length > 0 && <Text>{emailError}</Text>}
       <TextInput
@@ -160,22 +164,24 @@ export const SignUp = ({navigation, route}) => {
         onChangeText={text => setPassword(text)}
         value={password}
         placeholder="Password"
+        placeholderTextColor="#999999"
       />
       {passwordError.length > 0 && <Text>{passwordError}</Text>}
       <Text>{signUpError}</Text>
       <TouchableOpacity
-        style={styles.button}
+        style={styles.primaryButton}
         // pressing the button calls the sign up function, and navigates to the Sign In page.
         // an alternative path needs to be written where the user can not sign up with the details provided, currently it crashes the server
         onPress={handleSubmit}>
-        <Text>Sign up</Text>
+        <Text style={styles.primaryButtonText}>Sign up</Text>
       </TouchableOpacity>
-      <View>
-        <Text>Already have an account?</Text>
+        <Text style={{color: 'white', fontWeight: 'bold', marginTop: 30}}>
+          Already have an account?
+        </Text>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.secondaryButton}
           onPress={() => navigation.navigate('Sign In')}>
-          <Text>Login</Text>
+          <Text style={styles.secondaryButtonText}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -16,7 +16,7 @@ export const SignIn = ({navigation, route}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // variable created to take drinker ID returned from fetch request
-  const [userId, setUserId] = useState('0');
+  const [user, setUser] = useState(null);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
@@ -35,7 +35,7 @@ export const SignIn = ({navigation, route}) => {
 
   // navigation function with If function to only allow navigation if a member number is returned
   const enterBeanApp = user => {
-    if (user > 0) {
+    if (user.drinker_id > 0) {
       navigation.navigate('BeanApp', {user: user});
     }
   };
@@ -85,8 +85,8 @@ export const SignIn = ({navigation, route}) => {
         return responseData;
       })
       .then(data => {
-        setUserId(data.drinker_id);
-        return data.drinker_id;
+        setUser(data);
+        return data;
       })
       .then(user => enterBeanApp(user))
       .catch(error => {
@@ -98,17 +98,18 @@ export const SignIn = ({navigation, route}) => {
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <Image
-          source={require('../images/CoffeeMug.png')}
+          source={require('../images/BeanLogoWhite.png')}
           style={styles.image}
         />
       </TouchableOpacity>
-      <Text>Login</Text>
+      <Text style={styles.subtitle}>Login</Text>
       <TextInput
         autoCapitalize="none" // set to stop capitalization of first letter
         style={styles.input}
         onChangeText={setEmail}
         value={email}
         placeholder="Email"
+        placeholderTextColor="#999999"
         textContentType="username" // defined to allow autofill on iPhone
       />
       {emailError.length > 0 && <Text>{emailError}</Text>}
@@ -119,17 +120,20 @@ export const SignIn = ({navigation, route}) => {
         onChangeText={setPassword}
         value={password}
         placeholder="Password"
+        placeholderTextColor="#999999"
         textContentType="password" // defined to allow autofill on iPhone
       />
       {passwordError.length > 0 && <Text>{passwordError}</Text>}
-      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text>Login</Text>
+      <TouchableOpacity style={styles.primaryButton} onPress={handleSubmit}>
+        <Text style={styles.primaryButtonText}>Login</Text>
       </TouchableOpacity>
-      <Text>Haven't signed up yet?</Text>
+      <Text style={{color: 'white', fontWeight: 'bold', marginTop: 30}}>
+        Haven't signed up yet?
+      </Text>
       <TouchableOpacity
-        style={styles.button}
+        style={styles.secondaryButton}
         onPress={() => navigation.navigate('Sign Up')}>
-        <Text>Sign up</Text>
+        <Text style={styles.secondaryButtonText}>Sign up</Text>
       </TouchableOpacity>
     </View>
   );
