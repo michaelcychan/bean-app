@@ -26,7 +26,7 @@ const Tab = createBottomTabNavigator();
 // creating a tab navigation component containing the screens seen when logged in
 const BeanTabs = ({props, route}) => {
   // sets a variable as the user id of the logged in user, passed from the login page
-  const userId = route.params.user;
+  const user = route.params.user;
 
   return (
     <Tab.Navigator
@@ -50,12 +50,12 @@ const BeanTabs = ({props, route}) => {
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
         }}>
-        {() => <Id userId={userId} />}
+        {() => <Id user={user} />}
       </Tab.Screen>
       <Tab.Screen
         name="Beans"
         component={Beans}
-        initialParams={{userId: userId}}
+        initialParams={{user: user}}
         options={{
           unmountOnBlur: true,
           tabBarLabel: 'Beans',

@@ -16,7 +16,7 @@ export const SignIn = ({navigation, route}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // variable created to take drinker ID returned from fetch request
-  const [userId, setUserId] = useState('0');
+  const [user, setUser] = useState(null);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
@@ -35,7 +35,7 @@ export const SignIn = ({navigation, route}) => {
 
   // navigation function with If function to only allow navigation if a member number is returned
   const enterBeanApp = user => {
-    if (user > 0) {
+    if (user.drinker_id > 0) {
       navigation.navigate('BeanApp', {user: user});
     }
   };
@@ -85,8 +85,8 @@ export const SignIn = ({navigation, route}) => {
         return responseData;
       })
       .then(data => {
-        setUserId(data.drinker_id);
-        return data.drinker_id;
+        setUser(data);
+        return data;
       })
       .then(user => enterBeanApp(user))
       .catch(error => {
