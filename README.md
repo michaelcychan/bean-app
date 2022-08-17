@@ -182,3 +182,5 @@ The Coffee Lover Flow
 The Coffee Shop Owner Flow
 ![Coffee-Shop-Wireframe](https://user-images.githubusercontent.com/46889947/182211023-46df8741-8b23-4f7d-96f5-3bb24bc20277.png)
 
+## Screenshots
+<img src="./images/screenshots/loyalBeanSignUpLogIn.gif" />
