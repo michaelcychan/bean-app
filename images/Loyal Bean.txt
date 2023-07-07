@@ -1,0 +1,47 @@
+title Loyal Bean
+#https://sequencediagram.org/
+
+participant Barista App
+participant Customer App
+participant Backend
+
+database Mongo Atlas
+
+Barista App->Backend: Register
+Backend->Mongo Atlas: Create Barista record
+Customer App->Backend: Register
+Backend->Mongo Atlas: Create Customer record
+
+
+Customer App ->Backend: Log-in info
+Backend ->Mongo Atlas: Enquire credential by user email
+Mongo Atlas ->Backend: Return encrypted password by user email
+alt Correct Credential
+Backend ->Customer App: Return User Object
+else Wrong credential
+Backend ->Customer App: Return Error
+end
+
+Customer App -> Backend: Enquire Coffee Shop info
+Backend->Mongo Atlas: Get Business Info
+activate Mongo Atlas
+Mongo Atlas->Backend: Return Business Info
+deactivate Mongo Atlas
+Backend->Customer App: Return Business Info
+
+Customer App -> Backend: Enquire bean count
+Backend ->Mongo Atlas: Get bean count by customer id
+Mongo Atlas->Backend: Return current bean count
+Backend->Customer App: Return current bean count
+
+Customer App ->Barista App: Show QR Code
+activate Barista App
+Barista App ->Backend: Get bean number by customer id
+Backend ->Mongo Atlas: Get bean number by customer id
+Mongo Atlas ->Backend: Return bean number
+Backend ->Barista App: Bean number by customer id
+Barista App->Backend: Add Bean / Redeem Drink
+Backend ->Mongo Atlas: Find and Update Bean count with customer id
+Mongo Atlas->Backend: Return updated bean count
+Backend->Barista App: Show latest bean count 
+deactivate Barista App
